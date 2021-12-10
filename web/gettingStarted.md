@@ -1,8 +1,11 @@
-# WEB - Getting Started
+# Getting Started
 
 ## SDK 설치 - Static Import
 
-#### ** `index.html` **
+#### \*\* `index.html` \*\*
+
+{% code title="index.html" %}
 ```
 <script type="text/javascript" src="knowledgetalk.min.js"></script>
 ```
+{% endcode %}
