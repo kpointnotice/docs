@@ -10,7 +10,5 @@ SDK를 사용하려면 라이센스를 발급받아야 하며 날리지포인트
 #### 라이센스 키 발급
 
 {% embed url="http://knowledgepoint.co.kr/developer/test/list" %}
-
-{% content-ref url="overview/spec/" %}
-[spec](overview/spec/)
-{% endcontent-ref %}
+라이센스 신청
+{% endembed %}
