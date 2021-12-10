@@ -9,6 +9,6 @@ SDK를 사용하려면 라이센스를 발급받아야 하며 날리지포인트
 ### 개발절차
 #### 라이센스 키 발급
 
-{% content-ref url="overview/spec" %}
+{% content-ref url="overview/spec/" %}
 [spec](overview/spec/)
 {% endcontent-ref %}
