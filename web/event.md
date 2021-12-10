@@ -18,7 +18,7 @@ knowledgetalk.addEventListener('presence', async event => {
 {% endcode %}
     
 
-- **응답**(타입별 상세 메시지 예시)
+## 타입별 상세 메시지 예시
 
 ### join
 {% code title="event message sample" %}
