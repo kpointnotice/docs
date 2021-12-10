@@ -49,7 +49,7 @@ await knowledgetalk.createVideoRoom('room1', 'title');
 ## Room Join
 {% code title="index.js" %}
 ```javascript
-//성공 시, room 정보 리턴
+//방 입장 요청
 await knowledgetalk.joinroom('room1');
 ```
 {% endcode %}
@@ -76,7 +76,7 @@ await knowledgetalk.joinroom('room1');
 
 {% code title="index.js" %}
 ```javascript
-//성공 시, room 정보 리턴
+//퇴장 요청
 await knowledgetalk.leaveRoom('room1');
 ```
 {% endcode %}
@@ -95,7 +95,7 @@ await knowledgetalk.leaveRoom('room1');
 
 {% code title="index.js" %}
 ```javascript
-//성공 시, room 정보 리턴
+//방 종료 요청
 await knowledgetalk.destroyRoom('room1');
 ```
 {% endcode %}
