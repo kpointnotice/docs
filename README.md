@@ -2,14 +2,13 @@
 
 ## 환영합니다.
 
-이 문서는 Knowledgetalk SDK 사용법을 설명합니다<br/>
-SDK를 사용하려면 라이센스를 발급받아야 하며 지원 가능한 웹 브라우저에서 사용할 수 있습니다.
+이 문서는 Knowledgetalk SDK 사용법을 설명합니다.<br/>
+SDK를 사용하려면 라이센스를 발급받아야 하며 날리지포인트의 허가 없이 수정 및 재배포를 금합니다.
 
 
-## Want to deep dive?
+### 개발절차
+#### 라이센스 키 발급
 
-Dive a little deeper and start exploring our API reference to get an idea of everything that's possible with the API:
-
-{% content-ref url="reference/api-reference/" %}
-[api-reference](reference/api-reference/)
+{% content-ref url="overview/spec" %}
+[spec](overview/spec/)
 {% endcontent-ref %}
