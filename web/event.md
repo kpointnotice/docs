@@ -20,7 +20,7 @@ knowledgetalk.addEventListener('presence', async event => {
 
 - **응답**(타입별 상세 메시지 예시)
 
-**join**
+### join
 {% code title="event message sample" %}
 ```json
   // 다른 user의 입장 알림
@@ -33,7 +33,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-**leave**
+### leave
 {% code title="event message sample" %}
 ```json
   // 다른 user의 퇴장 알림 
@@ -46,7 +46,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-**publish**
+### publish
 {% code title="event message sample" %}
 ```json
   // 미디어 서버에서 수신 가능한 user들의 영상 알림
@@ -59,7 +59,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-1. **subscribed**
+### subscribed
 {% code title="event message sample" %}
 ```json
   // 해당 user의 영상에 대한 p2p 연결 완료 알림
@@ -72,7 +72,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-5. **screen**  
+### screen
 {% code title="event message sample" %}
 ```json
   // 화면공유 알림
@@ -85,7 +85,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-6. **shareStop**
+### shareStop
 {% code title="event message sample" %}
 ```json
   // 공유 중지 알림
@@ -98,7 +98,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-7. **chat**
+### chat
 {% code title="event message sample" %}
 ```json
   // 공유 중지 알림
@@ -111,7 +111,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-8. **inform**
+### inform
 {% code title="event message sample" %}
 ```json
   // 공유 중지 알림
@@ -124,7 +124,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-9. **editUserInfo**
+### editUserInfo
 {% code title="event message sample" %}
 ```json
   // 유저 정보 변경 알림
@@ -139,7 +139,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-10. **deviceChanged**
+### deviceChanged
 {% code title="event message sample" %}
 ```json
   // 시스템 오디오 입력 디바이스 변경 알림
@@ -150,7 +150,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-11. **createGroup**
+### createGroup
 {% code title="event message sample" %}
 ```json
   // 분반 생성 알림
