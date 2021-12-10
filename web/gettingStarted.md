@@ -12,6 +12,7 @@
 {% endcode %}
 
 ## 객체 생성
+
 {% code title="index.js" %}
 ```javascript
 //객체 생성
@@ -20,6 +21,7 @@ let knowledgetalk = new Knowledgetalk();
 {% endcode %}
 
 ## 서버 연결
+
 {% code title="index.js" %}
 ```javascript
 //서버 연결 성공 시, user id 리턴
@@ -43,3 +45,15 @@ knowlegetalk.init('https://server:port', 'kpoint', '날리지', 'device');
 | user id  | string | kpoint | 사용자가 요청한 ID 또는 서버가 생성한 ID |
 
 실패 시, error code 리턴
+
+## 서버 종료
+
+{% code title="index.js" %}
+```javascript
+//연결종료
+knowledgetalk.disconnect();
+
+//객체 삭제
+knowledgetalk = null;
+```
+{% endcode %}
