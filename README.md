@@ -1,4 +1,4 @@
-# Knowledetalk
+# Knowledgetalk
 
 ## 환영합니다.
 
