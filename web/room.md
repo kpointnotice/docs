@@ -112,3 +112,26 @@ await knowledgetalk.destroyRoom('room1');
 - **응답**
 
   응답 코드 리턴
+
+## 참여 인원 조회
+
+{% code title="index.js" %}
+```javascript
+//멤버 리스트 조회
+await knowledgetalk.memberList(roomId);
+```
+{% endcode %}
+    
+
+- **요청**
+
+| 파라미터 |  타입  | 필수 여부 | 예시  |   설명    |
+| :------: | :----: | :-------: | :---: | :-------: |
+|  roomId  | string |     Y     | room1 | 룸 아이디 |
+
+- **응답**
+
+| 파라미터 |  타입  | 필수 여부 | 예시 |                설명                |
+| :------: | :----: | :-------: | :--: | :--------------------------------: |
+|   code   | string |     Y     | 200  |              응답코드              |
+| members  | object |     Y     |      | KEY: 유저 아이디, VALUE: 유저 정보 |
