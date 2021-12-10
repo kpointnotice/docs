@@ -135,3 +135,53 @@ await knowledgetalk.memberList(roomId);
 | :------: | :----: | :-------: | :--: | :--------------------------------: |
 |   code   | string |     Y     | 200  |              응답코드              |
 | members  | object |     Y     |      | KEY: 유저 아이디, VALUE: 유저 정보 |
+
+## 권한 부여 기능
+
+{% code title="index.js" %}
+```javascript
+//권한 부여(id, chat, draw, screen, whiteboard, document)
+await knowledgetalk.permit('kpoint', true, null, null, null, null);
+```
+{% endcode %}
+
+
+- **요청**
+
+|  파라미터  |  타입   | 필수 여부 |  예시  |       설명       |
+| :--------: | :-----: | :-------: | :----: | :--------------: |
+|   target   | string  |     Y     | kpoint |     대상 ID      |
+|    chat    | boolean |     N     |  true  |    채팅 권한     |
+|    draw    | boolean |     N     |  true  |   그리기 권한    |
+|   screen   | boolean |     N     |  true  |  화면공유 권한   |
+| whiteboard | boolean |     N     |  true  | 화이트 보드 권한 |
+|  document  | boolean |     N     |  true  |  자료공유 권한   |
+
+<span style="color:red">**chat / draw / screen / whiteboard / document 중 하나는 필수**</span>
+
+- **응답**
+
+  응답 코드 리턴
+
+
+## 알림 메시지 전송
+
+## inform
+
+{% code title="index.js" %}
+```javascript
+//알림 메시지(message, target, roomId)
+await knowledgetalk.inform('message', 'kpoint');
+```
+{% endcode %}
+
+
+| 파라미터 |  타입  | 필수 여부 |  예시  |            설명            |
+| :------: | :----: | :-------: | :----: | :------------------------: |
+| message  | string |     Y     | hello  |        전달 메시지         |
+|  target  | string |     N     | kpoint | 해당 USER 에게 메시지 전송 |
+|  roomId  | string |     N     | room1  | 해당 ROOM ID로 메시지 전송 |
+
+- **응답**
+
+  응답 코드 리턴

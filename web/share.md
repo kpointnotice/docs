@@ -100,6 +100,15 @@ knowledgetalk.setTool('pen', 'black', 1);
 |    color     | string |     N     | black |    색깔(pen, eraser)     |
 | stroke width | string |     Y     |   1   |        도구 굵기         |
 
+## Canvas Clear
+
+{% code title="index.js" %}
+```javascript
+//캔버스 지우기
+knowledgetalk.canvasClear();
+```
+{% endcode %}
+
 ## 자료 공유 시작
 
 {% code title="index.js" %}

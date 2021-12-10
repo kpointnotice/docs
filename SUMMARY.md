@@ -15,7 +15,6 @@
 * [공유 기능](web/share.md)
 * [분반 기능](web/group.md)
 * [사용자 정보 관련 기능](web/userInfo.md)
-* [권한 부여 기능](web/permission.md)
 * [이벤트 메시지](web/event.md)
 * [전역 변수](web/variable.md)
 * [응답 코드](web/code.md)
