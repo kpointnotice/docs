@@ -1,6 +1,7 @@
 # 방 관련 기능
 
-## Create Room
+## 방 생성(P2P)
+
 {% code title="index.js" %}
 ```javascript
 //성공 시, room id 리턴
@@ -23,7 +24,8 @@ await knowledgetalk.createRoom('room1', 'title');
 
 실패 시, error code 리턴
 
-## Create Video Room
+## 방 생성(N:N)
+
 {% code title="index.js" %}
 ```javascript
 //성공 시, room id 리턴
@@ -46,7 +48,8 @@ await knowledgetalk.createVideoRoom('room1', 'title');
 
 실패 시, error code 리턴
 
-## Room Join
+## 방 입장
+
 {% code title="index.js" %}
 ```javascript
 //방 입장 요청
@@ -72,7 +75,7 @@ await knowledgetalk.joinroom('room1');
 
 실패 시, error code 리턴
 
-## Leave Room
+## 방 퇴장
 
 {% code title="index.js" %}
 ```javascript
@@ -91,7 +94,7 @@ await knowledgetalk.leaveRoom('room1');
 
   응답 코드 리턴
 
-## Destroy Room
+## 방 종료
 
 {% code title="index.js" %}
 ```javascript
