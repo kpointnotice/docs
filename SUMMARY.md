@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Knowledetalk](README.md)
+* [Knowledgetalk](README.md)
 
 ## Overview
 
