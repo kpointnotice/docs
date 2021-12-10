@@ -1,10 +1,9 @@
 # Table of contents
 
 * [Knowledetalk](README.md)
-* [Quick Start](quick-start.md)
 
-## Reference
+## Overview
 
-* [API Reference](reference/api-reference/README.md)
-  * [Pets](reference/api-reference/pets.md)
-  * [Users](reference/api-reference/users.md)
+* [Spec](overview/spec/README.md)
+  * [Pets](overview/spec/pets.md)
+  * [Users](overview/spec/users.md)
