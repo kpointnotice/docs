@@ -48,6 +48,7 @@ await knowledgetalk.subscribeVideo('kpoint', 'cam')
 //상대방에 stream 전송
 await knowledgetalk.publishP2P('kpoint','cam', stream);
 ```
+{% endcode %}
 
 - **요청**
 
@@ -69,6 +70,7 @@ await knowledgetalk.publishP2P('kpoint','cam', stream);
 //로컬 스트림 변경(stream)
 await knowledgetalk.changeLocalStream(stream);
 ```
+{% endcode %}
 
 - **요청**
 
