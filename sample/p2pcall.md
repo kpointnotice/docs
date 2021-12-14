@@ -10,7 +10,7 @@
 - [STUN / TURN 설명 보기](https://developer.mozilla.org/ko/docs/Web/API/WebRTC_API/Protocols)
 
 ### 개발
-1. 서버 연결
+#### 1.서버 연결
 {% code title="index.html" %}
 ```html
 //sdk import
@@ -42,7 +42,7 @@ knowlegetalk.init('https://dev.knowledgetalk.co.kr:7102').then(result => {
 객체를 생성하고 서버와 연결한다.<br/>
 연결이 성공되면 user id를 발급받을 수 있다.
 
-2. 방 생성
+#### 2.방 생성
 {% code title="index.js" %}
 ```javascript
 //성공 시, room id 리턴
@@ -52,7 +52,7 @@ await knowledgetalk.createRoom();
 
 방을 만들고 발급받은 room id를 상대방에게 알려준다.
 
-3. 방 입장
+#### 3.방 입장
 {% code title="index.js" %}
 ```javascript
 //방 입장 요청
@@ -81,7 +81,7 @@ for(const member in members){
 
 
 
-4. 영상 전송
+#### 4.영상 전송
 {% code title="index.js" %}
 ```javascript
 //로컬 영상 불러오기
@@ -94,7 +94,7 @@ await knowledgetalk.publishP2P('kpoint','cam', localStream);
 
 상대방 user id, cam/screen 구분 type, 로컬 영상을 상대방에게 전송한다.
 
-5. 이벤트 메시지 수신
+#### 5.이벤트 메시지 수신
 {% code title="event message sample" %}
 ```javascript
 //이벤트 메시지 수신
