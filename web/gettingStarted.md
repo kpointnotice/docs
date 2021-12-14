@@ -4,9 +4,9 @@
 
 {% code title="index.html" %}
 ```html
-//sdk import
+<!-- sdk import -->
 <script type="text/javascript" src="knowledgetalk.min.js"></script>
-//sdk 사용할 javascript 파일
+<!-- sdk 사용할 javascript 파일 -->
 <script type="test/javascript" sra="index.js"></script>
 ```
 {% endcode %}

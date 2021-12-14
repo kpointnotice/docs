@@ -6,14 +6,16 @@
 단, NAT/방화벽 환경의 클라이언트가 외부망과의 통신을 위해 공인 IP 정보를 알려줄 수 없는 경우에는 중계 서버를 거쳐서 연결이 된다.
 
 - [샘플 보기](https://dev.knowledgetalk.co.kr:3456/p2p)
+(브라우져 두 개에 샘플을 각각 띄운 후 p2p 영상 연결 데모 확인)
 - [샘플 소스 코드](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/p2p.html)
 - [STUN / TURN 설명 보기](https://developer.mozilla.org/ko/docs/Web/API/WebRTC_API/Protocols)
+(P2P 를 사용하지 못하는 경우에 대한 설명)
 
 ### 개발
 #### 1.서버 연결
 {% code title="index.html" %}
 ```html
-//sdk import
+<!-- sdk import -->
 <script type="text/javascript" src="https://dev.knowledgetalk.co.kr:7102/knowledgetalk.min.js"></script>
 ```
 {% endcode %}
