@@ -56,7 +56,23 @@ await knowledgetalk.createRoom();
 {% code title="index.js" %}
 ```javascript
 //방 입장 요청
-await knowledgetalk.joinroom('room1');
+let roomData = await knowledgetalk.joinroom('room1');
+
+//입장 실패 시
+if(roomData.code !== '200'){
+        alert('joinRoom failed!');
+        return;
+}
+
+let members = roomData.members;
+
+//방에 있는 이미 입장한 참여자들이 있는 경우 video tag 생성
+for(const member in members){
+        //내 화면은 제외
+        if(member === knowledgetalk.userId) continue;
+        createVideoBox(member)
+}
+
 ```
 {% endcode %}
 
@@ -79,7 +95,6 @@ await knowledgetalk.publishP2P('kpoint','cam', localStream);
 상대방 user id, cam/screen 구분 type, 로컬 영상을 상대방에게 전송한다.
 
 5. 이벤트 메시지 수신
-   
 {% code title="event message sample" %}
 ```javascript
 //이벤트 메시지 수신
@@ -97,8 +112,9 @@ knowledgetalk.addEventListener('presence', async event => {
                 case 'leave':
                         removeVideoBox(msg.user);
                         break;
-                //다른 user 의 영상 연결 완료
+                //다른 user 의 영상 수신 알림
                 case 'subscribed':
+                        //상대방이 입장했을 때 만들어둔 video tag에 상대방의 영상 연결
                         document.getElementById('multiVideo-' + msg.user).srcObject = knowledgetalk.streams[msg.user];
                         break;
         }       
