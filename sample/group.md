@@ -4,7 +4,7 @@
 
 각 유저는 중앙 미디어 서버와 연결하여 미디어 서버의 영상을 보내고 미디어 서버를 통해 다른 유저의 영상을 받아 올 수 있다.(SFU 방식) publish를 하지 않으면 단순 시청이 가능한 방송 서비스로 활용할 수 있다.
 
-![sfu 방식 ](https://github.com/kpointnotice/docs/raw/main/img/sfu.png)
+![sfu 방식](../img/sfu.png)
 
 * [샘플 보기](https://dev.knowledgetalk.co.kr:3456/group) (create -> join -> publish 요청 시, 미디어 서버와 영상 연결 데모 확인)
 * [샘플 소스 코드](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/group.html)
