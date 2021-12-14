@@ -1,15 +1,14 @@
-# P2P 통화 연결하기(WEB)
+# 그룹 통화 연결하기(WEB)
 
 ### 설명
 
-중앙 미디어 서버없이 종단 간 직접 연결하여 발신자는 연결을 하고 싶은 사람에게 내 영상을 보낼 수 있다.
-단, NAT/방화벽 환경의 클라이언트가 외부망과의 통신을 위해 공인 IP 정보를 알려줄 수 없는 경우에는 중계 서버를 거쳐서 연결이 된다.
+각 유저는 중앙 미디어 서버와 연결하여 미디어 서버의 영상을 보내고 미디어 서버를 통해 다른 유저의 영상을 받아 올 수 있다.(SFU 방식)
+publish를 하지 않으면 단순 시청이 가능한 방송 서비스로 활용할 수 있다.
 
-- [샘플 보기](https://dev.knowledgetalk.co.kr:3456/p2p)
-(브라우져 두 개에 샘플을 각각 띄운 후 p2p 영상 연결 데모 확인)
-- [샘플 소스 코드](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/p2p.html)
-- [STUN / TURN 설명 보기](https://developer.mozilla.org/ko/docs/Web/API/WebRTC_API/Protocols)
-(P2P 를 사용하지 못하는 경우에 대한 설명)
+- [샘플 보기](https://dev.knowledgetalk.co.kr:3456/group)
+(create -> join -> publish 요청 시, 미디어 서버와 영상 연결 데모 확인)
+- [샘플 소스 코드](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/group.html)
+
 
 ### 개발
 #### 1.서버 연결
@@ -48,7 +47,7 @@ knowlegetalk.init('https://dev.knowledgetalk.co.kr:7102').then(result => {
 {% code title="index.js" %}
 ```javascript
 //성공 시, room id 리턴
-await knowledgetalk.createRoom();
+await knowledgetalk.createVideoRoom();
 ```
 {% endcode %}
 
@@ -87,12 +86,17 @@ for(const member in members){
 //로컬 영상 불러오기
 let localStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false});
 
-//상대방에 stream 전송
-await knowledgetalk.publishP2P('kpoint','cam', localStream);
+//미디어 서버에 영상 전송
+let result = await knowledgetalk.publishVideo('cam', localStream);
+
+//영상 전송 실패 시
+if(!result){
+    alert('publish video failed!');
+}
 ```
 {% endcode %}
 
-상대방 user id, cam/screen 구분 type, 로컬 영상을 상대방에게 전송한다.
+cam/screen 구분 type, 로컬 영상을 미디어 서버에 전송하여 미디어 서버와 연결한다.
 
 #### 5.이벤트 메시지 수신
 {% code title="event message sample" %}
@@ -112,11 +116,17 @@ knowledgetalk.addEventListener('presence', async event => {
                 case 'leave':
                         removeVideoBox(msg.user);
                         break;
-                //다른 user 의 영상 수신 알림
-                case 'subscribed':
+                        
+                //다른 user 의 영상이 미디어 서버와 연결 되어 수신이 가능한 상태 알림
+                case 'publish':
+                    for(const feed of msg.feeds){
+                        //영상 수신 요청
+                        let stream = await knowledgetalk.subscribeVideo(feed.id, feed.type);
+                        
                         //상대방이 입장했을 때 만들어둔 video tag에 상대방의 영상 연결
-                        document.getElementById('multiVideo-' + msg.user).srcObject = knowledgetalk.streams[msg.user];
-                        break;
+                        document.getElementById('multiVideo-' + feed.id).srcObject = stream;
+                    }
+                break;
         }       
 }
 ```
