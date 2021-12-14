@@ -79,7 +79,7 @@ await knowledgetalk.publishP2P('kpoint','cam', localStream);
 상대방 user id, cam/screen 구분 type, 로컬 영상을 상대방에게 전송한다.
 
 5. 이벤트 메시지 수신
-6. 
+   
 {% code title="event message sample" %}
 ```javascript
 //이벤트 메시지 수신
