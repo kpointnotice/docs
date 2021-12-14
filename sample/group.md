@@ -1,17 +1,18 @@
-# 그룹 통화 연결하기(WEB)
+# 그룹통화 연결
 
 ### 설명
 
-각 유저는 중앙 미디어 서버와 연결하여 미디어 서버의 영상을 보내고 미디어 서버를 통해 다른 유저의 영상을 받아 올 수 있다.(SFU 방식)
-publish를 하지 않으면 단순 시청이 가능한 방송 서비스로 활용할 수 있다.
+각 유저는 중앙 미디어 서버와 연결하여 미디어 서버의 영상을 보내고 미디어 서버를 통해 다른 유저의 영상을 받아 올 수 있다.(SFU 방식) publish를 하지 않으면 단순 시청이 가능한 방송 서비스로 활용할 수 있다.
 
-- [샘플 보기](https://dev.knowledgetalk.co.kr:3456/group)
-(create -> join -> publish 요청 시, 미디어 서버와 영상 연결 데모 확인)
-- [샘플 소스 코드](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/group.html)
+![sfu 방식 ](https://github.com/kpointnotice/docs/raw/main/img/sfu.png)
 
+* [샘플 보기](https://dev.knowledgetalk.co.kr:3456/group) (create -> join -> publish 요청 시, 미디어 서버와 영상 연결 데모 확인)
+* [샘플 소스 코드](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/group.html)
 
 ### 개발
+
 #### 1.서버 연결
+
 {% code title="index.html" %}
 ```html
 <!-- sdk import -->
@@ -39,11 +40,11 @@ knowlegetalk.init('https://dev.knowledgetalk.co.kr:7102').then(result => {
 ```
 {% endcode %}
 
-
-객체를 생성하고 서버와 연결한다.<br/>
+객체를 생성하고 서버와 연결한다.\
 연결이 성공되면 user id를 발급받을 수 있다.
 
 #### 2.방 생성
+
 {% code title="index.js" %}
 ```javascript
 //성공 시, room id 리턴
@@ -54,6 +55,7 @@ await knowledgetalk.createVideoRoom();
 방을 만들고 발급받은 room id를 상대방에게 알려준다.
 
 #### 3.방 입장
+
 {% code title="index.js" %}
 ```javascript
 //방 입장 요청
@@ -73,14 +75,13 @@ for(const member in members){
         if(member === knowledgetalk.userId) continue;
         createVideoBox(member)
 }
-
 ```
 {% endcode %}
 
-호스트: 만든 방에 입장하여 상대방이 입장할때까지 대기한다.
-게스트: 호스트에게 받은 room id로 방에 입장한다.
+호스트: 만든 방에 입장하여 상대방이 입장할때까지 대기한다. 게스트: 호스트에게 받은 room id로 방에 입장한다.
 
 #### 4.영상 전송
+
 {% code title="index.js" %}
 ```javascript
 //로컬 영상 불러오기
@@ -99,6 +100,7 @@ if(!result){
 cam/screen 구분 type, 로컬 영상을 미디어 서버에 전송하여 미디어 서버와 연결한다.
 
 #### 5.이벤트 메시지 수신
+
 {% code title="event message sample" %}
 ```javascript
 //이벤트 메시지 수신
