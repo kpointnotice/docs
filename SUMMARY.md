@@ -19,7 +19,7 @@
 * [전역 변수](web/variable.md)
 * [응답 코드](web/code.md)
 
-## 샘플 코드
+## SAMPLE
 
 * [p2p통화 연결](sample/p2pcall.md)
 * [그룹통화 연결]()
