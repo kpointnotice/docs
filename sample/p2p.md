@@ -11,6 +11,22 @@
 - [STUN / TURN 설명 보기](https://developer.mozilla.org/ko/docs/Web/API/WebRTC_API/Protocols)
 (P2P 를 사용하지 못하는 경우에 대한 설명)
 
+
+### 플로우
+{% flowchart %}
+st=>start: Start:>http://www.google.com[blank]
+e=>end:>http://www.google.com
+op1=>operation: My Operation
+sub1=>subroutine: My Subroutine
+cond=>condition: Yes
+or No?:>http://www.google.com
+io=>inputoutput: catch something...
+
+st->op1->cond
+cond(yes)->io->e
+cond(no)->sub1(right)->op1
+{% endflowchart %}
+
 ### 개발
 #### 1.서버 연결
 {% code title="index.html" %}
