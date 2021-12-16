@@ -13,8 +13,7 @@
 
 
 ### 플로우
-
-
+![플로우](../img/p2p_flow.png)
 ### 개발
 #### 1.서버 연결
 {% code title="index.html" %}
