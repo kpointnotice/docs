@@ -4,7 +4,7 @@
 
 {% code title="index.js" %}
 ```javascript
-//성공 시, room id 리턴
+// 방 생성
 await knowledgetalk.createRoom('room1', 'title');
 ```
 {% endcode %}
