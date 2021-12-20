@@ -4,7 +4,7 @@
 
 {% code title="index.js" %}
 ```javascript
-// 방
+// 방 생성
 await knowledgetalk.createRoom('room1', 'title');
 ```
 {% endcode %}
