@@ -2,7 +2,7 @@
 
 ## Environment
 
-|Browser \ Platform|Android|ios|mac|Windows|
+|Browser \ Platform|Android|ios|mac|Windowsd|
 | :----------------: | :-----: | :-: | :-: | :-----: |
 |       Chrome       |    O    |  O  |  O  |    O    |
 |        Edge        |    O    |  X  |  O  |    O    |
