@@ -23,7 +23,7 @@ let knowledgetalk = new Knowledgetalk();
 
 {% code title="index.js" %}
 ```javascript
-// 서버 연결 (url, userId, name, dvice)
+// 서버 연결(url, userId, name, dvice)
 knowledgetalk.init('https://serverURL:port', 'kpoint123', '홍길동', 'Galaxy Tab');
 ```
 {% endcode %}
