@@ -2,9 +2,9 @@
 
 ## Environment
 
-| Browser \ Platform | Android | ios | mac | Windows |
-| :----------------: | :-----: | :-: | :-: | :-----: |
-|       Chrome       |    O    |  O  |  O  |    O    |
-|        Edge        |    O    |  X  |  O  |    O    |
-|      Firefox       |    X    |  X  |  O  |    O    |
-|       Safari       |    X    |  O  |  O  |    X    |
+|<center>Browser \ Platform</center>|<center>Windows</center>|<center>Mac</center>|<center>Android</center>|<center>iOS</center>|
+| :-------------------------------: | :--------------------: | :----------------: | :--------------------: | :----------------: |
+|              Chrome               |            O           |          O         |            O           |          O         |
+|               Edge                |            O           |          O         |            O           |          X         |
+|              Firefox              |            X           |          X         |            X           |          X         |
+|              Safari               |            X           |          O         |            X           |          O         |
