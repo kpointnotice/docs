@@ -1,6 +1,8 @@
 # Spec
 
-## Environment
+<br>
+
+## 실행 환경
 
 |<center>**Browser \ Platform**</center>|<center>**Windows**</center>|<center>**Mac**</center>|<center>**Android**</center>|<center>**iOS**</center>|
 | :-------------------------------: | :--------------------: | :----------------: | :--------------------: | :----------------: |

@@ -1,5 +1,7 @@
 # 분반 기능
 
+<br>
+
 ## 분반 시작
 
 {% code title="index.js" %}
@@ -23,6 +25,8 @@ await knowledgetalk.createGroup(list, title);
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             groupId           |           String          |                Y               |          분반 아이디          |          knowledgeGroup       |
+
+<br>
 
 ## 분반 종료
 

@@ -1,14 +1,20 @@
 # Getting Started
 
+<br>
+
 ## SDK 설치 (Static Import)
 
 {% code title="index.html" %}
 ```html
 <!-- SDK 설치 -->
 <script type="text/javascript" src="knowledgetalk.min.js"></script>
+
+<!-- index.js 연결 -->
 <script type="test/javascript" src="index.js"></script>
 ```
 {% endcode %}
+
+<br>
 
 ## SDK 객체 생성
 
@@ -18,6 +24,8 @@
 let knowledgetalk = new Knowledgetalk();
 ```
 {% endcode %}
+
+<br>
 
 ## 서버 연결
 
@@ -45,12 +53,15 @@ knowledgetalk.init('https://URL:port', 'kpoint123', '홍길동', 'Galaxy Tab');
 |:-:|:-:|:-:|:-:|:-:|
 |             userId            |          String           |                Y               |     랜덤 또는 요청된 userId    |           kpoint123           |
 
+<br>
+
 ## 서버 종료
 
 {% code title="index.js" %}
 ```javascript
 // 서버 종료()
 knowledgetalk.disconnect();
+
 // SDK 객체 삭제
 knowledgetalk = null;
 ```

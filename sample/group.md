@@ -17,92 +17,106 @@
 
 {% code title="index.html" %}
 ```html
-<!-- sdk import -->
+<!-- SDK 설치 -->
 <script type="text/javascript" src="https://dev.knowledgetalk.co.kr:7102/knowledgetalk.min.js"></script>
 ```
 {% endcode %}
 
-knowledgetalk sdk 를 사용하기 위해 HTML 파일에서 knowledgetalk sdk file을 import 한다.
+먼저 Knowledgetalk SDK를 사용하기 위해 HTML 파일에서 Knowledgetalk SDK 파일을 가져옵니다.
 
 {% code title="index.js" %}
 ```javascript
-//객체 생성
+// SDK 객체 생성
 let knowledgetalk = new Knowledgetalk();
 
-//서버 연결
+// 서버 연결
 knowlegetalk.init('https://dev.knowledgetalk.co.kr:7102').then(result => {
-        //연결 실패한 경우
+        // 서버 연결에 실패한 경우
         if(result.code !== '200'){
                 
         }
 
-        //성공 시, user id 리턴
+        // 서버 연결 성공시에는 userId를 리턴
         let userId = result.userId;
 })
 ```
 {% endcode %}
 
-객체를 생성하고 서버와 연결한다.\
-연결이 성공되면 user id를 발급받을 수 있다.
+SDK 객체를 생성하고 서버와 연결합니다.
 
-#### 2.방 생성
+연결에 성공하면 userId를 발급받게 됩니다.
 
+<br>
+
+#### 2. 방 생성
 {% code title="index.js" %}
 ```javascript
-//성공 시, room id 리턴
+// 방 생성 성공시에 roomId를 리턴
 await knowledgetalk.createVideoRoom();
 ```
 {% endcode %}
 
-방을 만들고 발급받은 room id를 상대방에게 알려준다.
+방을 만들고 발급받은 roomId를 상대방에게 알려주어야 합니다.
 
-#### 3.방 입장
+<br>
 
+#### 3. 방 입장
 {% code title="index.js" %}
 ```javascript
-//방 입장 요청
-let roomData = await knowledgetalk.joinroom('room1');
+// 방 입장
+let roomData = await knowledgetalk.joinroom('K43254033');
 
-//입장 실패 시
+// 방 입장에 실패한 경우
 if(roomData.code !== '200'){
         alert('joinRoom failed!');
         return;
 }
 
+// 현재 방에 참가한 사용자들의 정보를 변수화
 let members = roomData.members;
 
-//방에 있는 이미 입장한 참여자들이 있는 경우 video tag 생성
+// 현재 방에 참가한 각각의 사용자들의 영상을 담을 콘텐츠를 생성
 for(const member in members){
-        //내 화면은 제외
+        // 단, 나(자신)는 제외
         if(member === knowledgetalk.userId) continue;
         createVideoBox(member)
 }
+
 ```
 {% endcode %}
 
-호스트: 만든 방에 입장하여 상대방이 입장할때까지 대기한다. 게스트: 호스트에게 받은 room id로 방에 입장한다.
+Host는 방을 만들고 입장하여 Guest가 입장할때까지 대기합니다.
 
-#### 4.영상 전송
+Guest는 Host에게 받은 roomId로 해당 방에 입장합니다.
 
+<br>
+
+#### 4. 영상 전송
 {% code title="index.js" %}
 ```javascript
-//로컬 영상 불러오기
+// localStream 객체를 생성
 let localStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false});
 
-//미디어 서버에 영상 전송
+// localStream 객체를 미디어 서버에 전송
 let result = await knowledgetalk.publishVideo('cam', localStream);
 
-//영상 전송 실패 시
+// 영상 전송에 실패한 경우
 if(!result){
     alert('publish video failed!');
 }
 ```
 {% endcode %}
 
-cam/screen 구분 type, 로컬 영상을 미디어 서버에 전송하여 미디어 서버와 연결한다.
 
-#### 5.이벤트 메시지 수신
+나(자신)의 컴퓨터에 존재하는 미디어 입력 장치들의 권한을 요청받고 localStream이라는 객체로 지정합니다.
 
+- [localStream 객체 정보](https://developer.mozilla.org/ko/docs/Web/API/MediaDevices/getUserMedia)
+
+그리고, publishVideo()의 파라미터에 cam/screen을 구분하여 지정하고 미리 준비한 localStream 객체를 입력하여 미디어 서버에 전송합니다.
+
+<br>
+
+#### 5. 이벤트 메시지 수신
 {% code title="event message sample" %}
 ```javascript
 //이벤트 메시지 수신
@@ -112,22 +126,22 @@ knowledgetalk.addEventListener('presence', async event => {
         let type = msg.type;
 
         switch (type){
-                //다른 user 의 입장 알림
+                //다른 사용자의 입장을 알림
                 case 'join':
                         createVideoBox(msg.user.userId);             
                         break;
-                //다른 user 의 퇴장 알림
+                //다른 사용자의 퇴장을 알림
                 case 'leave':
                         removeVideoBox(msg.user);
                         break;
                         
-                //다른 user 의 영상이 미디어 서버와 연결 되어 수신이 가능한 상태 알림
+                //다른 사용자의 영상이 미디어 서버와 연결 되어 수신이 가능한 상태를 알림
                 case 'publish':
                     for(const feed of msg.feeds){
-                        //영상 수신 요청
+                        //영상 수신을 요청
                         let stream = await knowledgetalk.subscribeVideo(feed.id, feed.type);
                         
-                        //상대방이 입장했을 때 만들어둔 video tag에 상대방의 영상 연결
+                        //상대방이 입장했을때 만들어둔 video 태그인 multiVideo에 상대방의 영상을 연결
                         document.getElementById('multiVideo-' + feed.id).srcObject = stream;
                     }
                 break;

@@ -1,5 +1,7 @@
 # 공유 기능
 
+<br>
+
 ## 화면 공유 시작
 
 {% code title="index.js" %}
@@ -10,8 +12,7 @@ await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
 {% endcode %}
 
 - **요청**
-
-  <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
+- <mark style="color:red;">**canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
@@ -22,6 +23,8 @@ await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
 - **응답**
 
   성공 시 true, 실패 시 false 리턴
+
+<br>
 
 ## 캔버스 기능 시작
 
@@ -59,6 +62,8 @@ knowledgetalk.canvasInit(canvas);
 |:-:|:-:|:-:|:-:|:-:|
 |             canvas            |      HTML canvas tag      |                Y               |          캔버스 태그           |                              | 
 
+<br>
+
 ## 캔버스 그리기 시작
 
 {% code title="index.js" %}
@@ -67,6 +72,8 @@ knowledgetalk.canvasInit(canvas);
 knowledgetalk.drawingInit();
 ```
 {% endcode %}
+
+<br>
 
 ## 캔버스 그리기 종료
 
@@ -80,6 +87,8 @@ knowledgetalk.drawingStop();
 - **응답**
 
   성공 시 true, 실패 시 false 리턴
+
+<br>
 
 ## 그리기 도구 설정
 
@@ -98,6 +107,8 @@ knowledgetalk.setTool('pen', 'black', 1);
 |             color             |           String          |                N               |        색깔(pen, eraser)       |            black              |
 |          stroke width         |           String          |                Y               |         그리기 도구 굵기        |              1                | 
 
+<br>
+
 ## 그림 지우기
 
 {% code title="index.js" %}
@@ -106,6 +117,8 @@ knowledgetalk.setTool('pen', 'black', 1);
 knowledgetalk.canvasClear();
 ```
 {% endcode %}
+
+<br>
 
 ## 공유 기능 시작
 
@@ -146,6 +159,8 @@ await knowledgetalk.documentShare(https://imgURL);
 - **응답**
 
   응답 코드 리턴
+
+<br>
 
 ## 공유 기능 종료
 

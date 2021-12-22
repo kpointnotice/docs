@@ -1,5 +1,8 @@
 # 이벤트 메시지
+
   다른 참여자들의 입장, 퇴장 등 상태 등 클라이언트에서 서버로 부터 오는 이벤트 메시지들에 대한 설명
+
+<br>
 
 ## 이벤트 메시지 알림
 {% code title="index.js" %}
@@ -17,10 +20,14 @@ knowledgetalk.addEventListener('presence', async event => {
 }
 ```
 {% endcode %}
+
+<br>
     
 # 타입별 상세 메시지 예시
 
-### join
+<br>
+
+### type: 'join'
 {% code title="event message sample" %}
 ```json
   // 다른 사용자의 입장 알림
@@ -33,7 +40,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### leave
+<br>
+
+### type: 'leave'
 {% code title="event message sample" %}
 ```json
   // 다른 사용자의 퇴장 알림 
@@ -46,7 +55,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### publish
+<br>
+
+### type: 'publish'
 {% code title="event message sample" %}
 ```json
   // 미디어 서버에서 수신 가능한 사용자들의 영상 알림
@@ -59,7 +70,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### subscribed
+<br>
+
+### type: 'subscribed'
 {% code title="event message sample" %}
 ```json
   // 해당 사용자의 영상에 대한 P2P 연결 완료 알림
@@ -72,7 +85,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### screen
+<br>
+
+### type: 'screen'
 {% code title="event message sample" %}
 ```json
   // 화면공유 알림
@@ -85,7 +100,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### shareStop
+<br>
+
+### type: 'shareStop'
 {% code title="event message sample" %}
 ```json
   // 공유 중지 알림
@@ -98,7 +115,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### chat
+<br>
+
+### type: 'chat'
 {% code title="event message sample" %}
 ```json
   // 공유 중지 알림
@@ -111,7 +130,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### inform
+<br>
+
+### type: 'inform'
 {% code title="event message sample" %}
 ```json
   // 공유 중지 알림
@@ -124,7 +145,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### editUserInfo
+<br>
+
+### type: 'editUserInfo'
 {% code title="event message sample" %}
 ```json
   // 사용자 정보 변경 알림
@@ -139,7 +162,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### deviceChanged
+<br>
+
+### type: 'deviceChanged'
 {% code title="event message sample" %}
 ```json
   // 시스템 오디오 입력 디바이스 변경 알림
@@ -150,7 +175,9 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
 
-### createGroup
+<br>
+
+### type: 'createGroup'
 {% code title="event message sample" %}
 ```json
   // 분반 생성 알림
