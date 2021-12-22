@@ -1,7 +1,5 @@
 # 공유 기능
 
-<br>
-
 ## 화면 공유 시작
 
 {% code title="index.js" %}
@@ -23,8 +21,6 @@ await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
 - **응답**
 
   성공 혹은 실패 시에는 Boolean 타입인 true / false를 리턴합니다.
-
-<br>
 
 ## 캔버스 기능 시작
 
