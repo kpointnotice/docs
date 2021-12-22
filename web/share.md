@@ -22,7 +22,7 @@ await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
 
 - **응답**
 
-  성공 시 true, 실패 시 false 리턴
+  성공 혹은 실패 시에는 Boolean 타입인 true / false를 리턴합니다.
 
 <br>
 
@@ -43,7 +43,7 @@ await knowledgetalk.whiteBoardStart(canvas);
 
 - **응답**
 
-  성공 시 true, 실패 시 false 리턴
+  성공 혹은 실패 시에는 Boolean 타입인 true / false를 리턴합니다.
 
   <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
@@ -86,7 +86,7 @@ knowledgetalk.drawingStop();
 
 - **응답**
 
-  성공 시 true, 실패 시 false 리턴
+  성공 혹은 실패 시에는 Boolean 타입인 true / false를 리턴합니다.
 
 <br>
 
@@ -105,7 +105,7 @@ knowledgetalk.setTool('pen', 'black', 1);
 |:-:|:-:|:-:|:-:|:-:|
 |              tool             |           String          |                Y               |     그리기 도구(pen, eraser)   |             pen               |
 |             color             |           String          |                N               |        색깔(pen, eraser)       |            black              |
-|          stroke width         |           String          |                Y               |         그리기 도구 굵기        |              1                | 
+|          stroke width         |           Number          |                Y               |         그리기 도구 굵기        |              1                | 
 
 <br>
 
@@ -137,7 +137,7 @@ await knowledgetalk.documentStart(canvas);
 
 - **응답**
 
-  성공 시 true, 실패 시 false 리턴
+  성공 혹은 실패 시에는 Boolean 타입인 true / false를 리턴합니다.
   
   <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
@@ -158,7 +158,7 @@ await knowledgetalk.documentShare(https://imgURL);
 
 - **응답**
 
-  응답 코드 리턴
+  성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
 
 <br>
 
@@ -173,4 +173,4 @@ await knowledgetalk.shareStop();
 
 - **응답**
 
-  응답 코드 리턴
+  성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)

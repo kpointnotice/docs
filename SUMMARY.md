@@ -21,5 +21,5 @@
 
 ## SAMPLE
 
-* [p2p통화 연결](sample/p2p.md)
+* [P2P통화 연결](sample/p2p.md)
 * [그룹통화 연결](sample/group.md)

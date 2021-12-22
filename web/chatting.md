@@ -28,4 +28,4 @@ await knowledgetalk.chat('Hello!', 'K43254033', 'kpoint123');
 
 - **응답**
 
-    응답 코드 리턴
+    성공 혹은 실패 시에는 응답 코드를 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)

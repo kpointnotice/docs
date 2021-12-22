@@ -47,7 +47,7 @@ knowledgetalk.init('https://URL:port', 'kpoint123', '홍길동', 'Galaxy Tab');
 
 - **응답**
 
-    성공 시, userId 리턴 실패 시, error code 리턴
+    성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
