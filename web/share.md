@@ -1,80 +1,78 @@
 # 공유 기능
 
-## 회면 공유 기능 시작
+## 화면 공유 시작
 
 {% code title="index.js" %}
 ```javascript
-//화면 공유 시작 요청
-await knowledgetalk.screenStart(stream, 'kpoint', canvas);
+// 화면 공유 시작(stream, userId, canvas)
+await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
 ```
 {% endcode %}
 
 - **요청**
 
-| 파라미터 |      타입       | 필수 여부 |  예시  |               설명               |
-| :------: | :-------------: | :-------: | :----: | :------------------------------: |
-|  stream  |  video stream   |     Y     |        |           영상 스트림            |
-|  target  |     string      |     N     | kpoint |     일대일인 경우, 상대방 ID     |
-|  canvas  | HTML canvas tag |     N     |        | 공유 화면 위에 판서 기능 사용 시 |
+  <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
+
+| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+|:-:|:-:|:-:|:-:|:-:|
+|              stream           |       video stream        |                Y               |           영상 스트림         |                               |         
+|              target           |          String           |                N               | 일대일인 경우, 상대방의 userId |          kpoint123            |   
+|              canvas           |      HTML canvas tag      |                N               |    공유 화면 위의 캔버스 기능  |                               | 
 
 - **응답**
 
   성공 시 true, 실패 시 false 리턴
 
-- <span style="color:red">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨.**</span>
-
-## 화이트 보드 기능 시작
+## 캔버스 기능 시작
 
 {% code title="index.js" %}
 ```javascript
-//화이트 보드 시작 요청
+// 캔버스 기능 시작(canvas)
 await knowledgetalk.whiteBoardStart(canvas);
 ```
 {% endcode %}
 
 - **요청**
 
-| 파라미터 |      타입       | 필수 여부 | 예시 |    설명     |
-| :------: | :-------------: | :-------: | :--: | :---------: |
-|  canvas  | HTML canvas tag |     Y     |      | 캔버스 태그 |
+| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+|:-:|:-:|:-:|:-:|:-:|
+|             canvas            |      HTML canvas tag      |                Y               |           캔버스 태그         |                                | 
 
 - **응답**
 
   성공 시 true, 실패 시 false 리턴
 
-- <span style="color:red">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨.**</span>
-
+  <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
 ## 캔버스 초기 설정
 
 {% code title="index.js" %}
 ```javascript
-//캔버스 설정 
+// 캔버스 초기 설정(canvas)
 knowledgetalk.canvasInit(canvas);
 ```
 {% endcode %}
 
 - **요청**
 
-| 파라미터 |      타입       | 필수 여부 | 예시 |    설명     |
-| :------: | :-------------: | :-------: | :--: | :---------: |
-|  canvas  | HTML canvas tag |     Y     |      | 캔버스 태그 |
+| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+|:-:|:-:|:-:|:-:|:-:|
+|             canvas            |      HTML canvas tag      |                Y               |          캔버스 태그           |                              | 
 
-## 그리기 시작
+## 캔버스 그리기 시작
 
 {% code title="index.js" %}
 ```javascript
-//캔버스에 그리기 이벤트 추가 (mousedown, mouseup, mousemove, mouseout, touchstart, touchend, touchcancel, touchmove)
+// 캔버스 그리기 시작 (mousedown, mouseup, mousemove, mouseout, touchstart, touchend, touchcancel, touchmove)
 knowledgetalk.drawingInit();
 ```
 {% endcode %}
 
-
-## 그리기 종료
+## 캔버스 그리기 종료
 
 {% code title="index.js" %}
 ```javascript
-//이벤트 제거 (mousedown, mouseup, mousemove, mouseout, touchstart, touchend, touchcancel, touchmove)
+// 캔버스 그리기 종료 (mousedown, mouseup, mousemove, mouseout, touchstart, touchend, touchcancel, touchmove)
 knowledgetalk.drawingStop();
 ```
 {% endcode %}
@@ -87,63 +85,63 @@ knowledgetalk.drawingStop();
 
 {% code title="index.js" %}
 ```javascript
-//그리기 도구 설정
+// 그리기 도구 설정 (tool, color, stroke width)
 knowledgetalk.setTool('pen', 'black', 1);
 ```
 {% endcode %}
 
 - **요청**
 
-|   파라미터   |  타입  | 필수 여부 | 예시  |           설명           |
-| :----------: | :----: | :-------: | :---: | :----------------------: |
-|     tool     | string |     Y     |  pen  | 그리기 도구(pen, eraser) |
-|    color     | string |     N     | black |    색깔(pen, eraser)     |
-| stroke width | string |     Y     |   1   |        도구 굵기         |
+| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+|:-:|:-:|:-:|:-:|:-:|
+|              tool             |           String          |                Y               |     그리기 도구(pen, eraser)   |             pen               |
+|             color             |           String          |                N               |        색깔(pen, eraser)       |            black              |
+|          stroke width         |           String          |                Y               |         그리기 도구 굵기        |              1                | 
 
-## Canvas Clear
+## 그림 지우기
 
 {% code title="index.js" %}
 ```javascript
-//캔버스 지우기
+// 그림 지우기();
 knowledgetalk.canvasClear();
 ```
 {% endcode %}
 
-## 자료 공유 시작
+## 공유 기능 시작
 
 {% code title="index.js" %}
 ```javascript
-//자료공유 시작 요청
+// 공유 기능 시작(canvas)
 await knowledgetalk.documentStart(canvas);
 ```
 {% endcode %}
 
 - **요청**
 
-| 파라미터 |      타입       | 필수 여부 | 예시 |    설명     |
-| :------: | :-------------: | :-------: | :--: | :---------: |
-|  canvas  | HTML canvas tag |     Y     |      | 캔버스 태그 |
+| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+|:-:|:-:|:-:|:-:|:-:|
+|             canvas            |      HTML canvas tag      |                Y               |           캔버스 태그          |                              | 
 
 - **응답**
 
   성공 시 true, 실패 시 false 리턴
+  
+  <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
-- <span style="color:red">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨.**</span>
-
-## 자료 파일 공유
+## 자료 공유
 
 {% code title="index.js" %}
 ```javascript
-//자료공유 시작 요청
-await knowledgetalk.documentShare(url);
+// 자료 공유(url)
+await knowledgetalk.documentShare(https://imgURL);
 ```
 {% endcode %}
 
 - **요청**
 
-| 파라미터 |  타입  | 필수 여부 |      예시       |       설명        |
-| :------: | :----: | :-------: | :-------------: | :---------------: |
-|   url    | string |     Y     | https://img.url | 공유할 이미지 url |
+| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+|:-:|:-:|:-:|:-:|:-:|
+|              url              |           String          |                Y               |        공유할 이미지 URL       |         https://imgURL       | 
 
 - **응답**
 
@@ -153,7 +151,7 @@ await knowledgetalk.documentShare(url);
 
 {% code title="index.js" %}
 ```javascript
-//공유 중지 요청
+// 공유 기능 종료()
 await knowledgetalk.shareStop();
 ```
 {% endcode %}

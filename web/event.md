@@ -1,14 +1,15 @@
 # 이벤트 메시지
-다른 참여자들의 입장, 퇴장 등 상태 등 클라이언트에서 서버로 부터 오는 이벤트 메시지들에 대한 설명.
+  다른 참여자들의 입장, 퇴장 등 상태 등 클라이언트에서 서버로 부터 오는 이벤트 메시지들에 대한 설명
+
 ## 이벤트 메시지 알림
 {% code title="index.js" %}
 ```javascript
-//event 메시지 알림
+// 이벤트 메시지 알림
 knowledgetalk.addEventListener('presence', async event => {
-    //event message 
+    // 이벤트 메시지 
     let msg = event.detail;
 
-    //타입별 분기
+    // 타입별 분기
     switch(msg.type){
     case 'join':
         break;
@@ -17,18 +18,17 @@ knowledgetalk.addEventListener('presence', async event => {
 ```
 {% endcode %}
     
-
-## 타입별 상세 메시지 예시
+# 타입별 상세 메시지 예시
 
 ### join
 {% code title="event message sample" %}
 ```json
-  // 다른 user의 입장 알림
+  // 다른 사용자의 입장 알림
   {
       eventOp: 'presence',
       type: 'join',
-      roomId: 'room1',
-      user: { userId: 'kpoint', name: '익명', video: true, audio: true }
+      roomId: 'K43254033',
+      user: { userId: 'kpoint123', name: '홍길동', video: true, audio: true }
   }
 ```
 {% endcode %}
@@ -36,12 +36,12 @@ knowledgetalk.addEventListener('presence', async event => {
 ### leave
 {% code title="event message sample" %}
 ```json
-  // 다른 user의 퇴장 알림 
+  // 다른 사용자의 퇴장 알림 
   {
       eventOp: 'presence',
       type: 'leave',
-      roomId: 'room1',
-      user: 'kpoint'
+      roomId: 'K43254033',
+      user: 'kpoint123'
   }
 ```
 {% endcode %}
@@ -49,12 +49,12 @@ knowledgetalk.addEventListener('presence', async event => {
 ### publish
 {% code title="event message sample" %}
 ```json
-  // 미디어 서버에서 수신 가능한 user들의 영상 알림
+  // 미디어 서버에서 수신 가능한 사용자들의 영상 알림
   {
       eventOp: 'presence',
       type: 'publish',
-      roomId: 'room1',
-      feeds: [ { id: 'kpoint', type: 'cam', video: true, audio: true }, { id: 'knowledge', type: 'cam', video: true, audio: false } ]
+      roomId: 'K43254033',
+      feeds: [ { id: 'kpoint123', type: 'cam', video: true, audio: true }, { id: 'knowledge123', type: 'cam', video: true, audio: false } ]
   }
 ```
 {% endcode %}
@@ -62,11 +62,11 @@ knowledgetalk.addEventListener('presence', async event => {
 ### subscribed
 {% code title="event message sample" %}
 ```json
-  // 해당 user의 영상에 대한 p2p 연결 완료 알림
+  // 해당 사용자의 영상에 대한 P2P 연결 완료 알림
   {
       eventOp: 'presence',
       type: 'subscribed',
-      user: 'kpoint',
+      user: 'kpoint123',
       type: 'cam'
   }
 ```
@@ -79,8 +79,8 @@ knowledgetalk.addEventListener('presence', async event => {
   {
       eventOp: 'presence',
       type: 'screen',
-      roomId: 'room1',
-      user: 'kpoint'
+      roomId: 'K43254033',
+      user: 'kpoint123'
   }
 ```
 {% endcode %}
@@ -92,8 +92,8 @@ knowledgetalk.addEventListener('presence', async event => {
   {
       eventOp: 'presence',
       type: 'shareStop',
-      roomId: 'room1',
-      user: 'kpoint'
+      roomId: 'K43254033',
+      user: 'kpoint123'
   }
 ```
 {% endcode %}
@@ -105,8 +105,8 @@ knowledgetalk.addEventListener('presence', async event => {
   {
       eventOp: 'presence',
       type: 'chat',
-      user: 'kpoint',
-      message: 'chat msg'
+      user: 'kpoint123',
+      message: 'Hello!'
   }
 ```
 {% endcode %}
@@ -118,8 +118,8 @@ knowledgetalk.addEventListener('presence', async event => {
   {
       eventOp: 'presence',
       type: 'inform',
-      user: 'kpoint',
-      message: 'chat msg'
+      user: 'kpoint123',
+      message: 'Hello123'
   }
 ```
 {% endcode %}
@@ -127,11 +127,11 @@ knowledgetalk.addEventListener('presence', async event => {
 ### editUserInfo
 {% code title="event message sample" %}
 ```json
-  // 유저 정보 변경 알림
+  // 사용자 정보 변경 알림
   {
       eventOp: 'presence',
       type: 'editUserInfo',
-      user: 'kpoint',
+      user: 'kpoint123',
       name: 'tom',
       video: true,
       audio: false
@@ -157,8 +157,8 @@ knowledgetalk.addEventListener('presence', async event => {
   {
       eventOp: 'presence',
       type: 'createGroup',
-      user: 'kpoint',
-      groupId: 'group1'
+      user: 'kpoint123',
+      groupId: 'knowledgegroup'
   }
 ```
 {% endcode %}
