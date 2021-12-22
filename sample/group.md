@@ -9,9 +9,11 @@
 
 * [샘플 보기](https://dev.knowledgetalk.co.kr:3456/group) (create -> join -> publish 요청 시, 미디어 서버와 영상 연결 데모 확인)
 * [샘플 소스 코드](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/group.html)
+
 ### 플로우
 ![플로우](../img/flow_group.png)
-### 개발
+
+### 개발 절차
 
 #### 1.서버 연결
 
@@ -45,9 +47,7 @@ knowlegetalk.init('https://dev.knowledgetalk.co.kr:7102').then(result => {
 SDK 객체를 생성하고 서버와 연결합니다.
 
 연결에 성공하면 userId를 발급받게 됩니다.
-
-<br>
-
+ 
 #### 2. 방 생성
 {% code title="index.js" %}
 ```javascript
@@ -57,9 +57,7 @@ await knowledgetalk.createVideoRoom();
 {% endcode %}
 
 방을 만들고 발급받은 roomId를 상대방에게 알려주어야 합니다.
-
-<br>
-
+ 
 #### 3. 방 입장
 {% code title="index.js" %}
 ```javascript
@@ -88,9 +86,7 @@ for(const member in members){
 Host는 방을 만들고 입장하여 Guest가 입장할때까지 대기합니다.
 
 Guest는 Host에게 받은 roomId로 해당 방에 입장합니다.
-
-<br>
-
+ 
 #### 4. 영상 전송
 {% code title="index.js" %}
 ```javascript
@@ -113,9 +109,7 @@ if(!result){
 - [localStream 객체 정보](https://developer.mozilla.org/ko/docs/Web/API/MediaDevices/getUserMedia)
 
 그리고, publishVideo()의 파라미터에 cam/screen을 구분하여 지정하고 미리 준비한 localStream 객체를 입력하여 미디어 서버에 전송합니다.
-
-<br>
-
+ 
 #### 5. 이벤트 메시지 수신
 {% code title="event message sample" %}
 ```javascript

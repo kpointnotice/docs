@@ -1,7 +1,5 @@
 # 채팅 기능
-
-<br>
-
+ 
 ## 채팅 메시지 전송
 
 {% code title="index.js" %}

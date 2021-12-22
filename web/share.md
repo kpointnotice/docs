@@ -61,9 +61,7 @@ knowledgetalk.canvasInit(canvas);
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             canvas            |      HTML canvas tag      |                Y               |          캔버스 태그           |                              | 
-
-<br>
-
+ 
 ## 캔버스 그리기 시작
 
 {% code title="index.js" %}
@@ -72,9 +70,7 @@ knowledgetalk.canvasInit(canvas);
 knowledgetalk.drawingInit();
 ```
 {% endcode %}
-
-<br>
-
+ 
 ## 캔버스 그리기 종료
 
 {% code title="index.js" %}
@@ -87,9 +83,7 @@ knowledgetalk.drawingStop();
 - **응답**
 
   성공 혹은 실패 시에는 Boolean 타입인 true / false를 리턴합니다.
-
-<br>
-
+ 
 ## 그리기 도구 설정
 
 {% code title="index.js" %}
@@ -106,9 +100,7 @@ knowledgetalk.setTool('pen', 'black', 1);
 |              tool             |           String          |                Y               |     그리기 도구(pen, eraser)   |             pen               |
 |             color             |           String          |                N               |        색깔(pen, eraser)       |            black              |
 |          stroke width         |           Number          |                Y               |         그리기 도구 굵기        |              1                | 
-
-<br>
-
+ 
 ## 그림 지우기
 
 {% code title="index.js" %}
@@ -117,9 +109,7 @@ knowledgetalk.setTool('pen', 'black', 1);
 knowledgetalk.canvasClear();
 ```
 {% endcode %}
-
-<br>
-
+ 
 ## 공유 기능 시작
 
 {% code title="index.js" %}
@@ -159,9 +149,7 @@ await knowledgetalk.documentShare(https://imgURL);
 - **응답**
 
   성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
-
-<br>
-
+ 
 ## 공유 기능 종료
 
 {% code title="index.js" %}

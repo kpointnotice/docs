@@ -1,7 +1,5 @@
 # 방 관련 기능
-
-<br>
-
+ 
 ## P2P 방 생성
 
 {% code title="index.js" %}
@@ -25,9 +23,7 @@ await knowledgetalk.createRoom('K43254033', 'chatRoom');
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             roomId            |           String          |                N               |     랜덤 또는 요청된 roomId    |           chatRoom            |
-
-<br>
-
+ 
 ## 그룹통화 방 생성
 
 {% code title="index.js" %}
@@ -51,9 +47,7 @@ await knowledgetalk.createVideoRoom('K43254033', 'chatRoom');
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             roomId            |           String          |                N               |     랜덤 또는 요청된 roomId    |           chatRoom            |
-
-<br>
-
+ 
 ## 방 입장
 
 {% code title="index.js" %}
@@ -80,9 +74,7 @@ await knowledgetalk.joinroom('K43254033');
 |             media             |          Boolean          |                Y               |      미디어 서버 사용 여부     |               true               |
 |             title             |           String          |                Y               |            방 제목            |             chatRoom             |
 |             group             |           Object          |                N               |           분반 정보           |                                  |
-
-<br>
-
+ 
 ## 방 퇴장
 
 {% code title="index.js" %}
@@ -101,9 +93,7 @@ await knowledgetalk.leaveRoom('K43254033');
 *   **응답**
 
     성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
-
-<br>
-
+ 
 ## 방 종료
 
 {% code title="index.js" %}
@@ -122,9 +112,7 @@ await knowledgetalk.destroyRoom('K43254033');
 *   **응답**
 
     성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
-
-<br>
-
+ 
 ## 방에 접속한 유저 조회
 
 {% code title="index.js" %}
@@ -147,9 +135,7 @@ await knowledgetalk.memberList(roomId);
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |     <center>**예시**</center>     |
 |:-:|:-:|:-:|:-:|:-:|
 |            members            |           Object          |                Y               |    현재 방에 접속한 members    | "kpoint123": { "name": "홍길동" } |
-
-<br>
-
+ 
 ## 권한 부여
 
 {% code title="index.js" %}
@@ -174,9 +160,7 @@ await knowledgetalk.permit('kpoint123', true, true, true, true, true);
 *   **응답**
 
     성공 혹은 실패 시에는 응답 코드를 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
-
-<br>
-
+  
 ## 알림 메시지 전송
 
 {% code title="index.js" %}

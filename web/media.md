@@ -1,7 +1,5 @@
 # 영상 연결 기능
-
-<br>
-
+ 
 ## 미디어 서버에 영상 송신
 
 {% code title="index.js" %}
@@ -21,9 +19,7 @@ await knowledgetalk.publishVideo('cam', stream);
 - **응답**
 
   성공 시 true, 실패 시 false 리턴
-
-<br>
-
+ 
 ## 미디어 서버에 영상 수신
 
 {% code title="index.js" %}
@@ -43,9 +39,7 @@ await knowledgetalk.subscribeVideo('kpoint123', 'cam')
 - **응답**
 
   성공 시 상대방 video stream 리턴, 실패 시 false 리턴
-
-<br>
-
+ 
 ## P2P 영상 전송
 
 {% code title="index.js" %}
@@ -66,9 +60,7 @@ await knowledgetalk.publishP2P('kpoint123','cam', stream);
 - **응답**
 
   성공 시 true, 실패 시 false 리턴
-
-<br>
-
+ 
 ## 영상 정보 변경
 
 {% code title="index.js" %}

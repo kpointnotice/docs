@@ -1,29 +1,21 @@
 # P2P통화 연결
 
-<br>
-
 ### 설명
 
-        중앙 미디어 서버없이 종단 간 직접 연결하여, 연결을 하고 싶은 사용자에게 발신자의 영상을 보낼 수 있습니다. 단, NAT/방화벽 환경의 사용자가 외부망과의 통신을 위해 공인 IP 정보를 알려줄 수 없는 경우에는 중계 서버를 거쳐서 연결이 됩니다.
+중앙 미디어 서버없이 종단 간 직접 연결하여, 연결을 하고 싶은 사용자에게 발신자의 영상을 보낼 수 있습니다. 단, NAT/방화벽 환경의 사용자가 외부망과의 통신을 위해 공인 IP 정보를 알려줄 수 없는 경우에는 중계 서버를 거쳐서 연결이 됩니다.
 
 - [Sample](https://dev.knowledgetalk.co.kr:3456/p2p) (브라우저에 두 개의 샘플을 띄운 후 P2P 영상 연결 확인)
 
 - [Sample Source Code by Github](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/p2p.html)
 
 - [STUN / TURN](https://developer.mozilla.org/ko/docs/Web/API/WebRTC_API/Protocols) (P2P 를 사용하지 못하는 경우에 대한 설명)
-
-<br>
-
+ 
 ### 플로우
 
 ![플로우](../img/flow_p2p.png)
-
-<br>
-
+ 
 ### 개발 절차
-
-<br>
-
+ 
 #### 1. 서버 연결
 {% code title="index.html" %}
 ```html
@@ -55,9 +47,7 @@ knowlegetalk.init('https://dev.knowledgetalk.co.kr:7102').then(result => {
 SDK 객체를 생성하고 서버와 연결합니다.
 
 연결에 성공하면 userId를 발급받게 됩니다.
-
-<br>
-
+ 
 #### 2. 방 생성
 {% code title="index.js" %}
 ```javascript
@@ -67,9 +57,7 @@ await knowledgetalk.createRoom();
 {% endcode %}
 
 방을 만들고 발급받은 roomId를 상대방에게 알려주어야 합니다.
-
-<br>
-
+ 
 #### 3. 방 입장
 {% code title="index.js" %}
 ```javascript
@@ -98,9 +86,7 @@ for(const member in members){
 Host는 방을 만들고 입장하여 Guest가 입장할때까지 대기합니다.
 
 Guest는 Host에게 받은 roomId로 해당 방에 입장합니다.
-
-<br>
-
+ 
 #### 4.영상 전송
 {% code title="index.js" %}
 ```javascript
@@ -117,9 +103,7 @@ await knowledgetalk.publishP2P('kpoint123','cam', localStream);
 - [localStream 객체 정보](https://developer.mozilla.org/ko/docs/Web/API/MediaDevices/getUserMedia)
 
 그리고, publishP2P()의 파라미터에 상대방의 userId와 cam/screen을 구분하여 지정하고 미리 준비한 localStream 객체를 입력하여 상대방에게 전송합니다.
-
-<br>
-
+ 
 #### 5.이벤트 메시지 수신
 {% code title="event message sample" %}
 ```javascript

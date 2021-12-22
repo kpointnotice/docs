@@ -1,9 +1,7 @@
 # 이벤트 메시지
 
   다른 참여자들의 입장, 퇴장 등 상태 등 클라이언트에서 서버로 부터 오는 이벤트 메시지들에 대한 설명
-
-<br>
-
+ 
 ## 이벤트 메시지 알림
 {% code title="index.js" %}
 ```javascript
@@ -20,13 +18,9 @@ knowledgetalk.addEventListener('presence', async event => {
 }
 ```
 {% endcode %}
-
-<br>
-    
+  
 # 타입별 상세 메시지 예시
-
-<br>
-
+ 
 ### type: 'join'
 {% code title="event message sample" %}
 ```json
@@ -39,9 +33,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'leave'
 {% code title="event message sample" %}
 ```json
@@ -54,9 +46,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'publish'
 {% code title="event message sample" %}
 ```json
@@ -69,9 +59,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'subscribed'
 {% code title="event message sample" %}
 ```json
@@ -84,9 +72,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'screen'
 {% code title="event message sample" %}
 ```json
@@ -99,9 +85,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'shareStop'
 {% code title="event message sample" %}
 ```json
@@ -114,9 +98,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'chat'
 {% code title="event message sample" %}
 ```json
@@ -129,9 +111,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'inform'
 {% code title="event message sample" %}
 ```json
@@ -144,9 +124,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'editUserInfo'
 {% code title="event message sample" %}
 ```json
@@ -161,9 +139,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'deviceChanged'
 {% code title="event message sample" %}
 ```json
@@ -174,9 +150,7 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
-
-<br>
-
+ 
 ### type: 'createGroup'
 {% code title="event message sample" %}
 ```json
