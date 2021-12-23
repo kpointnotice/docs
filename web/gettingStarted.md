@@ -25,8 +25,8 @@ let knowledgetalk = new Knowledgetalk();
 
 {% code title="index.js" %}
 ```javascript
-// 서버 연결(url, userId, name, dvice)
-knowledgetalk.init('https://URL:port', 'kpoint123', '홍길동', 'Galaxy Tab');
+// 서버 연결(userId, name, dvice)
+knowledgetalk.init('kpoint123', '홍길동', 'Galaxy Tab');
 ```
 {% endcode %}
 
@@ -34,7 +34,6 @@ knowledgetalk.init('https://URL:port', 'kpoint123', '홍길동', 'Galaxy Tab');
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
-|              url              |           String          |               Y                |       사용자의 서버 URL       |         https://URL:port       |
 |             userId            |           String          |               N                |         요청할 userId         |           kpoint123            |
 |              name             |           String          |               N                |         사용할 닉네임         |             홍길동              |
 |             device            |           String          |               N                |           기기 정보           |           Galaxy Tab           |

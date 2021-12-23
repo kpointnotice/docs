@@ -32,7 +32,7 @@
 let knowledgetalk = new Knowledgetalk();
 
 // 서버 연결
-knowlegetalk.init('https://dev.knowledgetalk.co.kr:7102').then(result => {
+knowlegetalk.init().then(result => {
         // 서버 연결에 실패한 경우
         if(result.code !== '200'){
                 
