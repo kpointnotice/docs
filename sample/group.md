@@ -7,8 +7,8 @@
 
 ![sfu 방식](../img/sfu.png)
 
-* [샘플 보기](https://dev.knowledgetalk.co.kr:3456/group) (create -> join -> publish 요청 시, 미디어 서버와 영상 연결 데모 확인)
-* [샘플 소스 코드](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/group.html)
+* [Sample](https://dev.knowledgetalk.co.kr:3456/group) (create -> join -> publish 요청 시, 미디어 서버와 영상 연결 데모 확인)
+* [Sample Source Code by Github](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/group.html)
 
 ### 플로우
 ![플로우](../img/flow_group.png)
