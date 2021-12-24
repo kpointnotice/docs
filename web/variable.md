@@ -2,14 +2,14 @@
 
 Knowledgepoint() 객체 내부에서 사용되는 전역 변수에 대한 소개입니다.
 
- {% code title="index.js" %}
-```javascript
-// SDK 객체 생성
-let knowledgeTalk = new KnowledgeTalk();
-```
-{% endcode %}
+    {% code title="index.js" %}
+    ```javascript
+    // SDK 객체 생성
+    let knowledgeTalk = new KnowledgeTalk();
+    ```
+    {% endcode %}
 
-위에서 생성된 SDK객체를 예로 각각의 변수를 호출명으로 가져오는 예제입니다.
+아래의 함수들은 위에서 생성된 SDK객체를 예로 각각의 변수를 호출명으로 가져오는 예제입니다.
 
 ## userId 조회
 {% code title="index.js" %}
