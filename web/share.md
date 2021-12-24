@@ -10,7 +10,8 @@ await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
 {% endcode %}
 
 - **요청**
-- <mark style="color:red;">**canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
+  
+  <mark style="color:red;">**canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
