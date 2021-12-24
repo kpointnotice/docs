@@ -1,6 +1,6 @@
 # 변수 호출
 
-이 페이지에서는 Knowledgepoint() 객체 내부에서 필요되는 변수들의 호출 방법을 소개합니다.
+이 페이지에서는 Knowledgepoint() 사용시 필요되는 변수들의 호출 방법을 소개합니다.
 
 {% code title="index.js" %}
 ```javascript
