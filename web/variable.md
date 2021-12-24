@@ -37,7 +37,7 @@ getAllPeers = () => this.#peers;
 ## id로 peer 조회
 {% code title="index.js" %}
 ```javascript
-// id로 peer 조회
+// id로 peer 조회(id)
 getPeers = id => this.#peers[id];
 ```
 {% endcode %}
@@ -53,7 +53,7 @@ getAllStreams = () => this.#streams;
 ## id로 stream 조회
 {% code title="index.js" %}
 ```javascript
-// id로 stream 조회
+// id로 stream 조회(id)
 getStream = id => this.#streams[id];
 ```
 {% endcode %}
