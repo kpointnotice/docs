@@ -1,12 +1,21 @@
 # 전역 변수
 
- Knowledgepoint() 객체 내부에 사용되는 전역 변수들의 모음입니다.
+Knowledgepoint() 객체 내부에서 사용되는 전역 변수에 대한 소개입니다.
+
+ {% code title="index.js" %}
+```javascript
+// SDK 객체 생성
+let knowledgeTalk = new KnowledgeTalk();
+```
+{% endcode %}
+
+위에서 생성된 SDK객체를 예로 각각의 변수를 호출명으로 가져오는 예제입니다.
 
 ## userId 조회
 {% code title="index.js" %}
 ```javascript
 // userId 조회
-getUserId = () => this.#userid;
+let userId = knowledgetalk.getUserId();
 ```
 {% endcode %}
 
@@ -14,7 +23,7 @@ getUserId = () => this.#userid;
 {% code title="index.js" %}
 ```javascript
 // roomId 조회
-getRoomId = () => this.#roomid;
+let roomId = knowledgetalk.getRoomId();
 ```
 {% endcode %}
 
@@ -22,7 +31,7 @@ getRoomId = () => this.#roomid;
 {% code title="index.js" %}
 ```javascript
 // socket 객체
-getSocket = () => this.#socket;
+let socket = knowledgetalk.getSocket();
 ```
 {% endcode %}
 
@@ -30,15 +39,15 @@ getSocket = () => this.#socket;
 {% code title="index.js" %}
 ```javascript
 // 모든 peer 정보
-getAllPeers = () => this.#peers;
+let allPeers = knowledgetalk.getAllPeers();
 ```
 {% endcode %}
 
 ## id로 peer 조회
 {% code title="index.js" %}
 ```javascript
-// id로 peer 조회(id)
-getPeers = id => this.#peers[id];
+// id로 peer 조회
+let userPeer = knowledgetalk.getPeers(id);
 ```
 {% endcode %}
 
@@ -46,7 +55,7 @@ getPeers = id => this.#peers[id];
 {% code title="index.js" %}
 ```javascript
 // 모든 stream 정보
-getAllStreams = () => this.#streams;
+let allStreams = knowledgetalk.getAllStreams();
 ```
 {% endcode %}
 
@@ -54,7 +63,7 @@ getAllStreams = () => this.#streams;
 {% code title="index.js" %}
 ```javascript
 // id로 stream 조회(id)
-getStream = id => this.#streams[id];
+let userStream = knowledgetalk.getStream(id);
 ```
 {% endcode %}
 
@@ -62,7 +71,7 @@ getStream = id => this.#streams[id];
 {% code title="index.js" %}
 ```javascript
 // 미디어서버 사용 여부
-isMedia = () => this.#media;
+let media = knowledgetalk.isMedia();
 ```
 {% endcode %}
 
@@ -70,7 +79,7 @@ isMedia = () => this.#media;
 {% code title="index.js" %}
 ```javascript
 // 공유 타입
-getShareType = () => this.#shareType;
+let shareType = knowledgetalk.getShareType()
 ```
 {% endcode %}
 
@@ -78,7 +87,6 @@ getShareType = () => this.#shareType;
 {% code title="index.js" %}
 ```javascript
 // 사용자의 userId 조회
-getName = () => this.#name;
+let name = knowledgetalk.getName();
 ```
 {% endcode %}
-
