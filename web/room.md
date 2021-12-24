@@ -15,8 +15,8 @@ await knowledgetalk.createRoom('K43254033', 'chatRoom');
 | :---------------------------: | :-----------------------: | :----------------------------: | :-----------------------: | :-----------------------: |
 |            roomId             |          String           |               N                |       요청할 roomId       |         K43254033         |
 |             title             |          String           |               N                |          방 제목          |         chatRoom          |
-|           capacity            |          String           |               N                |         수용인원          |            16             |
-|            destroy            |          boolean          |               N                |  아무도 없을 시, 방 종료  |           false           |
+|           capacity            |          Number           |               N                |         수용인원          |            16             |
+|            destroy            |          Boolean          |               N                |  아무도 없을 시, 방 종료  |           false           |
 
 - **응답**
 
@@ -41,12 +41,13 @@ await knowledgetalk.createVideoRoom('K43254033', 'chatRoom');
 | :---------------------------: | :-----------------------: | :----------------------------: | :-----------------------: | :-----------------------: |
 |            roomId             |          String           |               N                |       요청할 roomId       |         K43254033         |
 |             title             |          String           |               N                |          방 제목          |         chatRoom          |
-|           capacity            |          String           |               N                |         수용인원          |            16             |
-|            destroy            |          boolean          |               N                |  아무도 없을 시, 방 종료  |           false           |
+|           capacity            |          Number           |               N                |         수용인원          |            16             |
+|            destroy            |          Boolean          |               N                |  아무도 없을 시, 방 종료  |           false           |
 
 - **응답**
 
     성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
+    
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> | <center>**설명**</center> | <center>**예시**</center> |
 | :---------------------------: | :-----------------------: | :----------------------------: | :-----------------------: | :-----------------------: |
 |            roomId             |          String           |               N                |  랜덤 또는 요청된 roomId  |         chatRoom          |
