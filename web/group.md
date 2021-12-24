@@ -18,7 +18,7 @@ await knowledgetalk.createGroup(list, title);
 
 - **응답**
 
-  성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+  성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
@@ -41,4 +41,4 @@ await knowledgetalk.endGroup(groupId);
 
 - **응답**
 
-  성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+  성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))

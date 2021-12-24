@@ -76,7 +76,7 @@ let members = roomData.members;
 // 현재 방에 참가한 각각의 사용자들의 영상을 담을 콘텐츠를 생성
 for(const member in members){
         // 단, 나(자신)는 제외
-        if(member === knowledgetalk.userId) continue;
+        if(member === knowledgetalk.getUserId()) continue;
         createVideoBox(member)
 }
 
@@ -125,7 +125,7 @@ knowledgetalk.addEventListener('presence', async event => {
                 //다른 사용자의 영상 수신을 알림
                 case 'subscribed':
                         //상대방이 입장했을때 만들어둔 video 태그인 multiVideo에 상대방의 영상을 연결
-                        document.getElementById('multiVideo-' + msg.user).srcObject = knowledgetalk.streams[msg.user];
+                        document.getElementById('multiVideo-' + msg.user).srcObject = knowledgetalk.getStream(msg.user);
                         break;
         }       
 }

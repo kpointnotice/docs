@@ -18,7 +18,7 @@ await knowledgetalk.createRoom('K43254033', 'chatRoom');
 
 - **응답**
 
-  성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+  성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
@@ -42,8 +42,7 @@ await knowledgetalk.createVideoRoom('K43254033', 'chatRoom');
 
 - **응답**
 
-    성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
-
+    성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             roomId            |           String          |                N               |     랜덤 또는 요청된 roomId    |           chatRoom            |
@@ -65,7 +64,7 @@ await knowledgetalk.joinroom('K43254033');
 
 * **응답**
 
-    성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+    성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
@@ -92,7 +91,7 @@ await knowledgetalk.leaveRoom('K43254033');
 
 *   **응답**
 
-    성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+    성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
  
 ## 방 종료
 
@@ -111,7 +110,7 @@ await knowledgetalk.destroyRoom('K43254033');
 
 *   **응답**
 
-    성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+    성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
  
 ## 방에 접속한 유저 조회
 
@@ -130,7 +129,7 @@ await knowledgetalk.memberList(roomId);
 
 * **응답**
 
-    성공 혹은 실패 시에는 응답 코드를 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+    성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |     <center>**예시**</center>     |
 |:-:|:-:|:-:|:-:|:-:|
@@ -159,7 +158,7 @@ await knowledgetalk.permit('kpoint123', true, true, true, true, true);
 
 *   **응답**
 
-    성공 혹은 실패 시에는 응답 코드를 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+    성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
   
 ## 알림 메시지 전송
 
@@ -178,4 +177,4 @@ await knowledgetalk.inform('Hello!', 'kpoint123', 'K43254033');
 
 *   **응답**
 
-    성공 혹은 실패 시에는 응답 코드를 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+    성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))

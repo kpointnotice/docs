@@ -20,4 +20,4 @@ await knowledgetalk.editUserInfo('홍길동', true, false);
 
 - **응답**
 
-  성공 혹은 실패 시에는 응답 코드로 리턴합니다. [(=> 응답 코드 바로가기)](https://docs.knowledgetalk.co.kr/web/code)
+  성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
