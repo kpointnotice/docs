@@ -128,8 +128,8 @@ await knowledgetalk.memberList(roomId);
 |             roomId            |           String          |                Y               |       종료하려는 roomId        |            K43254033          |
 
 * **응답**
-
-    성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
+  
+  성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |     <center>**예시**</center>     |
 |:-:|:-:|:-:|:-:|:-:|
@@ -145,8 +145,8 @@ await knowledgetalk.permit('kpoint123', true, true, true, true, true);
 {% endcode %}
 
 * **요청**
-
-    <mark style="color:red;">**chat / draw / screen / whiteboard / document 중 하나는 필수**</mark>
+  
+  <mark style="color:red;">**chat / draw / screen / whiteboard / document 중 하나는 필수**</mark>
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
