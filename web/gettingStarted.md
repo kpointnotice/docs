@@ -25,26 +25,28 @@ let knowledgetalk = new Knowledgetalk();
 
 {% code title="index.js" %}
 ```javascript
-// 서버 연결(userId, name, dvice)
+// 서버 연결(cpCode, authKey, userId, name, dvice)
 knowledgetalk.init('kpoint123', '홍길동', 'Galaxy Tab');
 ```
 {% endcode %}
 
 * **요청**
 
-| **파라미터** | **타입** | **필수 여부** |   **설명**   |   **예시**   |
-| :------: | :----: | :-------: | :--------: | :--------: |
-|  userId  | String |     N     | 요청할 userId |  kpoint123 |
-|   name   | String |     N     |   사용할 닉네임  |     홍길동    |
-|  device  | String |     N     |    기기 정보   | Galaxy Tab |
+| **파라미터** | **타입** | **필수 여부** |     **설명**      |    **예시**    |
+| :----------: | :------: | :-----------: | :---------------: | :------------: |
+|    cpCode    |  String  |       Y       | 발급 받은 cpCode  | KP-20200101-01 |
+|   authKey    |  String  |       Y       | 발급 받은 authKey | eyJhbGciO....  |
+|    userId    |  String  |       N       |   요청할 userId   |   kpoint123    |
+|     name     |  String  |       N       |   사용할 닉네임   |     홍길동     |
+|    device    |  String  |       N       |     기기 정보     |   Galaxy Tab   |
 
 *   **응답**
 
     성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
 
-| **파라미터** | **타입** | **필수 여부** |      **설명**      |   **예시**  |
-| :------: | :----: | :-------: | :--------------: | :-------: |
-|  userId  | String |     Y     | 랜덤 또는 요청된 userId | kpoint123 |
+| **파라미터** | **타입** | **필수 여부** |        **설명**         | **예시**  |
+| :----------: | :------: | :-----------: | :---------------------: | :-------: |
+|    userId    |  String  |       Y       | 랜덤 또는 요청된 userId | kpoint123 |
 
 ## 서버 종료
 
