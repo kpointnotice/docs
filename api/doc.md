@@ -24,3 +24,10 @@
 {% endcode %}
 
 응답
+
+
+### P2P통화 방 만들기(createRoom)
+
+### 그룹통화 방 만들기(createVideoRoom)
+
+### 방 입장(joinRoom)
