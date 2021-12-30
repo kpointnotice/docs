@@ -96,7 +96,7 @@ knowledgetalk.setTool('pen', 'black', 1);
 |:-:|:-:|:-:|:-:|:-:|
 |              tool             |           String          |                Y               |     그리기 도구(pen, eraser)   |             pen               |
 |             color             |           String          |                N               |        색깔(pen, eraser)       |            black              |
-|          stroke width         |           Number          |                Y               |         그리기 도구 굵기        |              1                | 
+|          stroke width         |           number          |                Y               |         그리기 도구 굵기        |              1                | 
  
 ## 그림 지우기
 

@@ -15,7 +15,7 @@ await knowledgetalk.createRoom('K43254033', 'chatRoom');
 | :---------------------------: | :-----------------------: | :----------------------------: | :-----------------------: | :-----------------------: |
 |            roomId             |          String           |               N                |       요청할 roomId       |         K43254033         |
 |             title             |          String           |               N                |          방 제목          |         chatRoom          |
-|           capacity            |          Number           |               N                |         수용인원          |            16             |
+|           capacity            |          number           |               N                |         수용인원          |            16             |
 |            destroy            |          Boolean          |               N                |  아무도 없을 시, 방 종료  |           false           |
 
 - **응답**
@@ -41,7 +41,7 @@ await knowledgetalk.createVideoRoom('K43254033', 'chatRoom');
 | :---------------------------: | :-----------------------: | :----------------------------: | :-----------------------: | :-----------------------: |
 |            roomId             |          String           |               N                |       요청할 roomId       |         K43254033         |
 |             title             |          String           |               N                |          방 제목          |         chatRoom          |
-|           capacity            |          Number           |               N                |         수용인원          |            16             |
+|           capacity            |          number           |               N                |         수용인원          |            16             |
 |            destroy            |          Boolean          |               N                |  아무도 없을 시, 방 종료  |           false           |
 
 - **응답**
