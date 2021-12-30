@@ -23,3 +23,8 @@
 
 * [P2P통화 연결](sample/p2p.md)
 * [그룹통화 연결](sample/group.md)
+
+## API-DOC
+
+* [Getting Started](api/gettingStarted.md)
+* [API 명세서](api/doc.md)
