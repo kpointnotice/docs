@@ -13,7 +13,7 @@ await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
   
   <mark style="color:red;">**canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Pararmeter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |              stream           |       video stream        |                Y               |           영상 스트림         |                               |         
 |              target           |          String           |                N               | 일대일인 경우, 상대방의 userId |          kpoint123            |   
@@ -34,7 +34,7 @@ await knowledgetalk.whiteBoardStart(canvas);
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Pararmeter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             canvas            |      HTML canvas tag      |                Y               |           캔버스 태그         |                                | 
 
@@ -55,7 +55,7 @@ knowledgetalk.canvasInit(canvas);
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Pararmeter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             canvas            |      HTML canvas tag      |                Y               |          캔버스 태그           |                              | 
  
@@ -92,7 +92,7 @@ knowledgetalk.setTool('pen', 'black', 1);
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Pararmeter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |              tool             |           String          |                Y               |     그리기 도구(pen, eraser)   |             pen               |
 |             color             |           String          |                N               |        색깔(pen, eraser)       |            black              |
@@ -118,7 +118,7 @@ await knowledgetalk.documentStart(canvas);
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Pararmeter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             canvas            |      HTML canvas tag      |                Y               |           캔버스 태그          |                              | 
 
@@ -139,7 +139,7 @@ await knowledgetalk.documentShare('https://imgURL');
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Pararmeter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |              url              |           String          |                Y               |        공유할 이미지 URL       |         https://imgURL       | 
 

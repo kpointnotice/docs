@@ -11,7 +11,7 @@ await knowledgetalk.createGroup(list, title);
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |              list             |           Array           |                N               |     분반에 참여할 사용자들     | ['kpoint123', 'knowledge123'] | 
 |             title             |          String           |                N               |            방 제목            |           chatRoom            | 
@@ -20,7 +20,7 @@ await knowledgetalk.createGroup(list, title);
 
   성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             groupId           |           String          |                Y               |          분반 아이디          |          knowledgeGroup       |
  
@@ -35,7 +35,7 @@ await knowledgetalk.endGroup(groupId);
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |            groupId            |           String          |                N               |           분반 아이디         |         knowledgeGroup         |
 

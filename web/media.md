@@ -11,7 +11,7 @@ await knowledgetalk.publishVideo('cam', stream);
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |              type             |           String          |                Y               |       cam / screen 구분       |              cam              |
 |             stream            |        video stream       |                Y               |    서버와 연결할 영상 스트림   |                               |
@@ -31,7 +31,7 @@ await knowledgetalk.subscribeVideo('kpoint123', 'cam')
     
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             userId            |           String          |                Y               |         상대방의 userId        |           kpoint123          |
 |              type             |           String          |                Y               |        cam / screen 구분       |              cam             |
@@ -51,7 +51,7 @@ await knowledgetalk.publishP2P('kpoint123','cam', stream);
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             userId            |           String          |                Y               |   영상을 받을 상대방 USER ID   |            kpoint123          |
 |              type             |           String          |                Y               |       cam / screen 구분       |              cam              |
@@ -72,7 +72,7 @@ await knowledgetalk.changeLocalStream(stream);
 
 - **요청**
 
-| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |             stream            |        video stream       |                Y               |     새로 변경될 영상 스트림     |                               |
 

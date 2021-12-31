@@ -32,7 +32,7 @@ knowledgetalk.init('KP-20200101-01', 'eyJhbGciO...', 'kpoint123', '홍길동', '
 
 * **요청**
 
-| **파라미터** | **타입** | **필수 여부** |     **설명**      |    **예시**    |
+| **Parameter** | **Type** | **Required** |     **Description**      |    **Example**    |
 | :----------: | :------: | :-----------: | :---------------: | :------------: |
 |    cpCode    |  String  |       Y       | 발급 받은 cpCode  | KP-20200101-01 |
 |   authKey    |  String  |       Y       | 발급 받은 authKey | eyJhbGciO...  |
@@ -44,7 +44,7 @@ knowledgetalk.init('KP-20200101-01', 'eyJhbGciO...', 'kpoint123', '홍길동', '
 
     성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
 
-| **파라미터** | **타입** | **필수 여부** |        **설명**         | **예시**  |
+| **Parameter** | **Type** | **Required** |        **Description**         | **Example**  |
 | :----------: | :------: | :-----------: | :---------------------: | :-------: |
 |    userId    |  String  |       Y       | 랜덤 또는 요청된 userId | kpoint123 |
 
