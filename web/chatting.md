@@ -22,8 +22,8 @@ await knowledgetalk.chat('Hello!', 'K43254033', 'kpoint123');
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
 |            message            |          String           |                Y               |          채팅 메시지           |            Hello!             | 
-|            roomId             |          String           |               Y/N              |   해당 roomId로 메시지 전송     |           K43254033           | 
-|            target             |          String           |               Y/N              |   해당 userId에게 메시지 전송   |           kpoint123           | 
+|            roomId             |          String           |                N               |   해당 roomId로 메시지 전송     |           K43254033           | 
+|            target             |          String           |                N               |   해당 userId에게 메시지 전송   |           kpoint123           | 
 
 - **응답**
 

@@ -15,9 +15,9 @@ await knowledgetalk.editUserInfo('홍길동', true, false);
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
-|              name             |          String           |               Y/N              |         사용자 닉네임         |              홍길동             |
-|             video             |          Boolean          |               Y/N              |          video 정보           |               true             |
-|             audio             |          Boolean          |               Y/N              |          audio 정보           |               true             |
+|              name             |          String           |                N               |         사용자 닉네임         |              홍길동             |
+|             video             |          Boolean          |                N               |          video 정보           |               true             |
+|             audio             |          Boolean          |                N               |          audio 정보           |               true             |
 
 - **응답**
 
