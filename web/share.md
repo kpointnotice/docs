@@ -81,6 +81,26 @@ knowledgetalk.drawingStop();
 
   성공 혹은 실패 시에는 Boolean 타입인 true / false를 리턴합니다.
  
+## 캔버스 동기화 요청
+
+{% code title="index.js" %}
+```javascript
+// 캔버스 동기화 요청(target) (입장 시, 판서 중인 경우 판서 중인 상대에게 판서 정보 요청)
+
+await knowledgetalk.reqCanvasImage(target);
+```
+{% endcode %}
+
+- **요청**
+
+| <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
+|:-:|:-:|:-:|:-:|:-:|
+|            target             |          String           |               Y/N              |   해당 userId에게 메시지 전송   |           kpoint123           | 
+
+- **응답**
+
+  성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
+
 ## 그리기 도구 설정
 
 {% code title="index.js" %}
