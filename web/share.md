@@ -85,13 +85,16 @@ knowledgetalk.drawingStop();
 
 {% code title="index.js" %}
 ```javascript
-// 캔버스 동기화 요청(target) (입장 시, 판서 중인 경우 판서 중인 상대에게 판서 정보 요청)
-
+// 캔버스 동기화 요청(target)
 await knowledgetalk.reqCanvasImage(target);
 ```
 {% endcode %}
 
 - **요청**
+
+
+<mark style="color:red;">**입장 시, 판서 중인 경우 판서 중인 상대에게 판서 정보 요청(canvasInit 완료 후 요청)**</mark>
+
 
 | <center>**파라미터**</center> | <center>**타입**</center> | <center>**필수 여부**</center> |   <center>**설명**</center>   |   <center>**예시**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
