@@ -348,20 +348,22 @@
 
 ### 방의 영상 정보(sdpRoom)
 
-요청
+- 요청
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
 |            eventOp             |          String           |               Y               |             op name              |
 |             reqId              |          String           |               Y               |          transaction id          |
 |             userId             |          String           |               Y               |             user id              |
 |             roomId             |          String           |               Y               |             room id              |
-|              sdp               |          Object           |               Y               |             SDP 정보             |
-|              type              |          String           |               N               |        cam / screen 구분         |
-|             target             |          String           |               N               |         상대방의 userId          |
+|              sdp               |          Object           |               Y               |             sdp info             |
+|              type              |          String           |               N               |           cam / screen           |
+|             target             |          String           |               N               |             taget id             |
 
 
 
-샘플
+- 샘플
+
 {% code title="sdpRoom" %}
 ```json
   {
@@ -404,9 +406,9 @@
 |            eventOp             |          String           |               Y               |             op name              |
 |             reqId              |          String           |               N               |          transaction id          |
 |             userId             |          String           |               Y               |             user id              |
-|              sdp               |          Object           |               Y               |             SDP 정보             |
-|              type              |          String           |               Y               |        cam / screen 구분         |
-|             target             |          String           |               N               |         상대방의 userId          |
+|              sdp               |          Object           |               Y               |             sdp info             |
+|              type              |          String           |               Y               |           cam / screen           |
+|             target             |          String           |               N               |             taget id             |
 
 
 
@@ -453,8 +455,8 @@
 |             reqId              |          String           |               Y               |          transaction id          |
 |             userId             |          String           |               Y               |             user id              |
 |             roomId             |          String           |               Y               |             room id              |
-|              type              |          String           |               Y               |        cam / screen 구분         |
-|             target             |          String           |               Y               |         상대방의 userId          |
+|              type              |          String           |               Y               |           cam / screen           |
+|             target             |          String           |               Y               |             taget id             |
 |             video              |          Boolean          |               Y               |            영상 권한             |
 |             audio              |          Boolean          |               Y               |            음성 권한             |
 
@@ -468,7 +470,7 @@
       reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033",
-      type: "cam / screen 구분",
+      type: "cam / screen",
       target: "knowledge123"
       video: "true",
       audio: "true"
@@ -818,7 +820,7 @@
 |            eventOp             |          String           |               Y               |             op name              |
 |             reqId              |          String           |               Y               |          transaction id          |
 |             userId             |          String           |               Y               |             user id              |
-|             target             |          String           |               N               |         상대방의 userId          |
+|             target             |          String           |               N               |             taget id             |
 |             roomId             |          String           |               N               |             room id              |
 |            message             |          String           |               Y               |       보내고자 하는 메시지       |
 
@@ -867,7 +869,7 @@
 |             userId             |          String           |               Y               |             user id              |
 |             roomId             |          String           |               Y               |             room id              |
 |             reqId              |          String           |               Y               |          transaction id          |
-|             target             |          String           |               Y               |         상대방의 userId          |
+|             target             |          String           |               Y               |             taget id             |
 |              chat              |          Boolean          |               N               |            채팅 권한             |
 |              draw              |          Boolean          |               N               |           그리기 권한            |
 |             screen             |          Boolean          |               N               |            영상 권한             |
@@ -1112,7 +1114,7 @@
 |            eventOp             |          String           |               Y               |             op name              |
 |             reqId              |          String           |               Y               |          transaction id          |
 |             userId             |          String           |               Y               |             user id              |
-|             target             |          String           |               Y               |         상대방의 userId          |
+|             target             |          String           |               Y               |             taget id             |
 |           candidate            |            any            |               Y               |           후보자 정보            |
 |              type              |          String           |               Y               |               타입               |
 |              cam               |          Boolean          |               Y               |        cam / stream 구분         |
