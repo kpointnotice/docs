@@ -2,72 +2,70 @@
 
 ### 세션 연결(register)
 
-- 요청
-  | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
-  | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-  |            eventOp             |          String           |               Y               |            이벤트 op             |
-  |             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-  |             cpCode             |          String           |               Y               |        라이센스 인증 코드        |
-  |             ipAddr             |          String           |               Y               |         사용자의 ip 주소         |
-  |            authKey             |          String           |               Y               |         라이센스 인증 키         |
-  |             userId             |          String           |               N               |         사용자의 userId          |
-  |              name              |          String           |               N               |         사용자의 닉네임          |
-  |             device             |          String           |               N               |          사용자의 기기           |
+- **요청**
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
+| :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
+|            eventOp             |          String           |               Y               |            이벤트 op             |
+|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
+|             cpCode             |          String           |               Y               |        라이센스 인증 코드        |
+|             ipAddr             |          String           |               Y               |         사용자의 ip 주소         |
+|            authKey             |          String           |               Y               |         라이센스 인증 키         |
+|             userId             |          String           |               N               |         사용자의 userId          |
+|              name              |          String           |               N               |         사용자의 닉네임          |
+|             device             |          String           |               N               |          사용자의 기기           |
 
+- **샘플**
+{% code title="register" %}
+```json
+  {
+      eventOp: "register",
+      reqId: "randomstring",
+      cpCode: "KP-123",
+      ipAddr: "ip address..",
+      authKey: "auth key..",
+      userId: "kpoint123",
+      name: "홍길동",
+      device: "Galaxy Tab"
+  }
+```
+{% endcode %}
 
+- **응답**
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
+| :----------------------------: | :-----------------------: | :------------------------------: |
+|            eventOp             |          String           |            이벤트 op             |
+|              code              |          String           |            응답 코드             |
+|            message             |          String           |           응답 메시지            |
+|             userId             |          String           |            사용자 id             |
+|           iceServers           |           Array           |         ice server 정보          |
 
-- 샘플
-  {% code title="register" %}
-  ```json
-    {
-        eventOp: "register",
-        reqId: "randomstring",
-        cpCode: "KP-123",
-        ipAddr: "ip address..",
-        authKey: "auth key..",
-        userId: "kpoint123",
-        name: "홍길동",
-        device: "Galaxy Tab"
-    }
-  ```
-  {% endcode %}
+- **샘플**
+{% code title="register" %}
+```json
+  {
+      eventOp: "register",
+      code: "200",
+      message: "ok",
+      userId: "kpoint12",
+      iceServers: [
+        {
+            "urls": [
+                "turn:dev.knowledgetalk.co.kr:46000"
+            ],
+            "username": "kpoint",
+            "credential": "kpoint01"
+        },
+        {
+            "urls": [
+                "stun:dev.knowledgetalk.co.kr:46000"
+            ]
+        }
+      ]
+  }
+```
+{% endcode %}
 
-- 응답
-  | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
-  | :----------------------------: | :-----------------------: | :------------------------------: |
-  |            eventOp             |          String           |            이벤트 op             |
-  |              code              |          String           |            응답 코드             |
-  |            message             |          String           |           응답 메시지            |
-  |             userId             |          String           |            사용자 id             |
-  |           iceServers           |           Array           |         ice server 정보          |
-
-- 샘플
-  {% code title="register" %}
-  ```json
-    {
-        eventOp: "register",
-        code: "200",
-        message: "ok",
-        userId: "kpoint12",
-        iceServers: [
-          {
-              "urls": [
-                  "turn:dev.knowledgetalk.co.kr:46000"
-              ],
-              "username": "kpoint",
-              "credential": "kpoint01"
-          },
-          {
-              "urls": [
-                  "stun:dev.knowledgetalk.co.kr:46000"
-              ]
-          }
-        ]
-    }
-  ```
-  {% endcode %}
-
-  성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
+성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
 
 ### P2P통화 방 만들기(createRoom)
 
