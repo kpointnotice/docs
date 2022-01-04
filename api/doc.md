@@ -7,7 +7,7 @@
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
 |            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
+|             reqId              |          String           |               Y               |          transaction id          |
 |             cpCode             |          String           |               Y               |        라이센스 인증 코드        |
 |             ipAddr             |          String           |               Y               |         사용자의 ip 주소         |
 |            authKey             |          String           |               Y               |         라이센스 인증 키         |
@@ -72,20 +72,20 @@
 
 ### P2P통화 방 만들기(createRoom)
 
-요청
+- 요청
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
 |            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               N               |           방의 roomId            |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               N               |             room id              |
 |             title              |          String           |               N               |            방의 제목             |
 |            capacity            |          number           |               N               |            최대 인원             |
 |            destroy             |          Boolean          |               Y               |     아무도 없을 시, 방 종료      |
 
-
-
-샘플
+- 샘플
+  
 {% code title="createRoom" %}
 ```json
   {
@@ -100,20 +100,26 @@
 ```
 {% endcode %}
 
-응답
+- 응답
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
 |            eventOp             |          String           |            이벤트 op             |
 |              code              |          String           |            응답 코드             |
 |            message             |          String           |           응답 메시지            |
+|             roomId             |          String           |             room id              |
 
-샘플
+- 샘플
+
 {% code title="createRoom" %}
 ```json
   {
-      eventOp: "createRoom",
-      code: "200",
-      message: "ok"
+    eventOp: "createRoom",
+    code: "200",
+    message: "OK",
+    roomId: "r6526119",
+    currentTime: "2022/01/04 14:44:01",
+    reqId: "SckLy4"
   }
 ```
 {% endcode %}
