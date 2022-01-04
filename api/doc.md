@@ -3,6 +3,7 @@
 ### 세션 연결(register)
 
 - **요청**
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
 |            eventOp             |          String           |               Y               |            이벤트 op             |
@@ -31,6 +32,7 @@
 {% endcode %}
 
 - **응답**
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
 |            eventOp             |          String           |            이벤트 op             |
@@ -40,6 +42,7 @@
 |           iceServers           |           Array           |         ice server 정보          |
 
 - **샘플**
+
 {% code title="register" %}
 ```json
   {
