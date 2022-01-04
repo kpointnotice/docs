@@ -6,21 +6,21 @@
 
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
+|            eventOp             |          String           |               Y               |             op name              |
 |             reqId              |          String           |               Y               |          transaction id          |
-|             cpCode             |          String           |               Y               |        라이센스 인증 코드        |
-|             ipAddr             |          String           |               Y               |         사용자의 ip 주소         |
-|            authKey             |          String           |               Y               |         라이센스 인증 키         |
-|             userId             |          String           |               N               |         사용자의 userId          |
-|              name              |          String           |               N               |         사용자의 닉네임          |
-|             device             |          String           |               N               |          사용자의 기기           |
+|             cpCode             |          String           |               Y               |             cp code              |
+|             ipAddr             |          String           |               Y               |            ip address            |
+|            authKey             |          String           |               Y               |           license key            |
+|             userId             |          String           |               N               |             user id              |
+|              name              |          String           |               N               |            user name             |
+|             device             |          String           |               N               |           device info            |
 
 - **샘플**
 {% code title="register" %}
 ```json
   {
       eventOp: "register",
-      reqId: "randomstring",
+      reqId: "abc123",
       cpCode: "KP-123",
       ipAddr: "ip address..",
       authKey: "auth key..",
@@ -35,10 +35,11 @@
 
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
-|             userId             |          String           |            사용자 id             |
+|            eventOp             |          String           |             op name              |
+|             reqId              |          String           |          transaction id          |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
+|             userId             |          String           |             user id              |
 |           iceServers           |           Array           |         ice server 정보          |
 
 - **샘플**
@@ -47,6 +48,7 @@
 ```json
   {
       eventOp: "register",
+      reqId: "abc123",
       code: "200",
       message: "ok",
       userId: "kpoint12",
@@ -72,25 +74,25 @@
 
 ### P2P통화 방 만들기(createRoom)
 
-- 요청
+- **요청**
 
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
+|            eventOp             |          String           |               Y               |             op name              |
 |             reqId              |          String           |               Y               |          transaction id          |
 |             userId             |          String           |               Y               |             user id              |
 |             roomId             |          String           |               N               |             room id              |
-|             title              |          String           |               N               |            방의 제목             |
-|            capacity            |          number           |               N               |            최대 인원             |
-|            destroy             |          Boolean          |               Y               |     아무도 없을 시, 방 종료      |
+|             title              |          String           |               N               |            room title            |
+|            capacity            |          number           |               N               |      maximum room capacity       |
+|            destroy             |          Boolean          |               Y               | if empty, room will be destroyed |
 
-- 샘플
+- **샘플**
   
 {% code title="createRoom" %}
 ```json
   {
       eventOp: "createRoom",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033",
       title: "chatRoom"
@@ -100,26 +102,26 @@
 ```
 {% endcode %}
 
-- 응답
+- **응답**
 
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|             reqId              |          String           |          transaction id          |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 |             roomId             |          String           |             room id              |
 
-- 샘플
+- **샘플**
 
 {% code title="createRoom" %}
 ```json
   {
     eventOp: "createRoom",
+    reqId: "abc123",
     code: "200",
     message: "OK",
-    roomId: "r6526119",
-    currentTime: "2022/01/04 14:44:01",
-    reqId: "SckLy4"
+    roomId: "r6526119"
   }
 ```
 {% endcode %}
@@ -128,25 +130,25 @@
 
 ### 그룹통화 방 만들기(createVideoRoom)
 
-요청
+- **요청**
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               N               |           방의 roomId            |
-|             title              |          String           |               N               |            방의 제목             |
-|            capacity            |          number           |               N               |            최대 인원             |
-|            destroy             |          Boolean          |               Y               |     아무도 없을 시, 방 종료      |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               N               |             room id              |
+|             title              |          String           |               N               |           room tittle            |
+|            capacity            |          number           |               N               |      maximum room capacity       |
+|            destroy             |          Boolean          |               Y               | if empty, room will be destroyed |
 
-
-
-샘플
-{% code title="createVideoRoom" %}
+- **샘플**
+  
+{% code title="createRoom" %}
 ```json
   {
       eventOp: "createVideoRoom",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033",
       title: "chatRoom"
@@ -156,20 +158,26 @@
 ```
 {% endcode %}
 
-응답
+- **응답**
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|             reqId              |          String           |          transaction id          |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
+|             roomId             |          String           |             room id              |
 
-샘플
+- 샘플
+
 {% code title="createVideoRoom" %}
 ```json
   {
-      eventOp: "createVideoRoom",
-      code: "200",
-      message: "ok"
+    eventOp: "createVideoRoom",
+    reqId: "abc123",
+    code: "200",
+    message: "OK",
+    roomId: "r6526119"
   }
 ```
 {% endcode %}
@@ -178,40 +186,46 @@
 
 ### 방 종료(destroyRoom)
 
-요청
+- **요청**
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 
 
 
-샘플
+- **샘플**
+
 {% code title="destroyRoom" %}
 ```json
   {
       eventOp: "destroyRoom",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033"
   }
 ```
 {% endcode %}
 
-응답
+- **응답**
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|             reqId              |          String           |          transaction id          |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
-샘플
+- **샘플**
+
 {% code title="destroyRoom" %}
 ```json
   {
       eventOp: "destroyRoom",
+      reqId: "abc123",
       code: "200",
       message: "ok"
   }
@@ -222,42 +236,61 @@
 
 ### 방 입장(joinRoom)
 
-요청
+- 요청
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 
 
 
-샘플
+- 샘플
+  
 {% code title="joinRoom" %}
 ```json
   {
       eventOp: "joinRoom",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033"
   }
 ```
 {% endcode %}
 
-응답
+- 응답
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|             reqId              |          String           |          transaction id          |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
+|            memebers            |          object           |       current members info       |
+|          isRecording           |          boolean          |           if recording           |
+|             media              |          boolean          |      if using media server       |
+|             title              |          String           |            room title            |
+|              host              |          object           |            host info             |
 
-샘플
+- 샘플
+
 {% code title="joinRoom" %}
 ```json
   {
       eventOp: "joinRoom",
       code: "200",
       message: "ok"
+      code: "200",
+      roomId: "K43254033",
+      members: {
+          kpoint123: "user info..."
+      },
+      isRecording: false,
+      media: true,
+      title: "video room",
+      host: "host info..."
   }
 ```
 {% endcode %}
@@ -266,36 +299,41 @@
 
 ### 방 퇴장(leaveRoom)
 
-요청
+- 요청
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 
 
 
-샘플
+- 샘플
+
 {% code title="leaveRoom" %}
 ```json
   {
       eventOp: "leaveRoom",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033"
   }
 ```
 {% endcode %}
 
-응답
+- 응답
+
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|             reqId              |          String           |          transaction id          |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
-샘플
+- 샘플
+
 {% code title="leaveRoom" %}
 ```json
   {
@@ -313,10 +351,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 |              sdp               |          Object           |               Y               |             SDP 정보             |
 |              type              |          String           |               N               |        cam / screen 구분         |
 |             target             |          String           |               N               |         상대방의 userId          |
@@ -328,7 +366,7 @@
 ```json
   {
       eventOp: "sdpRoom",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033",
       sdp: "RTCSessionDescription {type: "answer", sdp: ...}",
@@ -341,9 +379,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="sdpRoom" %}
@@ -363,9 +401,9 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               N               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               N               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
 |              sdp               |          Object           |               Y               |             SDP 정보             |
 |              type              |          String           |               Y               |        cam / screen 구분         |
 |             target             |          String           |               N               |         상대방의 userId          |
@@ -377,7 +415,7 @@
 ```json
   {
       eventOp: "sdp",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       sdp: "RTCSessionDescription {type: "answer", sdp: ...}",
       type: "cam",
@@ -389,9 +427,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="sdp" %}
@@ -411,10 +449,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 |              type              |          String           |               Y               |        cam / screen 구분         |
 |             target             |          String           |               Y               |         상대방의 userId          |
 |             video              |          Boolean          |               Y               |            영상 권한             |
@@ -427,7 +465,7 @@
 ```json
   {
       eventOp: "subscribe",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033",
       type: "cam / screen 구분",
@@ -441,9 +479,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="subscribe" %}
@@ -463,10 +501,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 
 
 
@@ -475,7 +513,7 @@
 ```json
   {
       eventOp: "screen",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033"
   }
@@ -485,9 +523,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="screen" %}
@@ -507,10 +545,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 
 
 
@@ -519,7 +557,7 @@
 ```json
   {
       eventOp: "whiteboard",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033"
   }
@@ -529,9 +567,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="whiteboard" %}
@@ -551,10 +589,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 
 
 
@@ -563,7 +601,7 @@
 ```json
   {
       eventOp: "document",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033"
   }
@@ -573,9 +611,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="document" %}
@@ -595,10 +633,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 |              img               |          String           |               Y               |           이미지 정보            |
 
 
@@ -608,7 +646,7 @@
 ```json
   {
       eventOp: "documentShare",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033",
       img: "imgURL"
@@ -619,9 +657,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="documentShare" %}
@@ -641,9 +679,9 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 |               xy               |          Object           |               N               |         그리기 위치 정보         |
 |              tool              |          String           |               N               |     그리기 도구(pen, eraser)     |
 |             color              |          String           |               N               |        색깔(pen, eraser)         |
@@ -669,9 +707,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="drawing" %}
@@ -691,10 +729,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 
 
 
@@ -703,7 +741,7 @@
 ```json
   {
       eventOp: "shareStop",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033"
   }
@@ -713,9 +751,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="shareStop" %}
@@ -735,9 +773,9 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
 
 
 
@@ -746,7 +784,7 @@
 ```json
   {
       eventOp: "changeName",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123"
   }
 ```
@@ -755,9 +793,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="changeName" %}
@@ -777,11 +815,11 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
 |             target             |          String           |               N               |         상대방의 userId          |
-|             roomId             |          String           |               N               |           방의 roomId            |
+|             roomId             |          String           |               N               |             room id              |
 |            message             |          String           |               Y               |       보내고자 하는 메시지       |
 
 
@@ -791,7 +829,7 @@
 ```json
   {
       eventOp: "chat",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       target: "knowledge123",
       roomId: "K43254033",
@@ -803,9 +841,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="chat" %}
@@ -825,10 +863,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
+|            eventOp             |          String           |               Y               |             op name              |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
+|             reqId              |          String           |               Y               |          transaction id          |
 |             target             |          String           |               Y               |         상대방의 userId          |
 |              chat              |          Boolean          |               N               |            채팅 권한             |
 |              draw              |          Boolean          |               N               |           그리기 권한            |
@@ -845,7 +883,7 @@
       eventOp: "permit",
       userId: "kpoint123",
       roomId: "K43254033",
-      reqId: "randomstring",
+      reqId: "abc123",
       target: "knowledge123",
       chat: "true",
       draw: "true",
@@ -859,9 +897,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="permit" %}
@@ -881,11 +919,11 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
-|              name              |          String           |               N               |         사용자의 닉네임          |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
+|              name              |          String           |               N               |            user name             |
 |             video              |          Boolean          |               N               |            영상 허용             |
 |             audio              |          Boolean          |               N               |            음성 허용             |
 |           broadcast            |          Boolean          |               N               |        브로드캐스트 허용         |
@@ -897,7 +935,7 @@
 ```json
   {
       eventOp: "editUserInfo",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033",
       name: "홍길동",
@@ -911,9 +949,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="editUserInfo" %}
@@ -933,10 +971,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 
 
 
@@ -945,7 +983,7 @@
 ```json
   {
       eventOp: "memberList",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033"
   }
@@ -955,9 +993,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="memberList" %}
@@ -977,10 +1015,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 |              list              |           Array           |               N               |          사용자 리스트           |
 |             title              |          String           |               N               |            방의 제목             |
 
@@ -991,7 +1029,7 @@
 ```json
   {
       eventOp: "createGroup",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033",
       list: ["kpoint123", "knowledge123"],
@@ -1003,9 +1041,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="createGroup" %}
@@ -1025,10 +1063,10 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
-|             roomId             |          String           |               Y               |           방의 roomId            |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
+|             roomId             |          String           |               Y               |             room id              |
 |            groupId             |          String           |               Y               |          분반의 groupId          |
 
 
@@ -1038,7 +1076,7 @@
 ```json
   {
       eventOp: "endGroup",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       roomId: "K43254033",
       groupId: "knowledgeGroup"
@@ -1049,9 +1087,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="endGroup" %}
@@ -1071,9 +1109,9 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |            이벤트 op             |
-|             reqId              |          String           |               Y               |     요청/응답 매칭을 위한 id     |
-|             userId             |          String           |               Y               |         사용자의 userId          |
+|            eventOp             |          String           |               Y               |             op name              |
+|             reqId              |          String           |               Y               |          transaction id          |
+|             userId             |          String           |               Y               |             user id              |
 |             target             |          String           |               Y               |         상대방의 userId          |
 |           candidate            |            any            |               Y               |           후보자 정보            |
 |              type              |          String           |               Y               |               타입               |
@@ -1086,7 +1124,7 @@
 ```json
   {
       eventOp: "candidate",
-      reqId: "randomstring",
+      reqId: "abc123",
       userId: "kpoint123",
       target: "knowledge123",
       candidate: "candidateObject",
@@ -1099,9 +1137,9 @@
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |            이벤트 op             |
-|              code              |          String           |            응답 코드             |
-|            message             |          String           |           응답 메시지            |
+|            eventOp             |          String           |             op name              |
+|              code              |          String           |          response code           |
+|            message             |          String           |         response message         |
 
 샘플
 {% code title="candidate" %}
