@@ -273,6 +273,7 @@
 |             media              |          boolean          |      if using media server       |
 |             title              |          String           |            room title            |
 |              host              |          object           |            host info             |
+|             share              |          object           |            share info            |
 
 - 샘플
 
@@ -290,7 +291,12 @@
       isRecording: false,
       media: true,
       title: "video room",
-      host: "host info..."
+      host: "host info...",
+      share: {
+        type: "document",
+        user: "kpoimt567",
+        img: "img url..."
+      }
   }
 ```
 {% endcode %}
