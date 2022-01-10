@@ -78,6 +78,7 @@ await knowledgetalk.joinroom('K43254033');
 |             media             |          Boolean          |               Y                |   미디어 서버 사용 여부    |               true                |
 |             title             |          String           |               Y                |          방 제목           |             chatRoom              |
 |             group             |          Object           |               N                |         분반 정보          |                                   |
+|             share             |          Object           |               N                |         공유 정보          |                                   |
  
 ## 방 퇴장
 
