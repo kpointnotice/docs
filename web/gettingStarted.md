@@ -25,7 +25,7 @@ let knowledgetalk = new Knowledgetalk();
 
 {% code title="index.js" %}
 ```javascript
-// 서버 연결(cpCode, authKey, userId, name, dvice)
+// 서버 연결(cpCode, authKey, userId, name, device)
 knowledgetalk.init('KP-20200101-01', 'eyJhbGciO...', 'kpoint123', '홍길동', 'Galaxy Tab');
 ```
 {% endcode %}
