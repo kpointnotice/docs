@@ -60,6 +60,19 @@ await knowledgetalk.publishP2P('kpoint123','cam', stream);
 - **응답**
 
   성공 시 true, 실패 시 false 리턴
+
+## P2P 영상 중단
+
+{% code title="index.js" %}
+```javascript
+// P2P 영상 전송(userId, cam, stream)
+await knowledgetalk.stopPublishP2P();
+```
+{% endcode %}
+
+- **응답**
+
+  성공 시 true, 실패 시 false 리턴
  
 ## 영상 정보 변경
 
