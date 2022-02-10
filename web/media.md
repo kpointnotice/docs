@@ -65,7 +65,7 @@ await knowledgetalk.publishP2P('kpoint123','cam', stream);
 
 {% code title="index.js" %}
 ```javascript
-// P2P 영상 전송(userId, cam, stream)
+// P2P 영상 중단
 await knowledgetalk.stopPublishP2P();
 ```
 {% endcode %}
