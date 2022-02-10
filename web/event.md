@@ -85,6 +85,46 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
+
+### type: 'whiteBoard'
+{% code title="event message sample" %}
+```json
+  // 화이트보드 알림
+  {
+      eventOp: 'presence',
+      type: 'whiteboard',
+      roomId: 'K43254033',
+      user: 'kpoint123'
+  }
+```
+{% endcode %}
+
+### type: 'document'
+{% code title="event message sample" %}
+```json
+  // 자료공유 알림
+  {
+      eventOp: 'presence',
+      type: 'document',
+      roomId: 'K43254033',
+      user: 'kpoint123'
+  }
+```
+{% endcode %}
+
+### type: 'documentShare'
+{% code title="event message sample" %}
+```json
+  // 이미지 링크 알림
+  {
+      eventOp: 'presence',
+      type: 'documentShare',
+      roomId: 'K43254033',
+      user: 'kpoint123',
+      img: 'img url...'
+  }
+```
+{% endcode %}
  
 ### type: 'shareStop'
 {% code title="event message sample" %}
@@ -102,7 +142,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ### type: 'chat'
 {% code title="event message sample" %}
 ```json
-  // 공유 중지 알림
+  // 채팅 메시지 알림
   {
       eventOp: 'presence',
       type: 'chat',
@@ -115,7 +155,7 @@ knowledgetalk.addEventListener('presence', async event => {
 ### type: 'inform'
 {% code title="event message sample" %}
 ```json
-  // 공유 중지 알림
+  // 메시지 수신 알림
   {
       eventOp: 'presence',
       type: 'inform',
