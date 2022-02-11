@@ -109,3 +109,40 @@ await knowledgetalk.changeLocalStream(stream);
 - **응답**
 
   성공 시 true, 실패 시 false
+
+## 사생활 보호 시작
+
+{% code title="index.js" %}
+
+```javascript
+// 사생활 보호 시작(video tag)
+let blurredStream = await knowledgetalk.starBlur(videoElement);
+```
+
+{% endcode %}
+
+- **요청**
+
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> | <center>**예시**</center> |
+| :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: | :-----------------------: |
+|             videoElement             |          video tag           |               Y               |         video tag          |                  |
+
+- **응답**
+
+  성공 시 사생활 보호처리된 stream 리턴, 실패 시 false
+
+
+## 사생활 보호 중지
+
+{% code title="index.js" %}
+
+```javascript
+// 사생활 보호 중지
+knowledgetalk.stopBlur();
+```
+
+{% endcode %}
+
+- **응답**
+
+  성공 시 true, 실패 시 false
