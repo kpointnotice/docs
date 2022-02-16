@@ -185,3 +185,23 @@ await knowledgetalk.inform('Hello!', 'kpoint123', 'K43254033');
 *   **응답**
 
     성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
+
+    
+## 강제 퇴장 요청 메시지 전송
+
+{% code title="index.js" %}
+```javascript
+// 강퇴 메시지 전송(target)
+await knowledgetalk.kickOut('kpoint123');
+```
+{% endcode %}
+
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> | <center>**Example**</center> |
+| :---------------------------: | :-----------------------: | :----------------------------: | :-----------------------: | :-----------------------: |
+|            message            |          String           |               Y                |       전달할 메시지       |          Hello!           |
+|            target             |          String           |               N                |  메시지를 전달할 userId   |         kpoint123         |
+
+
+*   **응답**
+
+    성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
