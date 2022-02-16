@@ -211,7 +211,7 @@ knowledgetalk.addEventListener('presence', async event => {
   {
       eventOp: 'presence',
       type: 'kickOut',
-      sender: 'kpoint123',
+      user: 'kpoint123',
       roomId: 'K43254033'
   }
 ```
