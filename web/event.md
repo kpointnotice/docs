@@ -203,3 +203,16 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
+
+### type: 'kickOut'
+{% code title="event message sample" %}
+```json
+  // 강퇴 알림
+  {
+      eventOp: 'presence',
+      type: 'kickOut',
+      sender: 'kpoint123',
+      roomId: 'K43254033'
+  }
+```
+{% endcode %}
