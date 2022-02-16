@@ -198,7 +198,6 @@ await knowledgetalk.kickOut('kpoint123');
 
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> | <center>**Example**</center> |
 | :---------------------------: | :-----------------------: | :----------------------------: | :-----------------------: | :-----------------------: |
-|            message            |          String           |               Y                |       전달할 메시지       |          Hello!           |
 |            target             |          String           |               N                |  메시지를 전달할 userId   |         kpoint123         |
 
 
