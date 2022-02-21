@@ -94,8 +94,8 @@ await knowledgetalk.removePeer("kpoint123", "cam");
 {% code title="index.js" %}
 
 ```javascript
-// 영상 정보 변경(stream)
-await knowledgetalk.changeLocalStream(stream);
+// 영상 정보 변경(stream, target)
+await knowledgetalk.changeLocalStream(stream, target);
 ```
 
 {% endcode %}
@@ -105,6 +105,7 @@ await knowledgetalk.changeLocalStream(stream);
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> | <center>**예시**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: | :-----------------------: |
 |             stream             |       video stream        |               Y               |     새로 변경될 영상 스트림      |                           |
+|             target             |          String           |               Y               |      p2p인 경우 상대방 USER ID       |         kpoint123         |
 
 - **응답**
 
