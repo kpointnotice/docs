@@ -105,7 +105,7 @@ await knowledgetalk.changeLocalStream(stream, target);
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> | <center>**예시**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: | :-----------------------: |
 |             stream             |       video stream        |               Y               |     새로 변경될 영상 스트림      |                           |
-|             target             |          String           |               Y               |      p2p인 경우 상대방 USER ID       |         kpoint123         |
+|             target             |          String           |               N               |      p2p인 경우 상대방 USER ID       |         kpoint123         |
 
 - **응답**
 
