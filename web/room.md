@@ -132,7 +132,7 @@ await knowledgetalk.memberList(roomId);
 
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> | <center>**Example**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: | :--------------------------: |
-|             roomId             |          String           |               Y               |        종료하려는 roomId         |          K43254033           |
+|             roomId             |          String           |               Y               |              roomId              |          K43254033           |
 
 * **응답**
   
@@ -220,6 +220,7 @@ await knowledgetalk.editRoomInfo('K43254033', 'room title');
 
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> | <center>**Example**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: | :--------------------------: |
+|             roomId             |          String           |               Y               |              roomId              |          K43254033           |
 |             title              |          String           |               N               |             방 제목              |           chatRoom           |
 |            capacity            |          number           |               N               |             수용인원             |              16              |
 |              host              |          String           |               Y               |          호스트 아이디           |          K43254033           |
