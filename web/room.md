@@ -205,3 +205,25 @@ await knowledgetalk.kickOut('kpoint123');
 *   **응답**
 
     성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
+
+
+## 방 정보 변경
+
+{% code title="index.js" %}
+```javascript
+// 방 정보 변경(roomId, title, capacity, host)
+await knowledgetalk.editRoomInfo('K43254033', 'room title');
+```
+{% endcode %}
+
+* **요청**
+
+| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> | <center>**Example**</center> |
+| :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: | :--------------------------: |
+|             title              |          String           |               N               |             방 제목              |           chatRoom           |
+|            capacity            |          number           |               N               |             수용인원             |              16              |
+|              host              |          String           |               Y               |          호스트 아이디           |          K43254033           |
+
+*   **응답**
+
+    성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
