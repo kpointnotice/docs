@@ -116,8 +116,8 @@ await knowledgetalk.changeLocalStream(stream, target);
 {% code title="index.js" %}
 
 ```javascript
-// 사생활 보호 시작(video tag)
-let blurredStream = await knowledgetalk.starBlur(videoElement);
+// 사생활 보호 시작(video tag, target)
+let blurredStream = await knowledgetalk.starBlur(videoElement, target);
 ```
 
 {% endcode %}
@@ -127,6 +127,7 @@ let blurredStream = await knowledgetalk.starBlur(videoElement);
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> | <center>**예시**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: | :-----------------------: |
 |             videoElement             |          video tag           |               Y               |         video tag          |                  |
+|             target             |          String           |               N               |      p2p인 경우 상대방 USER ID       |         kpoint123         |
 
 - **응답**
 
