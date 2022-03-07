@@ -216,3 +216,17 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
+
+### type: 'talking'
+{% code title="event message sample" %}
+```json
+  // 화자감지 알림
+  {
+      eventOp: 'presence',
+      type: 'talking',
+      user: 'kpoint123',
+      roomId: 'K43254033',
+      talking: true
+  }
+```
+{% endcode %}
