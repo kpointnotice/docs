@@ -43,6 +43,7 @@ await knowledgetalk.createVideoRoom('K43254033', 'chatRoom');
 |             title              |          String           |               N               |             방 제목              |           chatRoom           |
 |            capacity            |          number           |               N               |             수용인원             |              16              |
 |            destroy             |          Boolean          |               N               |     아무도 없을 시, 방 종료      |            false             |
+|            talkingNoty             |          Boolean          |               N               |     화자감지 이벤트      |            false             |
 
 - **응답**
 
