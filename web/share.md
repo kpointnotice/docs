@@ -147,7 +147,7 @@ await knowledgetalk.documentStart(canvas);
 
 - **응답**
 
-  성공 혹은 실패 시에는 Boolean 타입인 true / false를 리턴합니다.
+  성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
   
   <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
