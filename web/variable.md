@@ -47,7 +47,7 @@ let allPeers = knowledgetalk.getAllPeers();
 {% code title="index.js" %}
 ```javascript
 // id로 peer 조회
-let userPeer = knowledgetalk.getPeers(id);
+let userPeer = knowledgetalk.getPeer(id);
 ```
 {% endcode %}
 
