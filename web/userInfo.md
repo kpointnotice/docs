@@ -19,7 +19,7 @@ await knowledgetalk.editUserInfo('홍길동', true, false);
 |             video              |          Boolean          |               N               |                  video 정보                  |             true             |
 |             audio              |          Boolean          |               N               |                  audio 정보                  |             true             |
 |           broadcast            |          Boolean          |               N               |     방에 정보 수정 알림 메시지 전송 여부     |             true             |
-|             target             |          Boolean          |               N               | 특정 상대와의 p2p피어 연결 시, 상대방 아이디 |             true             |
+|             target             |          String          |               N               | 특정 상대와의 p2p피어 연결 시, 상대방 아이디 |             true             |
 
 - **응답**
 
