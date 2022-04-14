@@ -38,7 +38,7 @@ knowledgetalk.init('KP-20200101-01', 'eyJhbGciO...', 'kpoint123', '홍길동', '
 |   authKey    |  String  |       Y       | 발급 받은 authKey | eyJhbGciO...  |
 |    userId    |  String  |       N       |   요청할 userId   |   kpoint123    |
 |     name     |  String  |       N       |   사용할 닉네임   |     홍길동     |
-|    device    |  String  |       N       |     기기 정보     |   Galaxy Tab   |
+|    device    |  String  |       N       |     기기 정보     |   PC, Tablet, Mobile   |
 
 *   **응답**
 
