@@ -14,6 +14,7 @@
 * [채팅 기능](web/chatting.md)
 * [공유 기능](web/share.md)
 * [분반 기능](web/group.md)
+* [미술 수업 기능](web/drawingClass.md)
 * [사용자 정보 관련 기능](web/userInfo.md)
 * [이벤트 메시지](web/event.md)
 * [변수 호출](web/variable.md)
