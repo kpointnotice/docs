@@ -230,3 +230,69 @@ knowledgetalk.addEventListener('presence', async event => {
   }
 ```
 {% endcode %}
+
+### type: 'drawingClassStart'
+{% code title="event message sample" %}
+```json
+  // 미술수업시작 알림
+  {
+      eventOp: 'presence',
+      type: 'drawingClassStart',
+      user: 'kpoint123',
+      roomId: 'K43254033'
+  }
+```
+{% endcode %}
+
+### type: 'drawingShareStart'
+{% code title="event message sample" %}
+```json
+  // 그리기공유알림 알림
+  {
+      eventOp: 'presence',
+      type: 'drawingShare',
+      user: 'kpoint123',
+      roomId: 'K43254033'
+  }
+```
+{% endcode %}
+
+### type: 'drawingShareStop'
+{% code title="event message sample" %}
+```json
+  // 그리기공유종료 알림
+  {
+      eventOp: 'presence',
+      type: 'drawingShareStop',
+      user: 'kpoint123',
+      roomId: 'K43254033'
+  }
+```
+{% endcode %}
+
+### type: 'drawingShareImg'
+{% code title="event message sample" %}
+```json
+  // 그리기종료 후 이미지 전송
+  {
+      eventOp: 'presence',
+      type: 'drawingShareImg',
+      user: 'kpoint123',
+      roomId: 'K43254033',
+      img: 'img data...'
+  }
+```
+{% endcode %}
+
+### type: 'drawingClassStop'
+{% code title="event message sample" %}
+```json
+  // 미술수업종료 알림
+  {
+      eventOp: 'presence',
+      type: 'drawingClassStop',
+      user: 'kpoint123',
+      roomId: 'K43254033'
+  }
+```
+{% endcode %}
