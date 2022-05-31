@@ -10,7 +10,7 @@ await knowledgetalk.documentClassStart();
 {% endcode %}
 
 - **요청**
-
+  HOST가 호출
 
 - **응답**
 
@@ -26,6 +26,7 @@ await knowledgetalk.documentShareStart(canvas);
 {% endcode %}
 
 - **요청**
+  GUEST가 호출
 
 | <center>**Pararmeter**</center> | <center>**Type**</center> | <center>**Required**</center> |   <center>**Description**</center>   |   <center>**Example**</center>   |
 |:-:|:-:|:-:|:-:|:-:|
@@ -45,7 +46,7 @@ await knowledgetalk.documenShareStop();
 {% endcode %}
 
 - **요청**
-
+  HOST가 호출
 
 - **응답**
 
@@ -61,7 +62,7 @@ await knowledgetalk.documentClassStop();
 {% endcode %}
 
 - **요청**
-
+  HOST가 호출
 
 - **응답**
 
