@@ -131,134 +131,225 @@ type Member = {
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr><tr><td>createdAt</td><td>방 생성 일시</td><td>'2024/05/30 13:38:37'</td></tr><tr><td>fileServerUrl</td><td>파일 서버 주소</td><td>'https://fileServer'</td></tr><tr><td>isRecording</td><td>현재 녹화 여부</td><td>false</td></tr><tr><td>media</td><td>미디어 서버 사용 여부</td><td>false</td></tr><tr><td>roomId</td><td>방 아이디</td><td>'K43254033'</td></tr><tr><td>talkingNoty</td><td>화자 감지 활성화 여부</td><td>false</td></tr><tr><td>title</td><td>방 제목</td><td>'테스트방'</td></tr><tr><td>host</td><td>방 host 정보</td><td>Member</td></tr><tr><td>members</td><td>현재 방에 접속한 유저 정보</td><td>Members</td></tr></tbody></table>
 
+* Member
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>id</td><td>유저 아이디</td><td>'kpoint123'</td></tr><tr><td>name</td><td>유저 이름</td><td>'홍길동'</td></tr><tr><td>userType</td><td>host 또는 guest</td><td>'host'</td></tr><tr><td>device</td><td>기기 정보</td><td>'Galaxy Tab'</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>publishing</td><td>stream 배포 여부</td><td>false</td></tr><tr><td>permit</td><td>채팅, 공유등 권한 정보</td><td>{ chat: true, ...}</td></tr></tbody></table>
+
 
 
 
 
 ## 방 퇴장
 
+* **예시**
+
 {% code title="index.js" %}
 ```javascript
-// 방 퇴장(roomId)
 await knowledgetalk.leaveRoom('K43254033');
 ```
 {% endcode %}
 
-* **요청**
+* **타입**
 
-| **Parameter** | **Type** | **Required** | **Description** | **Example** |
-| :-----------: | :------: | :----------: | :-------------: | :---------: |
-|     roomId    |  String  |       Y      |   퇴장하려는 roomId  |  K43254033  |
+```typescript
+leaveRoom(
+    roomId: string;
+): Promise<{
+    code: ResponseCode;
+}>
+```
 
-*   **응답**
+* **요청 상세**
 
-    성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>퇴장할 방 아이디</td><td>'K43254033'</td></tr></tbody></table>
+
+* **응답 상세**
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+
+
+
 
 ## 방 종료
 
+* **예시**
+
 {% code title="index.js" %}
 ```javascript
-// 방 종료(roomId)
 await knowledgetalk.destroyRoom('K43254033');
 ```
 {% endcode %}
 
-* **요청**
+* **타입**
 
-| **Parameter** | **Type** | **Required** | **Description** | **Example** |
-| :-----------: | :------: | :----------: | :-------------: | :---------: |
-|     roomId    |  String  |       Y      |   종료하려는 roomId  |  K43254033  |
+```typescript
+destroyRoom(
+    roomId: string;
+): Promise<{
+    code: ResponseCode;
+}>
+```
 
-*   **응답**
+* **요청 상세**
 
-    성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>종료할 방 아이디</td><td>'K43254033'</td></tr></tbody></table>
+
+* **응답 상세**
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+
+
+
 
 ## 방에 접속한 유저 조회
 
+* **예시**
+
 {% code title="index.js" %}
 ```javascript
-// 방에 접속한 유저 조회(roomId)
 await knowledgetalk.memberList(roomId);
 ```
 {% endcode %}
 
-* **요청**
+* **타입**\
+  [Member 타입 참조](room.md#undefined-1)
 
-| **Parameter** | **Type** | **Required** | **Description** | **Example** |
-| :-----------: | :------: | :----------: | :-------------: | :---------: |
-|     roomId    |  String  |       Y      |      roomId     |  K43254033  |
+```typescript
+memberList(
+    roomId: string;
+): Promise<{
+    [userId: string]: Member;
+}>
+```
 
-*   **응답**
+* **요청 상세**
 
-    성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>조회할 방 아이디</td><td>'200'</td></tr></tbody></table>
 
-| **Parameter** | **Type** | **Required** |  **Description**  |           **Example**          |
-| :-----------: | :------: | :----------: | :---------------: | :----------------------------: |
-|    members    |  Object  |       Y      | 현재 방에 접속한 members | "kpoint123": { "name": "홍길동" } |
+* **응답 상세**
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr><tr><td>members</td><td>현재 방에 접속한 유저 정보</td><td>Members</td></tr></tbody></table>
+
+
+
+
 
 ## 권한 부여
 
+* **예시**
+
 {% code title="index.js" %}
 ```javascript
-// 권한 부여(userId, chat, draw, screen, whiteboard, document)
 await knowledgetalk.permit('kpoint123', true, true, true, true, true);
 ```
 {% endcode %}
 
-*   **요청**
+* **타입**
+
+```typescript
+permit(
+    target: string;
+    chat?: boolean;
+    draw?: boolean;
+    screen?: boolean;
+    whiteboard?: boolean;
+    document?: boolean;
+): Promise<{
+    code: ResponseCode;
+}>
+```
+
+*   **요청 상세**
 
     <mark style="color:red;">**chat / draw / screen / whiteboard / document 중 하나는 필수**</mark>
 
-| **Parameter** | **Type** | **Required** | **Description** | **Example** |
-| :-----------: | :------: | :----------: | :-------------: | :---------: |
-|     target    |  String  |       Y      |    상대 userId    |  kpoint123  |
-|      chat     |  Boolean |       N      |      채팅 권한      |     true    |
-|      draw     |  Boolean |       N      |      그리기 권한     |     true    |
-|     screen    |  Boolean |       N      |     화면공유 권한     |     true    |
-|   whiteboard  |  Boolean |       N      |     화이트보드 권한    |     true    |
-|    document   |  Boolean |       N      |     자료공유 권한     |     true    |
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>타겟 아이디</td><td>'kpoint123'</td></tr><tr><td>chat</td><td>채팅 권한</td><td>true</td></tr><tr><td>draw</td><td>그리기 권한</td><td>false</td></tr><tr><td>screen</td><td>화면 공유 권한</td><td>false</td></tr><tr><td>whiteboard</td><td>화이트 보드 공유 권한</td><td>false</td></tr><tr><td>document</td><td>자료 공유 권한</td><td>false</td></tr></tbody></table>
 
-*   **응답**
+* **응답 상세**
 
-    성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+
+
+
 
 ## 알림 메시지 전송
 
+* **예시**
+
 {% code title="index.js" %}
 ```javascript
-// 알림 메시지 전송(message, target, roomId)
 await knowledgetalk.inform('Hello!', 'kpoint123', 'K43254033');
 ```
 {% endcode %}
 
-| **Parameter** | **Type** | **Required** | **Description** | **Example** |
-| :-----------: | :------: | :----------: | :-------------: | :---------: |
-|    message    |  String  |       Y      |     전달할 메시지     |    Hello!   |
-|     target    |  String  |       N      | 메시지를 전달할 userId |  kpoint123  |
-|     roomId    |  String  |       N      | 메시지를 전달할 roomId |  K43254033  |
+* **타입**
 
-*   **응답**
+```typescript
+inform(
+    message: any;
+    target?: string;
+    roomId?: string;
+): Promise<{
+    code: ResponseCode;
+}>
+```
 
-    성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
+* **요청 상세**
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>message</td><td>전달할 메시지</td><td>'Hello!'</td></tr><tr><td>target</td><td>메시지를 전달할 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>roomId</td><td>메시지를 전달할 방 아이디</td><td>'K43254033'</td></tr></tbody></table>
+
+* **응답 상세**
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+
+
+
 
 ## 강제 퇴장 요청 메시지 전송
 
+* 예시
+
 {% code title="index.js" %}
 ```javascript
-// 강퇴 메시지 전송(target)
 await knowledgetalk.kickOut('kpoint123');
 ```
 {% endcode %}
 
+
+
 | **Parameter** | **Type** | **Required** | **Description** | **Example** |
 | :-----------: | :------: | :----------: | :-------------: | :---------: |
 |     target    |  String  |       N      | 메시지를 전달할 userId |  kpoint123  |
 
-*   **응답**
+* **타입**
 
-    성공 혹은 실패 시에는 응답 코드를 리턴합니다. ([응답 코드 바로가기](code.md))
+```typescript
+kickOut(
+    target: string;
+): Promise<{
+    code: ResponseCode;
+}>
+```
+
+* **요청 상세**
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>메시지를 전달할 userId</td><td>'kpoint123'</td></tr></tbody></table>
+
+* **요청 응답**
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+
+
+
 
 ## 방 정보 변경
+
+* **예시**
 
 {% code title="index.js" %}
 ```javascript
@@ -267,15 +358,23 @@ await knowledgetalk.editRoomInfo('K43254033', 'room title');
 ```
 {% endcode %}
 
-* **요청**
+* **타입**
 
-| **Parameter** | **Type** | **Required** | **Description** | **Example** |
-| :-----------: | :------: | :----------: | :-------------: | :---------: |
-|     roomId    |  String  |       Y      |      roomId     |  K43254033  |
-|     title     |  String  |       N      |       방 제목      |   chatRoom  |
-|    capacity   |  number  |       N      |       수용인원      |      16     |
-|      host     |  String  |       N      |     호스트 아이디     |     k123    |
+<pre class="language-typescript"><code class="lang-typescript"><strong>editRoomInfo(
+</strong>    roomId: string;
+    title?: string;
+    capacity?: number;
+    host?: string;
+)
+</code></pre>
 
-*   **응답**
+* **요청 상세**
 
-    성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>방 아이디</td><td>'K43254033'</td></tr><tr><td>title</td><td>방 제목</td><td>'chatRoom'</td></tr><tr><td>capacity</td><td>수용인원</td><td>16</td></tr><tr><td>host</td><td>호스트 아이디</td><td>'k123'</td></tr></tbody></table>
+
+* **응답 상세**
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+
+
