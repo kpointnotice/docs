@@ -131,7 +131,7 @@ type Member = {
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr><tr><td>createdAt</td><td>방 생성 일시</td><td>'2024/05/30 13:38:37'</td></tr><tr><td>fileServerUrl</td><td>파일 서버 주소</td><td>'https://fileServer'</td></tr><tr><td>isRecording</td><td>현재 녹화 여부</td><td>false</td></tr><tr><td>media</td><td>미디어 서버 사용 여부</td><td>false</td></tr><tr><td>roomId</td><td>방 아이디</td><td>'K43254033'</td></tr><tr><td>talkingNoty</td><td>화자 감지 활성화 여부</td><td>false</td></tr><tr><td>title</td><td>방 제목</td><td>'테스트방'</td></tr><tr><td>host</td><td>방 host 정보</td><td>Member</td></tr><tr><td>members</td><td>현재 방에 접속한 유저 정보</td><td>Members</td></tr></tbody></table>
 
-* Member
+* **Member**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>id</td><td>유저 아이디</td><td>'kpoint123'</td></tr><tr><td>name</td><td>유저 이름</td><td>'홍길동'</td></tr><tr><td>userType</td><td>host 또는 guest</td><td>'host'</td></tr><tr><td>device</td><td>기기 정보</td><td>'Galaxy Tab'</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>publishing</td><td>stream 배포 여부</td><td>false</td></tr><tr><td>permit</td><td>채팅, 공유등 권한 정보</td><td>{ chat: true, ...}</td></tr></tbody></table>
 
@@ -265,7 +265,14 @@ permit(
 
     <mark style="color:red;">**chat / draw / screen / whiteboard / document 중 하나는 필수**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>타겟 아이디</td><td>'kpoint123'</td></tr><tr><td>chat</td><td>채팅 권한</td><td>true</td></tr><tr><td>draw</td><td>그리기 권한</td><td>false</td></tr><tr><td>screen</td><td>화면 공유 권한</td><td>false</td></tr><tr><td>whiteboard</td><td>화이트 보드 공유 권한</td><td>false</td></tr><tr><td>document</td><td>자료 공유 권한</td><td>false</td></tr></tbody></table>
+| Parameter  | Description  | Example     |
+| ---------- | ------------ | ----------- |
+| target     | 타겟 아이디       | 'kpoint123' |
+| chat       | 채팅 권한        | true        |
+| draw       | 그리기 권한       | false       |
+| screen     | 화면 공유 권한     | false       |
+| whiteboard | 화이트 보드 공유 권한 | false       |
+| document   | 자료 공유 권한     | false       |
 
 * **응답 상세**
 
@@ -311,19 +318,13 @@ inform(
 
 ## 강제 퇴장 요청 메시지 전송
 
-* 예시
+* **예시**
 
 {% code title="index.js" %}
 ```javascript
 await knowledgetalk.kickOut('kpoint123');
 ```
 {% endcode %}
-
-
-
-| **Parameter** | **Type** | **Required** | **Description** | **Example** |
-| :-----------: | :------: | :----------: | :-------------: | :---------: |
-|     target    |  String  |       N      | 메시지를 전달할 userId |  kpoint123  |
 
 * **타입**
 
@@ -360,13 +361,16 @@ await knowledgetalk.editRoomInfo('K43254033', 'room title');
 
 * **타입**
 
-<pre class="language-typescript"><code class="lang-typescript"><strong>editRoomInfo(
-</strong>    roomId: string;
+```typescript
+editRoomInfo(
+    roomId: string;
     title?: string;
     capacity?: number;
     host?: string;
-)
-</code></pre>
+): Promise<{
+    code: ResponseCode;
+}>
+```
 
 * **요청 상세**
 
