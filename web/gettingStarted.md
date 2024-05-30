@@ -23,14 +23,15 @@ const knowledgetalk = new Knowledgetalk();
 
 * **예시**
 
-<pre class="language-javascript"><code class="lang-javascript"><strong>await knowledgetalk.init(
-</strong><strong>    'KP-20200101-01',
-</strong><strong>    'eyJhbGciO...',
-</strong><strong>    'kpoint123',
-</strong><strong>    '홍길동',
-</strong><strong>    'Galaxy Tab'
-</strong><strong>);
-</strong></code></pre>
+```javascript
+await knowledgetalk.init(
+    'KP-20200101-01',
+    'eyJhbGciO...',
+    'kpoint123',
+    '홍길동',
+    'Galaxy Tab'
+);
+```
 
 * **타입**
 
