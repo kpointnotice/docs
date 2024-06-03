@@ -28,7 +28,7 @@ screenStart(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>일대일인 경우, 상대방의 userId</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
 
-*   **응답**
+*   **응답 상세**
 
     성공 시  true 실패 시false를 리턴합니다.
 
