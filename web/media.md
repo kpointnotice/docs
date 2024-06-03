@@ -12,6 +12,8 @@ await knowledgetalk.publishVideo('cam', stream);
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -21,9 +23,13 @@ publishvideo(
 ): Promise<boolean>;
 ```
 
+
+
 * **요청 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>type</td><td>'cam'</td><td>'cam'</td></tr><tr><td>stream</td><td>서버와 연결할 영상 스트림</td><td>MediaStream</td></tr></tbody></table>
+
+
 
 * **응답 상세**
 
@@ -43,6 +49,8 @@ await knowledgetalk.subscribeVideo('kpoint123', 'cam');
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -52,9 +60,13 @@ subscribeVideo(
 ): Promise<MediaStream | false>;
 ```
 
+
+
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>상대방의 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td>cam / screen 구분</td><td>'cam'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>상대방의 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td>cam: <a href="media.md#undefined">publishVideo</a>로 배포된 영상 수신<br>screen: <a href="share.md#undefined">screenStart</a>로 배포된 영상 수신</td><td>'cam'</td></tr></tbody></table>
+
+
 
 * **응답 상세**
 
@@ -74,6 +86,8 @@ await knowledgetalk.publishP2P("kpoint123", "cam", stream);
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -84,9 +98,13 @@ publishP2P(
 ): Promise<boolean>;
 ```
 
+
+
 * **요청 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>영상을 받을 상대방 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td>'cam'</td><td>'cam'</td></tr><tr><td>stream</td><td>영상 스트림</td><td>MediaStream</td></tr></tbody></table>
+
+
 
 *   **응답 상세**
 
@@ -106,6 +124,8 @@ await knowledgetalk.removePeer("kpoint123", "cam");
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -115,9 +135,13 @@ removePeer(
 ): Promise<boolean>;
 ```
 
+
+
 * **요청 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>종료할 피어의 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td>cam / screen 구분</td><td>'cam'</td></tr></tbody></table>
+
+
 
 *   **응답 상세**
 
@@ -137,6 +161,8 @@ await knowledgetalk.changeLocalStream(stream, target);
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -146,9 +172,13 @@ changeLocalStream(
 )
 ```
 
+
+
 * **요청 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>새로 변경될 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>p2p인 경우 상대방 USER ID</td><td>'kpoint123'</td></tr></tbody></table>
+
+
 
 *   **응답 상세**
 
