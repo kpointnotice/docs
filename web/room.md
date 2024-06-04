@@ -195,7 +195,7 @@ leaveRoom(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* leaveRoom 호출 시 방에 [leave 이벤트 메시지](event.md#type-join) 보냄
+* leaveRoom 호출 시 방에 [leave 이벤트 메시지](event.md#type-leave) 보냄
 
 
 
@@ -366,7 +366,7 @@ inform(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* 타겟유저는 [inform 이벤트 메시지](event.md#type-sharestop)를 받아 사용
+* 타겟유저는 [inform 이벤트 메시지](event.md#type-inform)를 받아 사용
 
 
 
@@ -406,7 +406,7 @@ kickOut(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* target 유저는 [kickOut 이벤트 메시지](event.md#type-edituserinfo)를 수신해서 leaveRoom 진행
+* target 유저는 [kickOut 이벤트 메시지](event.md#type-kickout)를 수신해서 leaveRoom 진행
 
 
 
