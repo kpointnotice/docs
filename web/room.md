@@ -155,7 +155,7 @@ type Member = {
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>id</td><td>유저 아이디</td><td>'kpoint123'</td></tr><tr><td>name</td><td>유저 이름</td><td>'홍길동'</td></tr><tr><td>userType</td><td>host 또는 guest</td><td>'host'</td></tr><tr><td>device</td><td>기기 정보</td><td>'Galaxy Tab'</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>publishing</td><td>영상 송신여부</td><td>false</td></tr><tr><td>permit</td><td>채팅, 공유등 권한 정보</td><td>{ chat: true, ...}</td></tr></tbody></table>
 
-* 기존에 방에 참여중인 유저는 [join 이벤트 메세지](event.md)로 멤버 정보 수신
+* 기존에 방에 참여중인 유저는[ join 이벤트 메세지](event.md#type-join)로 멤버 정보 수신
 
 
 
@@ -195,7 +195,7 @@ leaveRoom(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* leaveRoom 호출 시 방에 [leave 이벤트 메시지](event.md) 보냄
+* leaveRoom 호출 시 방에 [leave 이벤트 메시지](event.md#type-join) 보냄
 
 
 
@@ -366,7 +366,7 @@ inform(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* 타겟유저는 i[nform 이벤트 메시지를](event.md) 받아 사용
+* 타겟유저는 [inform 이벤트 메시지](event.md#type-sharestop)를 받아 사용
 
 
 
@@ -406,7 +406,7 @@ kickOut(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* target 유저는 [kickOut 이벤트 메시지](event.md)를 수신해서 leaveRoom 진행
+* target 유저는 [kickOut 이벤트 메시지](event.md#type-edituserinfo)를 수신해서 leaveRoom 진행
 
 
 
