@@ -33,6 +33,8 @@ await knowledgetalk.init(
 );
 ```
 
+
+
 * **타입**
 
 ```typescript
@@ -49,9 +51,13 @@ init(
 }>
 ```
 
+
+
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="432">Description</th><th>Example</th></tr></thead><tbody><tr><td>cpCode</td><td>발급 받은 cpCode</td><td>'KP-20200101-01'</td></tr><tr><td>authKey</td><td>발급 받은 authKey</td><td>'eyJhbGciO...'</td></tr><tr><td>id</td><td>요청할 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>name</td><td>사용할 닉네임</td><td>'홍길동'</td></tr><tr><td>device</td><td>기기 정보</td><td>'Galaxy Tab'</td></tr><tr><td>forced</td><td>기존 유저가 있다면 끊고 연결 // 기본값: false</td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="432">Description</th><th>Example</th></tr></thead><tbody><tr><td>cpCode</td><td>발급 받은 cpCode</td><td>'KP-20200101-01'</td></tr><tr><td>authKey</td><td>발급 받은 authKey</td><td>'eyJhbGciO...'</td></tr><tr><td>id</td><td>요청할 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>name</td><td>사용할 닉네임</td><td>'홍길동'</td></tr><tr><td>device</td><td>기기 정보</td><td>'Galaxy Tab'</td></tr><tr><td>forced</td><td><ul><li>true시기존 유저가 있다면 끊고 연결</li><li>기본값: false</li></ul></td><td>false</td></tr></tbody></table>
+
+
 
 * **응답 상세**
 

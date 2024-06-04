@@ -64,7 +64,7 @@ subscribeVideo(
 
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>상대방의 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td>cam: <a href="media.md#undefined">publishVideo</a>로 배포된 영상 수신<br>screen: <a href="share.md#undefined">screenStart</a>로 배포된 영상 수신</td><td>'cam'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>상대방의 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td><ul><li>cam: <a href="media.md#undefined">publishVideo</a>로 배포된 영상 수신</li><li>screen: <a href="share.md#undefined">screenStart</a>로 배포된 영상 수신</li></ul></td><td>'cam'</td></tr></tbody></table>
 
 
 
@@ -109,6 +109,8 @@ publishP2P(
 *   **응답 상세**
 
     성공 시 true, 실패 시 false 리턴
+* 호출시 상대방에게 [subscribed 이벤트 메세지](event.md)  보냄\
+  메세지를 받으면 [getStream](variable.md#stream)으로 스트림 수신
 
 
 

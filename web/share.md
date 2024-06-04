@@ -12,6 +12,8 @@ await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -22,15 +24,20 @@ screenStart(
 ): Promise<boolean>;
 ```
 
+
+
 *   **요청 상세**
 
     <mark style="color:red;">**canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>일대일인 경우, 상대방의 userId</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
 
+
+
 *   **응답 상세**
 
     성공 시  true 실패 시false를 리턴합니다.
+* 타겟 유저는 [screen 이벤트 메세지](event.md) 받아 사용
 
 
 
@@ -46,6 +53,8 @@ await knowledgetalk.whiteBoardStart(canvas);
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -54,14 +63,19 @@ whiteBoardStart(
 ): Promise<boolean>;
 ```
 
+
+
 * **요청 상세**\
   <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>canvas</td><td>캔버스 태그</td><td>HTMLcanvasElement</td></tr></tbody></table>
 
+
+
 *   **응답 상세**
 
     성공 시  true 실패 시false를 리턴합니다.
+* 타겟 유저는 [whiteBoard 이벤트 메세지](event.md)를 받아 사용
 
 
 
@@ -77,6 +91,8 @@ knowledgetalk.canvasInit(canvas);
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -84,6 +100,8 @@ canvasInit(
     canvas: HTMLCanvasElement;
 ): void;
 ```
+
+
 
 * **요청 상세**
 
@@ -107,11 +125,15 @@ knowledgetalk.drawingInit();
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
 drawingInit():boolean;
 ```
+
+
 
 * **응답 상세**\
   성공 시  true 실패 시false를 리턴합니다.
@@ -134,11 +156,15 @@ knowledgetalk.drawingStop();
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
 drawingStop(): boolean;
 ```
+
+
 
 * **응답 상세**\
   성공 시  true 실패 시false를 리턴합니다.
@@ -149,7 +175,7 @@ drawingStop(): boolean;
 
 ## 캔버스 동기화 요청
 
-_<mark style="color:red;">**입장 시, 판서 중인 경우 판서 중인 상대에게 판서 정보 요청(canvasInit 완료 후 요청)**</mark>_
+_<mark style="color:red;">**입장 시, 판서 중인 경우 판서 중인 상대에게 판서 정보 요청해서 동기화 진행(canvasInit 완료 후 요청)**</mark>_
 
 * **예시**
 
@@ -158,6 +184,8 @@ _<mark style="color:red;">**입장 시, 판서 중인 경우 판서 중인 상�
 await knowledgetalk.reqCanvasImage(target);
 ```
 {% endcode %}
+
+
 
 * **타입**
 
@@ -169,9 +197,13 @@ reqCanvasImage(
 }>
 ```
 
+
+
 * **요청 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>해당 userId에게 메시지 전송</td><td>'kpoint123'</td></tr></tbody></table>
+
+
 
 * **응답 상세**
 
@@ -191,6 +223,8 @@ knowledgetalk.setTool('pen', 'black', 1);
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -205,6 +239,8 @@ setTool(
 ```typescript
 type ShapeType = "arrow" | "circle" | "hand" | "heart" | "line" | "square" | "star" | "triangle" | "important" | "check";          
 ```
+
+
 
 * **요청 상세**
 
@@ -238,6 +274,8 @@ await knowledgetalk.documentStart(canvas);
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -248,14 +286,20 @@ documentStart(
 }> 
 ```
 
+
+
 * **요청 상세**\
   <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>canvas</td><td>공유화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
 
+
+
 * **응답 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+* [document 이벤트 메세지](event.md) 받아 사용
 
 
 
@@ -271,6 +315,8 @@ await knowledgetalk.documentShare('https://imgURL');
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -281,13 +327,19 @@ documentShare(
 }>
 ```
 
+
+
 * **요청 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>imgUrl</td><td>공유할 이미지 URL</td><td>'https://imgURL'</td></tr></tbody></table>
 
+
+
 * **응답**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+* [documentShare 이벤트 메시지](event.md) 받아 사용
 
 
 
@@ -303,6 +355,8 @@ await knowledgetalk.shareStop();
 ```
 {% endcode %}
 
+
+
 * **타입**
 
 ```typescript
@@ -311,9 +365,13 @@ shareStop(): Promise<{
 }>
 ```
 
+
+
 * **응답 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+* [shareStop 이벤트 메세지](event.md) 받아 사용
 
 
 
