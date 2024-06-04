@@ -31,11 +31,13 @@ publishvideo(
 
 
 
-* **응답 상세**
+* **응답 상세**\
+  성공 시 true, 실패 시 false
 
-성공 시 true, 실패 시 false
 
 
+* **호출시 publish 이벤트 메시지 보냄**\
+  [이벤트 처리 예시 보기](event.md#type-publish)
 
 
 
@@ -109,8 +111,11 @@ publishP2P(
 *   **응답 상세**
 
     성공 시 true, 실패 시 false 리턴
-* 호출시 상대방에게 [subscribed 이벤트 메세지](event.md)  보냄\
-  메세지를 받으면 [getStream](variable.md#stream)으로 스트림 수신
+
+
+
+* **호출시 상대방에게 subscribed 이벤트 메세지  보냄**\
+  [이벤트 처리 예시 보기](event.md#type-subscribed)
 
 
 
