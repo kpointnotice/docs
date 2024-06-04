@@ -2,7 +2,7 @@
 
 ### 설명
 
-각 유저는 중앙 미디어 서버와 연결하여 미디어 서버의 영상을 보내고 미디어 서버를 통해 다른 유저의 영상을 받아 올 수 있다.(SFU 방식)<br/>
+각 유저는 중앙 미디어 서버와 연결하여 미디어 서버의 영상을 보내고 미디어 서버를 통해 다른 유저의 영상을 받아 올 수 있다.(SFU 방식)\
 **publish를 하지 않으면 단순 시청이 가능한 방송 서비스로 활용할 수 있다.**
 
 ![sfu 방식](../img/sfu.png)
@@ -11,7 +11,8 @@
 * [Sample Source Code by Github](https://github.com/kpointnotice/knowledgetalk-sample/blob/master/public/group.html)
 
 ### 플로우
-![플로우](../img/flow_group.png)
+
+![플로우](../img/flow\_group.png)
 
 ### 개발 절차
 
@@ -47,8 +48,9 @@ knowlegetalk.init("KP-20200101-01", "eyJhbGc...").then(result => {
 SDK 객체를 생성하고 서버와 연결합니다.
 
 연결에 성공하면 userId를 발급받게 됩니다.
- 
+
 #### 2. 방 생성
+
 {% code title="index.js" %}
 ```javascript
 // 방 생성 성공시에 roomId를 리턴
@@ -57,8 +59,9 @@ await knowledgetalk.createVideoRoom();
 {% endcode %}
 
 방을 만들고 발급받은 roomId를 상대방에게 알려주어야 합니다.
- 
+
 #### 3. 방 입장
+
 {% code title="index.js" %}
 ```javascript
 // 방 입장
@@ -79,15 +82,15 @@ for(const member in members){
         if(member === knowledgetalk.getUserId()) continue;
         createVideoBox(member)
 }
-
 ```
 {% endcode %}
 
 Host는 방을 만들고 입장하여 Guest가 입장할때까지 대기합니다.
 
 Guest는 Host에게 받은 roomId로 해당 방에 입장합니다.
- 
+
 #### 4. 영상 전송
+
 {% code title="index.js" %}
 ```javascript
 // localStream 객체를 생성
@@ -103,14 +106,14 @@ if(!result){
 ```
 {% endcode %}
 
-
 나(자신)의 컴퓨터에 존재하는 미디어 입력 장치들의 권한을 요청받고 localStream이라는 객체로 지정합니다.
 
-- [localStream 객체 정보](https://developer.mozilla.org/ko/docs/Web/API/MediaDevices/getUserMedia)
+* [localStream 객체 정보](https://developer.mozilla.org/ko/docs/Web/API/MediaDevices/getUserMedia)
 
 그리고, publishVideo()의 파라미터에 cam/screen을 구분하여 지정하고 미리 준비한 localStream 객체를 입력하여 미디어 서버에 전송합니다.
- 
+
 #### 5. 이벤트 메시지 수신
+
 {% code title="event message sample" %}
 ```javascript
 //이벤트 메시지 수신
