@@ -1,26 +1,43 @@
 # 사용자 정보 관련 기능
- 
+
 ## 사용자 정보 변경
+
+* **예시**
 
 {% code title="index.js" %}
 ```javascript
-// 사용자 정보 변경(name, video, audio)
 await knowledgetalk.editUserInfo('홍길동', true, false);
 ```
 {% endcode %}
 
-- **요청**
 
+
+* **타입**
+
+```typescript
+editUserInfo(
+    name?: string;
+    video?: boolean;
+    audio?: boolean;
+    broadcast?: boolean;
+    target?: boolean;
+): Promise<{
+    code: ResponseCode;
+}>
+```
+
+
+
+* **요청 상세**\
   <mark style="color:red;">**name / video / audio 중 하나는 필수**</mark>
 
-| <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> |       <center>**Description**</center>       | <center>**Example**</center> |
-| :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------------------: | :--------------------------: |
-|              name              |          String           |               N               |                사용자 닉네임                 |            홍길동            |
-|             video              |          Boolean          |               N               |                  video 정보                  |             true             |
-|             audio              |          Boolean          |               N               |                  audio 정보                  |             true             |
-|           broadcast            |          Boolean          |               N               |     방에 정보 수정 알림 메시지 전송 여부     |             true             |
-|             target             |          String          |               N               | 특정 상대와의 p2p피어 연결 시, 상대방 아이디 |             true             |
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>name</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'홍길동'</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>broadcast</td><td><ul><li>true: 방에 <a href="event.md">editUserInfo 이벤트 메세지</a>로 수정 알림 </li><li>false: 미알림</li></ul></td><td>true</td></tr><tr><td>target</td><td>p2p시 상대방 아이디</td><td>true</td></tr></tbody></table>
 
-- **응답**
 
-  성공 혹은 실패 시에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](code.md))
+
+* **응답 상세**
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+
+
+
