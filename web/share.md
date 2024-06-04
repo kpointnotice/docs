@@ -37,7 +37,7 @@ screenStart(
 *   **응답 상세**
 
     성공 시  true 실패 시false를 리턴합니다.
-* 타겟 유저는 [screen 이벤트 메세지](event.md#type-screen) 받아 사용
+* 타겟 유저는 [screen 이벤트 메시지](event.md#type-screen) 받아 사용
 
 
 
@@ -75,7 +75,7 @@ whiteBoardStart(
 *   **응답 상세**
 
     성공 시  true 실패 시false를 리턴합니다.
-* 타겟 유저는 [whiteBoard 이벤트 메세지](event.md#type-whiteboard)를 받아 사용
+* 타겟 유저는 [whiteBoard 이벤트 메시지](event.md#type-whiteboard)를 받아 사용
 
 
 
@@ -299,7 +299,7 @@ documentStart(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* [document 이벤트 메세지](event.md#type-document) 받아 사용
+* [document 이벤트 메시지](event.md#type-document) 받아 사용
 
 
 
@@ -371,7 +371,7 @@ shareStop(): Promise<{
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* [shareStop 이벤트 메세지](event.md#type-sharestop) 받아 사용
+* [shareStop 이벤트 메시지](event.md#type-sharestop) 받아 사용
 
 
 

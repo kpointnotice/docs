@@ -114,7 +114,7 @@ publishP2P(
 
 
 
-* **호출시 상대방에게 subscribed 이벤트 메세지  보냄**\
+* **호출시 상대방에게 subscribed 이벤트 메시지  보냄**\
   [이벤트 처리 예시 보기](event.md#type-subscribed)
 
 

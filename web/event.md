@@ -95,7 +95,6 @@ type Feed = {
 
 * [Member 참조](room.md#undefined-1)
 
-\
 
 
 * **feeds 사용 예시**\
@@ -166,11 +165,12 @@ case 'subscribed': {
 
 화면공유 알림, screenStart 호출시 발생
 
-<mark style="color:red;">p2p의 경우 subscribed 이벤트와 screen 이벤트가 동시에 발생하므로</mark> \
-["p2p stream 조회 예시"](event.md#type-subscribed) <mark style="color:red;">와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됨</mark>
+* p2p의 경우 subscribed 이벤트와 screen 이벤트가 동시에 발생\
+  ["p2p stream 조회 예시"](event.md#type-subscribed) 와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됨
+* group의 경우  publish 이벤트와 screen 이벤트가 동시에 발생하므로 \
+  ["feeds 사용 예시"](event.md#type-publish) 와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됨
 
-<mark style="color:red;">group의 경우  publish 이벤트와 screen 이벤트가 동시에 발생하므로</mark> \
-["feeds 사용 예시"](event.md#type-publish) <mark style="color:red;">와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됨</mark>
+
 
 * **타입**&#x20;
 
