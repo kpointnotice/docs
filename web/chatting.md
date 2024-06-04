@@ -43,5 +43,5 @@ chat(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* 타겟 유저는 [chat 이벤트 메시지](event.md)를 받아 사용
+* 타겟 유저는 [chat 이벤트 메시지](event.md#type-chat)를 받아 사용
 

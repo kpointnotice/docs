@@ -30,14 +30,14 @@ screenStart(
 
     <mark style="color:red;">**canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>일대일인 경우, 상대방의 userId</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P 경우, 상대방의 userId</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
 
 
 
 *   **응답 상세**
 
     성공 시  true 실패 시false를 리턴합니다.
-* 타겟 유저는 [screen 이벤트 메세지](event.md) 받아 사용
+* 타겟 유저는 [screen 이벤트 메세지](event.md#type-screen) 받아 사용
 
 
 
@@ -75,7 +75,7 @@ whiteBoardStart(
 *   **응답 상세**
 
     성공 시  true 실패 시false를 리턴합니다.
-* 타겟 유저는 [whiteBoard 이벤트 메세지](event.md)를 받아 사용
+* 타겟 유저는 [whiteBoard 이벤트 메세지](event.md#type-whiteboard)를 받아 사용
 
 
 
@@ -244,7 +244,7 @@ type ShapeType = "arrow" | "circle" | "hand" | "heart" | "line" | "square" | "st
 
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>tool</td><td>그리기 도구</td><td>'pen'</td></tr><tr><td>color</td><td>색깔</td><td>'black'</td></tr><tr><td>strokeWidth</td><td>그리기 도구 굵기</td><td>1</td></tr><tr><td>type</td><td>형광펜: tool이 pen일 경우 highlight<br>도형: tool이 shape일 경우 ShapeType<br>그 외 생략</td><td></td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>tool</td><td>그리기 도구</td><td>'pen'</td></tr><tr><td>color</td><td>색깔</td><td>'black'</td></tr><tr><td>strokeWidth</td><td>그리기 도구 굵기</td><td>1</td></tr><tr><td>type</td><td><ul><li>형광펜: tool이 pen일 경우 highlight</li><li>도형: tool이 shape일 경우 ShapeType</li><li>그 외 생략</li></ul></td><td></td></tr></tbody></table>
 
 
 
@@ -299,7 +299,7 @@ documentStart(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* [document 이벤트 메세지](event.md) 받아 사용
+* [document 이벤트 메세지](event.md#type-document) 받아 사용
 
 
 
@@ -339,7 +339,7 @@ documentShare(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* [documentShare 이벤트 메시지](event.md) 받아 사용
+* [documentShare 이벤트 메시지](event.md#type-documentshare) 받아 사용
 
 
 
@@ -371,7 +371,7 @@ shareStop(): Promise<{
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* [shareStop 이벤트 메세지](event.md) 받아 사용
+* [shareStop 이벤트 메세지](event.md#type-sharestop) 받아 사용
 
 
 

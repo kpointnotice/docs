@@ -93,7 +93,10 @@ type Feed = {
 };
 ```
 
-* [Member 참조](room.md#undefined-1)\
+* [Member 참조](room.md#undefined-1)
+
+\
+
 
 * **feeds 사용 예시**\
   [subscribeVideo](media.md#undefined-1) 를 호출해 stream 수신
