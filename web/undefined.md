@@ -68,7 +68,7 @@ start(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>blurStream</td><td>사생활 보호가 적용된 stream</td><td>MediaStream</td></tr></tbody></table>
 
-* blurStream 또는 outputCanvas에 결과물이 표시 됩니다.\
+* blurStream 과 outputCanvas에 결과물이 표시 됩니다.\
   필요에 따라 stream 또는 canvas 형식으로 사용할 수 있습니다.
 
 
@@ -77,7 +77,7 @@ start(
 
 ## 사생활 보호 영상 송신
 
-기존  스트림을  사생활 보호가 적용된 스트림으로 교체합니다.
+송신기중인존 스트림을  사생활 보호가 적용된 스트림으로 교체합니다.
 
 * **예시**
 
@@ -176,7 +176,7 @@ update(
 
 ## 사생활 보호 종료
 
-사생활 보호 스트림을 기존 스트림으로 교체하고 사생활 보호를 종료합니다.&#x20;
+송신 중인 사생활 보호 스트림을 기존 스트림으로 교체하고 사생활 보호를 종료합니다.&#x20;
 
 * **예시**
 
