@@ -105,6 +105,10 @@ await knowledgetalk.publishP2P('kpoint123','cam', localStream);
 
 그리고, publishP2P()의 파라미터에 상대방의 userId와 cam/screen을 구분하여 지정하고 미리 준비한 localStream 객체를 입력하여 상대방에게 전송합니다.
 
+#### 화면 공유
+
+P2P 화면 공유(`screenStart` + `target`) 및 수신(`subscribed` / `cam: false`) 상세는 [화면 공유 시나리오](../web/share.md#시나리오-화면-공유-송수신)를 참고합니다.
+
 #### 5.이벤트 메시지 수신
 
 {% code title="event message sample" %}
