@@ -8,7 +8,12 @@
 ```javascript
 const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
 
-await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
+const result = await knowledgetalk.screenStart(stream, 'kpoint123', canvas);
+
+if (result.code !== '200') {
+    stream.getTracks().forEach(track => track.stop());
+    // result.code에 따라 서비스 UI에서 실패 사유 안내
+}
 ```
 {% endcode %}
 
@@ -21,7 +26,9 @@ screenStart(
     stream: MediaStream;
     target?: string;
     canvas?: HTMLCanvasElement;
-): Promise<boolean>;
+): Promise<{
+    code: ResponseCode;
+}>;
 ```
 
 
@@ -30,13 +37,16 @@ screenStart(
 
     <mark style="color:red;">**canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
+    <mark style="color:red;">**동일한 방(roomId)에서는 한 번에 한 사용자만 화면을 공유할 수 있습니다. 화면공유, 화이트보드 또는 자료공유가 이미 진행 중이면 요청이 실패합니다. 여러 사용자의 카메라 영상 송출에는 이 제한이 적용되지 않습니다.**</mark>
+
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P 경우, 상대방의 userId</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
 
 
 
 *   **응답 상세**
 
-    성공 시  true 실패 시false를 리턴합니다.
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><p>요청 처리 결과</p><ul><li>200: 화면공유 시작 성공</li><li>440: 이미 다른 사용자가 공유를 진행 중</li></ul><p><a href="code.md">응답 코드 바로가기</a></p></td><td>'200'</td></tr></tbody></table>
+
 * 타겟 유저는 [screen 이벤트 메시지](event.md#type-screen) 받아 사용
 
 
