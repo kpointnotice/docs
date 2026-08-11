@@ -375,3 +375,85 @@ shareStop(): Promise<{
 
 
 
+---
+
+## 시나리오: 화면 공유 송수신
+
+`screenStart`만 호출해서는 로컬/원격 화면이 자동으로 그려지지 않습니다. **스트림 획득 · 로컬 DOM · presence 구독**을 앱에서 한 세트로 처리합니다.
+
+> **시각화(placeholder)**  
+> TODO: 화면 공유 송수신 시퀀스 (getDisplayMedia → screenStart → publish/subscribed → shareStop)
+
+### 호출 전
+
+* `init`·방 입장·`presence` 리스너 등록을 완료합니다.
+* `getDisplayMedia`로 화면 스트림을 얻고, 로컬 미리보기 video에 `srcObject`를 연결합니다.
+* 판서를 쓸 경우 canvas(와 부모 DOM)를 준비합니다.
+
+### 유의사항
+
+* **그룹**: `screenStart(stream)`처럼 `target`을 생략합니다. 상대방은 `publish`(`feed.type === 'screen'`) 후 `subscribeVideo`로 받습니다. `screen` 이벤트만으로는 영상이 연결되지 않습니다.
+* **P2P**: `screenStart(stream, partnerId)`로 `target`을 넘깁니다. 상대방은 `subscribed`(`cam: false`)에서 `getStream('screen')`을 사용합니다.
+* 브라우저 “공유 중지”에 대비해 video track `ended`에서 `shareStop`을 호출합니다.
+* 화면 공유는 사실상 1명 제한인 경우가 많습니다. (상세 제약은 별도 가이드 항목)
+
+### 송신 측
+
+{% code title="screen share - send" %}
+```javascript
+const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+localScreenVideo.srcObject = stream;
+
+stream.getVideoTracks()[0].addEventListener('ended', async () => {
+  await knowledgetalk.shareStop();
+  clearLocalScreenUi();
+});
+
+// 그룹
+await knowledgetalk.screenStart(stream);
+// P2P
+// await knowledgetalk.screenStart(stream, partnerId);
+```
+{% endcode %}
+
+### 수신 측 (presence)
+
+{% code title="screen share - receive (presence)" %}
+```javascript
+knowledgetalk.addEventListener('presence', async (event) => {
+  const msg = event.detail;
+
+  switch (msg.type) {
+    case 'publish': {
+      // 그룹
+      for (const feed of msg.feeds) {
+        if (feed.type !== 'screen') continue;
+        const stream = await knowledgetalk.subscribeVideo(feed.id, 'screen');
+        createScreenVideoBox(feed.id);
+        document.getElementById('screenVideo-' + feed.id).srcObject = stream;
+      }
+      break;
+    }
+
+    case 'subscribed': {
+      // P2P (cam: false → screen)
+      if (msg.cam === false) {
+        createScreenVideoBox('screen');
+        document.getElementById('screenVideo-screen').srcObject =
+          knowledgetalk.getStream('screen');
+      }
+      break;
+    }
+
+    case 'shareStop': {
+      removeScreenVideoBox(msg.user);
+      break;
+    }
+  }
+});
+```
+{% endcode %}
+
+* 타입: [publish](event.md#type-publish), [screen](event.md#type-screen), [subscribed](event.md#type-subscribed), [shareStop](event.md#type-sharestop)
+* 샘플: [그룹 샘플](../sample/group.md)
+

@@ -328,6 +328,79 @@ permit(
 
 
 
+---
+
+## 시나리오: 권한 부여 후 기능 개방
+
+Host가 Guest에게 채팅·화면 공유·화이트보드 등 권한을 주고, **Guest 앱 UI에서 해당 기능을 열어 주는** 흐름입니다. SDK `permit`은 서버에 권한 값을 기록·전달하며, 버튼 활성/비활성은 앱 책임입니다.
+
+> **시각화(placeholder)**  
+> TODO: permit → (알림) → Guest UI unlock → screenStart 등
+
+### 호출 전
+
+* Host·Guest가 같은 방에 입장한 상태여야 합니다.
+* `chat` / `draw` / `screen` / `whiteboard` / `document` 중 **부여할 항목을 boolean으로** 넘깁니다. (하나 이상 필수)
+* Guest가 권한 변경을 알 수 있도록 `inform` 커스텀 메시지 또는 앱 자체 채널을 준비하는 것을 권장합니다. (`permit` 전용 presence 타입은 문서화되어 있지 않습니다.)
+* `joinRoom` 응답/`memberList`의 `permit` 필드로 초기 권한을 맞출 수 있습니다.
+
+### 유의사항
+
+* `permit` 성공만으로 Guest 화면에 공유 버튼이 생기지는 않습니다. Guest가 상태를 반영한 뒤 `screenStart` 등을 호출해야 합니다.
+* 권한을 회수할 때도 동일 API에 `false`를 넘기고, Guest UI를 다시 잠급니다.
+* 화면 공유 실제 송수신은 [화면 공유 시나리오](share.md#시나리오-화면-공유-송수신)를 참고합니다.
+
+### Host (권한 부여)
+
+{% code title="permit - host" %}
+```javascript
+// 예: 화면 공유만 허용
+await knowledgetalk.permit(
+  guestId,
+  undefined, // chat
+  undefined, // draw
+  true, // screen
+  undefined, // whiteboard
+  undefined // document
+);
+
+// 상대방 앱이 알 수 있게 커스텀 알림 (권장)
+await knowledgetalk.inform(
+  { type: 'permit', screen: true },
+  guestId
+);
+```
+{% endcode %}
+
+### Guest (권한 반영 → 기능 사용)
+
+{% code title="permit - guest" %}
+```javascript
+knowledgetalk.addEventListener('presence', async (event) => {
+  const msg = event.detail;
+
+  switch (msg.type) {
+    case 'inform': {
+      if (msg.message?.type !== 'permit') break;
+      // 앱 상태에 권한 반영
+      setLocalPermit(msg.message);
+      // 예: screen === true 이면 화면 공유 버튼 활성화
+      break;
+    }
+  }
+});
+
+// 권한이 열린 뒤 사용자가 화면 공유를 누른 경우
+async function onClickScreenShare() {
+  if (!getLocalPermit().screen) return;
+  const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+  await knowledgetalk.screenStart(stream /*, partnerId for P2P */);
+}
+```
+{% endcode %}
+
+* 관련: [권한 부여 API](room.md#권한-부여), [inform](room.md#알림-메시지-전송), [화면 공유 시나리오](share.md#시나리오-화면-공유-송수신)
+
 
 
 ## 알림 메시지 전송

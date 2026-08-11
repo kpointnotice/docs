@@ -155,6 +155,7 @@ case 'subscribed': {
   ["p2p stream 조회 예시"](event.md#type-subscribed)와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됩니다.
 - 그룹의 경우 publish 이벤트와 screen 이벤트가 동시에 발생하므로 \
   ["feeds 사용 예시"](event.md#type-publish)와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됩니다.
+- 송수신 시나리오: [화면 공유 송수신](share.md#시나리오-화면-공유-송수신)
 
 - **타입**
 
@@ -216,6 +217,8 @@ case 'subscribed': {
 ## type: 'shareStop'
 
 공유 중지 알림
+
+- 송수신 시나리오: [화면 공유 송수신](share.md#시나리오-화면-공유-송수신)
 
 - **타입**
 
@@ -284,6 +287,8 @@ case 'subscribed': {
 ## type: 'createGroup'
 
 분반 생성 알림
+
+- 분반 이동 시나리오: [분반 이동 (생성 → 입장 → 종료)](group.md#시나리오-분반-이동-생성--입장--종료)
 
 - **타입**
 

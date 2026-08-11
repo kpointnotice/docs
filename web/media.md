@@ -210,7 +210,7 @@ changeLocalStream(
 
 - 그룹: `publishVideo('cam', stream)` 후 상대방은 `publish` 이벤트의 `feed.type === 'cam'`으로 수신합니다.
 - P2P: `publishP2P(userId, 'cam', stream)` 후 상대방은 `subscribed` (`cam: true`)에서 `getStream(user)`로 받습니다.
-- 화면 공유(`screen`) 분기는 [공유 기능](share.md) 문서를 참고합니다.
+- 화면 공유(`screen`) 분기는 [화면 공유 송수신 시나리오](share.md#시나리오-화면-공유-송수신)를 참고합니다.
 
 ### 상대방 이벤트 수신 시 (presence)
 
