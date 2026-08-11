@@ -237,6 +237,44 @@ case 'subscribed': {
 
 
 
+## type: 'reqCanvasImage'
+
+다른 사용자가 `reqCanvasImage()`를 호출하여 현재 캔버스 이미지의 전송을 요청했음을 알립니다.
+
+SDK는 이 이벤트를 수신하면 `canvasInit()`으로 등록한 캔버스를 PNG 이미지로 변환하고, 요청자에게 자동으로 전송합니다. 이벤트는 자동 응답 처리 후 `presence` 이벤트 리스너에도 전달됩니다.
+
+* **타입**
+
+```typescript
+{
+      eventOp: 'presence';
+      type: 'reqCanvasImage';
+      sender: string; // 캔버스 이미지를 요청한 사용자 ID
+      roomId: string;
+}
+```
+
+
+
+## type: 'updateImage'
+
+`reqCanvasImage()`로 요청한 캔버스 이미지를 수신했음을 알립니다.
+
+SDK는 이 이벤트를 수신하면 `img` 이미지를 `canvasInit()`으로 등록한 캔버스에 자동으로 반영합니다. 이미지 반영을 시작한 후 이벤트는 `presence` 이벤트 리스너에도 전달됩니다.
+
+* **타입**
+
+```typescript
+{
+      eventOp: 'presence';
+      type: 'updateImage';
+      sender: string; // 캔버스 이미지를 전송한 사용자 ID
+      img: string; // PNG 형식의 Data URL
+}
+```
+
+
+
 ## type: 'shareStop'
 
 공유 중지 알림

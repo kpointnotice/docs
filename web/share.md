@@ -211,6 +211,13 @@ reqCanvasImage(
 
 
 
+* 대상 사용자는 [`reqCanvasImage` presence 이벤트](event.md#type-reqcanvasimage)를 수신합니다.
+* 요청자는 [`updateImage` presence 이벤트](event.md#type-updateimage)를 수신합니다.
+
+`reqCanvasImage()`의 응답과 presence 이벤트는 서로 다릅니다. 메서드의 `code`는 요청 처리 결과이며, 실제 캔버스 이미지는 `updateImage` presence 이벤트의 `img` 필드로 전달됩니다.
+
+
+
 
 
 ## 그리기 도구 설정
