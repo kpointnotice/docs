@@ -58,7 +58,85 @@ await knowledgetalk.createRoom();
 
 방을 만들고 발급받은 roomId를 상대방에게 알려주어야 합니다.
 
-#### 3. 방 입장
+#### 3. 사용자별 영상 영역 생성 및 제거
+
+`createVideoBox()`와 `removeVideoBox()`는 SDK가 제공하는 API가 아닙니다. `createVideoBox()`는 현재 사용자 또는 상대방의 영상을 표시할 영역을 생성하고, `removeVideoBox()`는 `userId`에 해당하는 영상 영역을 제거하기 위해 애플리케이션에서 직접 구현하는 헬퍼 함수입니다.
+
+먼저 사용자별 영상 영역을 추가할 부모 요소를 HTML에 선언합니다.
+
+{% code title="index.html" %}
+```html
+<div id="videoBox"></div>
+```
+{% endcode %}
+
+다음으로 사용자의 `userId`를 전달받아 라벨과 `<video>` 요소를 생성하는 `createVideoBox()`를 구현합니다.
+
+{% code title="index.js" %}
+```javascript
+const videoBox = document.getElementById('videoBox');
+
+const createVideoBox = id => {
+    if (document.getElementById(id)) return;
+
+    let videoContainer = document.createElement('div');
+    videoContainer.classList = 'multiVideo';
+    videoContainer.id = id;
+
+    let videoLabel = document.createElement('p');
+    let videoLabelText = document.createTextNode(id);
+    videoLabel.appendChild(videoLabelText);
+    videoContainer.appendChild(videoLabel);
+
+    let multiVideo = document.createElement('video');
+    multiVideo.autoplay = true;
+    multiVideo.playsInline = true;
+    multiVideo.id = 'multiVideo-' + id;
+    videoContainer.appendChild(multiVideo);
+
+    videoBox.appendChild(videoContainer);
+};
+```
+{% endcode %}
+
+`createVideoBox('kpoint123')`을 호출하면 `#videoBox` 아래에 다음 DOM 구조가 생성됩니다.
+
+```html
+<div id="videoBox">
+    <div class="multiVideo" id="kpoint123">
+        <p>kpoint123</p>
+        <video id="multiVideo-kpoint123" autoplay playsinline></video>
+    </div>
+</div>
+```
+
+샘플에서는 상대방의 퇴장 이벤트를 수신했을 때 생성에 사용한 `userId`로 영상 영역 전체를 제거합니다.
+
+{% code title="index.js" %}
+```javascript
+const videoBox = document.getElementById('videoBox');
+
+const removeVideoBox = id => {
+    let child = document.getElementById(id);
+    if (child && child.parentElement === videoBox) {
+        videoBox.removeChild(child);
+    }
+};
+```
+{% endcode %}
+
+헬퍼 함수의 호출 시점은 다음과 같습니다.
+
+| 대상 | 호출 시점 | 처리 |
+|---|---|---|
+| 현재 사용자 | `getUserMedia()` 성공 후 | `createVideoBox(knowledgetalk.getUserId())` 호출 후 `localStream` 연결 |
+| 방에 먼저 입장한 상대방 | `joinRoom()` 응답의 `members` 순회 | `createVideoBox(member)` 호출 |
+| 새로 입장한 상대방 | `presence-join` 수신 | `createVideoBox(msg.user.id)` 호출 |
+| 퇴장한 상대방 | `presence-leave` 수신 | `removeVideoBox(msg.user)` 호출 |
+
+`createVideoBox(id)`와 `removeVideoBox(id)`의 `id`에는 동일한 사용자 `userId`를 전달해야 합니다. 표시할 스트림은 `document.getElementById('multiVideo-' + userId)`로 찾은 `<video>` 요소에 연결합니다. `createVideoBox()`는 같은 `userId`의 요소가 이미 있으면 생성을 건너뛰므로 중복 ID를 만들지 않습니다.
+
+#### 4. 방 입장
 
 {% code title="index.js" %}
 ```javascript
@@ -87,12 +165,16 @@ Host는 방을 만들고 입장하여 Guest가 입장할때까지 대기합니�
 
 Guest는 Host에게 받은 roomId로 해당 방에 입장합니다.
 
-#### 4.영상 전송
+#### 5. 영상 전송
 
 {% code title="index.js" %}
 ```javascript
 // localStream 객체를 생성
 let localStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false});
+
+// 현재 사용자 영상 영역을 생성하고 localStream 객체를 연결
+createVideoBox(knowledgetalk.getUserId());
+document.getElementById('multiVideo-' + knowledgetalk.getUserId()).srcObject = localStream;
 
 // localStream 객체를 P2P로 전송
 await knowledgetalk.publishP2P('kpoint123','cam', localStream);
@@ -105,7 +187,7 @@ await knowledgetalk.publishP2P('kpoint123','cam', localStream);
 
 그리고, publishP2P()의 파라미터에 상대방의 userId와 cam/screen을 구분하여 지정하고 미리 준비한 localStream 객체를 입력하여 상대방에게 전송합니다.
 
-#### 5.이벤트 메시지 수신
+#### 6. 이벤트 메시지 수신
 
 {% code title="event message sample" %}
 ```javascript
@@ -118,7 +200,7 @@ knowledgetalk.addEventListener('presence', async event => {
         switch (type){
                 //다른 사용자의 입장을 알림
                 case 'join':
-                        createVideoBox(msg.user.userId);             
+                        createVideoBox(msg.user.id);
                         break;
                 //다른 사용자의 퇴장을 알림
                 case 'leave':
