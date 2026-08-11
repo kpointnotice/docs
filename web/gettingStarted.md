@@ -76,3 +76,14 @@ knowledgetalk.disconnect();
 knowledgetalk = null;
 ```
 {% endcode %}
+
+## 다음 단계
+
+서버 연결(`init`)이 끝나면 아래 순서로 이어가면 시행착오를 줄일 수 있습니다.
+
+1. [P2P 샘플](../sample/p2p.md) 또는 [그룹 샘플](../sample/group.md)로 방 입장·영상 송수신 확인
+2. 부가 기능은 API 시그니처만이 아니라 **호출 전 / 유의사항 / 호출 후**를 함께 확인  
+   * [채팅](chatting.md)  
+   * [화면 공유·캔버스](share.md)  
+   * [분반](group.md)  
+3. 수신·상태 변화는 [이벤트 메시지](event.md)의 `presence` 타입별 처리를 참고

@@ -114,35 +114,84 @@ if(!result){
 
 #### 5. 이벤트 메시지 수신
 
+`presence` 리스너는 방 입장 직후·화면 공유 전에 등록해 두는 것이 안전합니다. 그룹 화면 공유 수신은 `publish`의 `feed.type === 'screen'` 분기에서 처리합니다. ([공유 기능 플레이북](../web/share.md#화면-공유-통합-흐름))
+
 {% code title="event message sample" %}
 ```javascript
-//이벤트 메시지 수신
+// 이벤트 메시지 수신
 knowledgetalk.addEventListener('presence', async event => {
 
         let msg = event.detail;
         let type = msg.type;
 
         switch (type){
-                //다른 사용자의 입장을 알림
+                // 다른 사용자의 입장을 알림
                 case 'join':
                         createVideoBox(msg.user.userId);             
                         break;
-                //다른 사용자의 퇴장을 알림
+                // 다른 사용자의 퇴장을 알림
                 case 'leave':
                         removeVideoBox(msg.user);
+                        removeScreenVideoBox(msg.user);
                         break;
                         
-                //다른 사용자의 영상이 미디어 서버와 연결 되어 수신이 가능한 상태를 알림
+                // 미디어 서버에 배포된 cam / screen 수신
                 case 'publish':
                     for(const feed of msg.feeds){
-                        //영상 수신을 요청
                         let stream = await knowledgetalk.subscribeVideo(feed.id, feed.type);
-                        
-                        //상대방이 입장했을때 만들어둔 video 태그인 multiVideo에 상대방의 영상을 연결
-                        document.getElementById('multiVideo-' + feed.id).srcObject = stream;
+
+                        if (feed.type === 'cam') {
+                            createVideoBox(feed.id);
+                            document.getElementById('multiVideo-' + feed.id).srcObject = stream;
+                        }
+
+                        if (feed.type === 'screen') {
+                            createScreenVideoBox(feed.id);
+                            document.getElementById('screenVideo-' + feed.id).srcObject = stream;
+                        }
                     }
-                break;
+                    break;
+
+                case 'shareStop':
+                        removeScreenVideoBox(msg.user);
+                        break;
         }       
 }
 ```
 {% endcode %}
+
+#### 6. 화면 공유
+
+> **시각화(placeholder)**  
+> TODO: 그룹 화면 공유 송신·수신 시퀀스
+
+`screenStart` 호출 전에 로컬 미리보기 DOM을 만들고, 수신은 위 `publish` 분기에서 처리합니다. 상세 전제·유의사항은 [공유 기능](../web/share.md#화면-공유-시작)을 참고하세요.
+
+{% code title="index.js" %}
+```javascript
+// 1) 브라우저에서 화면 스트림 획득
+const screenStream = await navigator.mediaDevices.getDisplayMedia({
+    video: true,
+    audio: false,
+});
+
+const userId = knowledgetalk.getUserId();
+
+// 2) 로컬 미리보기용 screen video DOM 생성 후 연결 (SDK가 해주지 않음)
+createScreenVideoBox(userId);
+document.getElementById('screenVideo-' + userId).srcObject = screenStream;
+
+// 3) 그룹 통화: target 없이 screenStart
+const result = await knowledgetalk.screenStart(screenStream);
+if (!result) {
+    // 실패 시 track stop + 로컬 DOM 제거
+}
+
+// 4) 브라우저 "공유 중지" 시 SDK 종료
+screenStream.getVideoTracks()[0]?.addEventListener('ended', async () => {
+    await knowledgetalk.shareStop();
+}, { once: true });
+```
+{% endcode %}
+
+종료 시에는 `shareStop` 호출 후 로컬 트랙을 멈추고 screen video DOM을 제거합니다. 수신측은 `shareStop` presence에서 원격 screen DOM을 제거합니다.
