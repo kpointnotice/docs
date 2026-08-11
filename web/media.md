@@ -84,7 +84,7 @@ subscribeVideo(
 
 {% code title="index.js" %}
 ```javascript
-await knowledgetalk.publishP2P("kpoint123", "cam", stream);
+await knowledgetalk.publishP2P('kpoint123', 'cam', stream);
 ```
 {% endcode %}
 
@@ -105,6 +105,16 @@ publishP2P(
 * **요청 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>영상을 받을 상대방 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td>'cam'</td><td>'cam'</td></tr><tr><td>stream</td><td>영상 스트림</td><td>MediaStream</td></tr></tbody></table>
+
+
+
+* **호출 조건**
+
+  * 상대방의 `userId`와 전송할 `MediaStream`이 준비된 후 호출합니다.
+  * 호출 시점은 애플리케이션 흐름에 따라 다를 수 있습니다.
+  * 연결 중이거나 이미 연결된 상대방에게 중복 호출하지 않습니다.
+  * 양쪽 사용자가 연결 상태를 확인하지 않고 `subscribed` 이벤트마다 호출하면 연결 요청이 반복될 수 있습니다.
+  * 활성 연결의 스트림만 변경하려면 `publishP2P()` 대신 [`changeLocalStream(stream, target)`](media.md#undefined-3)을 호출합니다.
 
 
 

@@ -95,7 +95,7 @@ Guest는 Host에게 받은 roomId로 해당 방에 입장합니다.
 let localStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false});
 
 // localStream 객체를 P2P로 전송
-await knowledgetalk.publishP2P('kpoint123','cam', localStream);
+await knowledgetalk.publishP2P('kpoint123', 'cam', localStream);
 ```
 {% endcode %}
 
@@ -103,7 +103,11 @@ await knowledgetalk.publishP2P('kpoint123','cam', localStream);
 
 * [localStream 객체 정보](https://developer.mozilla.org/ko/docs/Web/API/MediaDevices/getUserMedia)
 
-그리고, publishP2P()의 파라미터에 상대방의 userId와 cam/screen을 구분하여 지정하고 미리 준비한 localStream 객체를 입력하여 상대방에게 전송합니다.
+`publishP2P()`는 지정한 한 명의 상대방에게 영상을 전송하므로, 상대방의 `userId`와 전송할 `MediaStream`이 준비된 후 호출합니다.
+
+호출 시점은 애플리케이션 흐름에 따라 다를 수 있습니다. 단, 연결 중이거나 이미 연결된 상대방에게 중복 호출하지 않습니다.
+
+연결된 상대방에게 전송 중인 스트림만 변경하려면 `publishP2P()`를 재호출하지 않고 [`changeLocalStream(stream, target)`](../web/media.md#undefined-3)을 사용합니다.
 
 #### 5.이벤트 메시지 수신
 
@@ -118,7 +122,7 @@ knowledgetalk.addEventListener('presence', async event => {
         switch (type){
                 //다른 사용자의 입장을 알림
                 case 'join':
-                        createVideoBox(msg.user.userId);             
+                        createVideoBox(msg.user.id);
                         break;
                 //다른 사용자의 퇴장을 알림
                 case 'leave':
