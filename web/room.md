@@ -449,5 +449,68 @@ editRoomInfo(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
+---
 
+## 입장·퇴장 시나리오와 presence
+
+`joinRoom` / `leaveRoom`은 요청-응답만으로 끝나지 않습니다. **이미 방에 있는 다른 클라이언트**는 presence로 입·퇴장을 알게 되고, 여기서 video 박스·멤버 목록을 갱신해야 합니다.
+
+> **시각화(placeholder)**  
+> TODO: joinRoom / leaveRoom ↔ presence join·leave 시퀀스
+
+### 호출 전 (공통)
+
+* `init` 완료
+* `knowledgetalk.addEventListener('presence', ...)` 등록 (입장 전에 등록하는 것을 권장)
+* 상대 video/멤버 UI를 만들·지울 헬퍼 준비 (`createVideoBox`, `removeVideoBox` 등)
+
+### 유의사항
+
+* `joinRoom` 응답의 `members`는 **현재 이미 있는 사람**입니다. 그 이후 들어오는 사람은 `join` presence로만 알 수 있습니다.
+* 상대가 `leaveRoom`하면 나에게 `leave` presence가 옵니다. DOM만 지우면 스트림/리스너가 남을 수 있으니 앱에서 정리 정책을 정하세요.
+* `kickOut`을 받은 대상은 presence 후 스스로 `leaveRoom`을 호출하는 흐름이 일반적입니다.
+
+### 상대 이벤트 수신 시 (presence)
+
+| type | 언제 | 앱에서 할 일 예시 |
+| ---- | ---- | ----------------- |
+| `join` | 다른 사용자가 방에 입장 | 멤버 목록 추가, 카메라용 video 박스 생성 |
+| `leave` | 다른 사용자가 퇴장 | video 박스 제거, (화면 공유 중이면) screen DOM도 제거 |
+| `kickOut` | 강제 퇴장 요청을 받음 | `leaveRoom` 호출 후 로비/대기 화면으로 이동 |
+
+{% code title="presence - join / leave / kickOut" %}
+```javascript
+knowledgetalk.addEventListener('presence', async (event) => {
+  const msg = event.detail;
+
+  switch (msg.type) {
+    case 'join': {
+      // msg.user: Member (id, name, ...)
+      const userId = msg.user.id ?? msg.user.userId;
+      createVideoBox(userId);
+      // 그룹에서 상대가 이미 publish 중이면 이후 publish 이벤트로 subscribe
+      break;
+    }
+
+    case 'leave': {
+      // msg.user: 퇴장한 userId (string)
+      removeVideoBox(msg.user);
+      removeScreenVideoBox?.(msg.user);
+      break;
+    }
+
+    case 'kickOut': {
+      const roomId = knowledgetalk.getRoomId();
+      await knowledgetalk.leaveRoom(roomId);
+      // 로컬 스트림·UI 정리 후 대기 화면으로
+      cleanupLocalSession();
+      break;
+    }
+  }
+});
+```
+{% endcode %}
+
+* 타입 상세: [join](event.md#type-join), [leave](event.md#type-leave), [kickOut](event.md#type-kickout)
+* 샘플 흐름: [P2P 샘플](../sample/p2p.md), [그룹 샘플](../sample/group.md)
 

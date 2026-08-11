@@ -191,5 +191,67 @@ changeLocalStream(
 
     성공 시 true, 실패 시 false
 
+---
 
+## 영상 송수신 시나리오와 presence
+
+카메라 영상도 API 호출과 presence가 한 세트입니다. **그룹**은 `publish` → `subscribeVideo`, **P2P**는 `subscribed` → `getStream` 패턴이 다릅니다.
+
+> **시각화(placeholder)**  
+> TODO: publishVideo / publishP2P ↔ presence publish·subscribed 시퀀스
+
+### 호출 전
+
+* 방 입장 완료, `presence` 리스너 등록
+* `getUserMedia`로 로컬 스트림 획득 및 (선택) 로컬 preview video 연결
+* 상대 video DOM을 만들 헬퍼 준비
+
+### 유의사항
+
+* 그룹: `publishVideo('cam', stream)` 후 상대는 `publish` 이벤트의 `feed.type === 'cam'`으로 수신합니다.
+* P2P: `publishP2P(userId, 'cam', stream)` 후 상대는 `subscribed` (`cam: true`)에서 `getStream(user)`로 받습니다.
+* 화면 공유(`screen`) 분기는 [공유 기능](share.md) 문서를 참고하세요.
+
+### 상대 이벤트 수신 시 (presence)
+
+| type | 언제 | 앱에서 할 일 예시 |
+| ---- | ---- | ----------------- |
+| `publish` (`feed.type === 'cam'`) | 그룹에서 상대가 카메라 publish | `subscribeVideo(id, 'cam')` → video `srcObject` |
+| `subscribed` (`cam: true`) | P2P에서 상대 카메라 연결 완료 | `getStream(user)` → video `srcObject` |
+
+{% code title="presence - cam publish (group)" %}
+```javascript
+knowledgetalk.addEventListener('presence', async (event) => {
+  const msg = event.detail;
+
+  switch (msg.type) {
+    case 'publish': {
+      for (const feed of msg.feeds) {
+        const stream = await knowledgetalk.subscribeVideo(feed.id, feed.type);
+
+        if (feed.type === 'cam') {
+          createVideoBox(feed.id);
+          document.getElementById('multiVideo-' + feed.id).srcObject = stream;
+        }
+      }
+      break;
+    }
+
+    case 'subscribed': {
+      // P2P
+      const { cam, user } = msg;
+      if (cam) {
+        createVideoBox(user);
+        document.getElementById('multiVideo-' + user).srcObject =
+          knowledgetalk.getStream(user);
+      }
+      break;
+    }
+  }
+});
+```
+{% endcode %}
+
+* 타입 상세: [publish](event.md#type-publish), [subscribed](event.md#type-subscribed)
+* 샘플: [그룹 샘플](../sample/group.md), [P2P 샘플](../sample/p2p.md)
 
