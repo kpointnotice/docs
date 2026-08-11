@@ -29,4 +29,4 @@
 ## API-DOC
 
 * [Getting Started](api/gettingStarted.md)
-* [API 명세서](api/doc.md)
+* [API 명세서](api/specification.md)

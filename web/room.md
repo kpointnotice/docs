@@ -367,6 +367,7 @@ inform(
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
 * 타겟유저는 [inform 이벤트 메시지](event.md#type-inform)를 받아 사용
+* `message`는 문자열뿐 아니라 객체도 가능합니다. P2P 재연결 등 응용 예시는 [media · P2P 재연결](media.md#p2p-응용-시나리오-재연결)을 참고합니다.
 
 
 
@@ -460,17 +461,17 @@ editRoomInfo(
 
 ### 호출 전 (공통)
 
-* `init` 완료
-* `knowledgetalk.addEventListener('presence', ...)` 등록 (입장 전에 등록하는 것을 권장)
-* 상대 video/멤버 UI를 만들·지울 헬퍼 준비 (`createVideoBox`, `removeVideoBox` 등)
+* `init`을 완료합니다.
+* `knowledgetalk.addEventListener('presence', ...)`를 등록합니다. (입장 전에 등록하는 것을 권장합니다.)
+* 상대방 video/멤버 UI를 만들·지울 헬퍼(`createVideoBox`, `removeVideoBox` 등)를 준비합니다.
 
 ### 유의사항
 
 * `joinRoom` 응답의 `members`는 **현재 이미 있는 사람**입니다. 그 이후 들어오는 사람은 `join` presence로만 알 수 있습니다.
-* 상대가 `leaveRoom`하면 나에게 `leave` presence가 옵니다. DOM만 지우면 스트림/리스너가 남을 수 있으니 앱에서 정리 정책을 정하세요.
+* 상대방이 `leaveRoom`하면 본인에게 `leave` presence가 옵니다. DOM만 지우면 스트림/리스너가 남을 수 있으므로, 앱에서 정리 정책을 정해야 합니다.
 * `kickOut`을 받은 대상은 presence 후 스스로 `leaveRoom`을 호출하는 흐름이 일반적입니다.
 
-### 상대 이벤트 수신 시 (presence)
+### 상대방 이벤트 수신 시 (presence)
 
 | type | 언제 | 앱에서 할 일 예시 |
 | ---- | ---- | ----------------- |
@@ -488,7 +489,7 @@ knowledgetalk.addEventListener('presence', async (event) => {
       // msg.user: Member (id, name, ...)
       const userId = msg.user.id ?? msg.user.userId;
       createVideoBox(userId);
-      // 그룹에서 상대가 이미 publish 중이면 이후 publish 이벤트로 subscribe
+      // 그룹에서 상대방이 이미 publish 중이면 이후 publish 이벤트로 subscribe
       break;
     }
 
