@@ -31,7 +31,7 @@ chat(
 
 - **요청 상세**
 
-  <mark style="color:red;">**roomId / target 중 하나는 필수**</mark>
+  <mark style="color:red;">**roomId / userId 중 하나는 필수**</mark>
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>message</td><td>채팅 메시지</td><td>'Hello!'</td></tr><tr><td>roomId</td><td>해당 roomId로 메시지 전송</td><td>'K43254033'</td></tr><tr><td>userId</td><td>해당 userId에게 메시지 전송</td><td>'kpoint123'</td></tr></tbody></table>
 

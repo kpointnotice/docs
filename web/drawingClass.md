@@ -29,7 +29,7 @@ await knowledgetalk.drawingShareStart(canvas);
 
     GUEST가 호출
 
-| **Pararmeter** |     **Type**    | **Required** | **Description** | **Example** |
+| **Parameter** |     **Type**    | **Required** | **Description** | **Example** |
 | :------------: | :-------------: | :----------: | :-------------: | :---------: |
 |     canvas     | HTML canvas tag |       Y      |      캔버스 태그     |             |
 

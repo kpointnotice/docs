@@ -17,7 +17,7 @@ await knowledgetalk.publishVideo('cam', stream);
 * **타입**
 
 ```typescript
-publishvideo(
+publishVideo(
     type: 'cam';
     stream: MediaStream;
 ): Promise<boolean>;
@@ -36,7 +36,7 @@ publishvideo(
 
 
 
-* **호출시 publish 이벤트 메시지 보냄**\
+* **호출 시 publish 이벤트 메시지 보냄**\
   [이벤트 처리 예시 보기](event.md#type-publish)
 
 
@@ -114,7 +114,7 @@ publishP2P(
 
 
 
-* **호출시 상대방에게 subscribed 이벤트 메시지  보냄**\
+* **호출 시 상대방에게 subscribed 이벤트 메시지 보냄**\
   [이벤트 처리 예시 보기](event.md#type-subscribed)
 
 

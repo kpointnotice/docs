@@ -10,7 +10,7 @@ description: 캠 화면에 블러 처리 또는 가상 배경을 적용합니다
 
 {% code title="index.html" %}
 ```html
-<script type="text/javascript" src="https://dev.knowledgetalk.co.kr:7102/uncompressed/privacyMode.js"></script>
+<script type="text/javascript" src="https://knowledgetalk.co.kr:7104/uncompressed/privacyMode.js"></script>
 ```
 {% endcode %}
 
@@ -68,7 +68,7 @@ start(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>blurStream</td><td>사생활 보호가 적용된 stream</td><td>MediaStream</td></tr></tbody></table>
 
-* blurStream 과 outputCanvas에 결과물이 표시 됩니다.\
+* blurStream 과 outputCanvas에 결과물이 표시됩니다.\
   필요에 따라 stream 또는 canvas 형식으로 사용할 수 있습니다.
 
 
@@ -77,7 +77,7 @@ start(
 
 ## 사생활 보호 영상 송신
 
-송신기중인존 스트림을  사생활 보호가 적용된 스트림으로 교체합니다.
+송신 중인 기존 스트림을 사생활 보호가 적용된 스트림으로 교체합니다.
 
 * **예시**
 
@@ -131,7 +131,7 @@ changeBackground(
 
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>mode</td><td>변경할 모드</td><td>'bg'</td></tr><tr><td>bgUrl</td><td>bg모드 일 경우 배경 이미지 경로</td><td>'https://imageUrl...'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>mode</td><td>변경할 모드</td><td>'bg'</td></tr><tr><td>bgUrl</td><td>bg 모드일 경우 배경 이미지 경로</td><td>'https://imageUrl...'</td></tr></tbody></table>
 
 
 
@@ -176,7 +176,7 @@ update(
 
 ## 사생활 보호 종료
 
-송신 중인 사생활 보호 스트림을 기존 스트림으로 교체하고 사생활 보호를 종료합니다.&#x20;
+송신 중인 사생활 보호 스트림을 기존 스트림으로 교체하고 사생활 보호를 종료합니다.
 
 * **예시**
 

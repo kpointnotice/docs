@@ -5,7 +5,7 @@
 {% code title="index.html" %}
 ```html
 <!-- SDK 설치 -->
-<script type="text/javascript" src="https://dev.knowledgetalk.co.kr:7102/knowledgetalk.min.js"></script>
+<script type="text/javascript" src="https://knowledgetalk.co.kr:7104/knowledgetalk.min.js"></script>
 ```
 {% endcode %}
 

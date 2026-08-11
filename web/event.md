@@ -2,7 +2,7 @@
 
 ## 이벤트 메시지
 
-다른 참여자들의 입장, 퇴장 등 상태 등 클라이언트에서 서버로 부터 오는 이벤트 메시지들에 대한 설명
+다른 참여자들의 입장, 퇴장 등 상태를 클라이언트에서 서버로부터 받는 이벤트 메시지들에 대한 설명
 
 ### 이벤트 메시지 알림
 
@@ -71,7 +71,7 @@ knowledgetalk.addEventListener('presence', async event => {
 
 미디어 서버에서 수신 가능한 사용자들의 영상 알림
 
-<mark style="color:red;">publishVideo 호출시 type === 'cam' 으로 분기해 처리</mark>
+<mark style="color:red;">publishVideo 호출 시 type === 'cam' 으로 분기해 처리</mark>
 
 * **타입**
 
@@ -83,10 +83,10 @@ knowledgetalk.addEventListener('presence', async event => {
       feeds: Feed[];
 }
 
-// publishVideo 로 부터 송신된 메시지
+// publishVideo로부터 송신된 메시지
 type Feed = Member & { type: 'cam' };
 
-// screenStart 로 부터 송신된 메시지
+// screenStart로부터 송신된 메시지
 type Feed = { 
       id: string;
       type: 'screen';
@@ -124,9 +124,9 @@ case 'publish': {
 
 해당 사용자의 영상에 대한 P2P 연결 완료 알림
 
-<mark style="color:red;">cam: true 인 경우 publishP2P 로 부터 송신된 메시지</mark>
+<mark style="color:red;">cam: true 인 경우 publishP2P로부터 송신된 메시지</mark>
 
-<mark style="color:red;">cam: false 인 경우 screenStart로 부터 송신된 메시지</mark>
+<mark style="color:red;">cam: false 인 경우 screenStart로부터 송신된 메시지</mark>
 
 * **타입**
 
@@ -163,16 +163,16 @@ case 'subscribed': {
 
 ## type: 'screen'
 
-화면공유 알림, screenStart 호출시 발생
+화면 공유 알림, screenStart 호출 시 발생
 
 * p2p의 경우 subscribed 이벤트와 screen 이벤트가 동시에 발생\
   ["p2p stream 조회 예시"](event.md#type-subscribed) 와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됨
-* group의 경우  publish 이벤트와 screen 이벤트가 동시에 발생하므로 \
+* group의 경우 publish 이벤트와 screen 이벤트가 동시에 발생하므로 \
   ["feeds 사용 예시"](event.md#type-publish) 와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됨
 
 
 
-* **타입**&#x20;
+* **타입**
 
 ```typescript
 {
@@ -204,7 +204,7 @@ case 'subscribed': {
 
 ## type: 'document'
 
-자료공유 알림
+자료 공유 알림
 
 * **타입**
 
@@ -273,8 +273,8 @@ case 'subscribed': {
 
 ## type: 'inform'
 
-커스텀  메시지 수신 알림\
-정의되지 않은 메시지가 필요 할 경우 사용할 수 있습니다.
+커스텀 메시지 수신 알림\
+정의되지 않은 메시지가 필요할 경우 사용할 수 있습니다.
 
 * **타입**
 
@@ -362,13 +362,13 @@ case 'subscribed': {
 
 
 
-* 현재 미사용 중 인 메서드
+* 현재 미사용 중인 메서드
 
 #### ~~type: 'drawingClassStart'~~
 
 {% code title="event message sample" %}
 ```json
-  // 미술수업시작 알림
+  // 미술 수업 시작 알림
   {
       eventOp: 'presence',
       type: 'drawingClassStart',
@@ -382,7 +382,7 @@ case 'subscribed': {
 
 {% code title="event message sample" %}
 ```json
-  // 그리기공유알림 알림
+  // 그리기 공유 알림
   {
       eventOp: 'presence',
       type: 'drawingShare',
@@ -396,7 +396,7 @@ case 'subscribed': {
 
 {% code title="event message sample" %}
 ```json
-  // 그리기공유종료 알림
+  // 그리기 공유 종료 알림
   {
       eventOp: 'presence',
       type: 'drawingShareStop',
@@ -425,7 +425,7 @@ case 'subscribed': {
 
 {% code title="event message sample" %}
 ```json
-  // 미술수업종료 알림
+  // 미술 수업 종료 알림
   {
       eventOp: 'presence',
       type: 'drawingClassStop',

@@ -30,14 +30,14 @@ screenStart(
 
     <mark style="color:red;">**canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P 경우, 상대방의 userId</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P 경우, 상대방의 userId</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLCanvasElement</td></tr></tbody></table>
 
 
 
 *   **응답 상세**
 
-    성공 시  true 실패 시false를 리턴합니다.
-* 타겟 유저는 [screen 이벤트 메시지](event.md#type-screen) 받아 사용
+    성공 시 true, 실패 시 false를 리턴합니다.
+* 타겟 유저는 [screen 이벤트 메시지](event.md#type-screen)를 받아 사용
 
 
 
@@ -59,7 +59,7 @@ await knowledgetalk.whiteBoardStart(canvas);
 
 ```typescript
 whiteBoardStart(
-    canvas: HTMLcanvasElement;
+    canvas: HTMLCanvasElement;
 ): Promise<boolean>;
 ```
 
@@ -68,13 +68,13 @@ whiteBoardStart(
 * **요청 상세**\
   <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>canvas</td><td>캔버스 태그</td><td>HTMLcanvasElement</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>canvas</td><td>캔버스 태그</td><td>HTMLCanvasElement</td></tr></tbody></table>
 
 
 
 *   **응답 상세**
 
-    성공 시  true 실패 시false를 리턴합니다.
+    성공 시 true, 실패 시 false를 리턴합니다.
 * 타겟 유저는 [whiteBoard 이벤트 메시지](event.md#type-whiteboard)를 받아 사용
 
 
@@ -105,7 +105,7 @@ canvasInit(
 
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>canvas</td><td>캔버스 태그</td><td>HTMLcanvasElement</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>canvas</td><td>캔버스 태그</td><td>HTMLCanvasElement</td></tr></tbody></table>
 
 
 
@@ -136,7 +136,7 @@ drawingInit():boolean;
 
 
 * **응답 상세**\
-  성공 시  true 실패 시false를 리턴합니다.
+  성공 시 true, 실패 시 false를 리턴합니다.
 
 
 
@@ -167,7 +167,7 @@ drawingStop(): boolean;
 
 
 * **응답 상세**\
-  성공 시  true 실패 시false를 리턴합니다.
+  성공 시 true, 실패 시 false를 리턴합니다.
 
 
 
@@ -291,7 +291,7 @@ documentStart(
 * **요청 상세**\
   <mark style="color:red;">**canvasInit() / drawingInit() 가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>canvas</td><td>공유화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLCanvasElement</td></tr></tbody></table>
 
 
 
@@ -299,7 +299,7 @@ documentStart(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* [document 이벤트 메시지](event.md#type-document) 받아 사용
+* [document 이벤트 메시지](event.md#type-document)를 받아 사용
 
 
 
@@ -339,7 +339,7 @@ documentShare(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* [documentShare 이벤트 메시지](event.md#type-documentshare) 받아 사용
+* [documentShare 이벤트 메시지](event.md#type-documentshare)를 받아 사용
 
 
 
@@ -371,7 +371,7 @@ shareStop(): Promise<{
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* [shareStop 이벤트 메시지](event.md#type-sharestop) 받아 사용
+* [shareStop 이벤트 메시지](event.md#type-sharestop)를 받아 사용
 
 
 

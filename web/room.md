@@ -30,7 +30,7 @@ createRoom(
 
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>요청할 roomId 또는 자동생성</td><td>'K43254033'</td></tr><tr><td>title</td><td>방 제목</td><td>'p2pRoom'</td></tr><tr><td>capacity</td><td>수용인원</td><td>2</td></tr><tr><td>destroy</td><td><ul><li>방 인원 없을 경우 방 종료</li><li>기본값: true</li></ul></td><td>true</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>요청할 roomId 또는 자동 생성</td><td>'K43254033'</td></tr><tr><td>title</td><td>방 제목</td><td>'p2pRoom'</td></tr><tr><td>capacity</td><td>수용 인원</td><td>2</td></tr><tr><td>destroy</td><td><ul><li>방 인원 없을 경우 방 종료</li><li>기본값: true</li></ul></td><td>true</td></tr></tbody></table>
 
 
 
@@ -73,7 +73,7 @@ createVideoRoom(
 
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>요청할 roomId 또는 자동생성</td><td>'K43254033'</td></tr><tr><td>title</td><td>방 제목</td><td>'groupRoom'</td></tr><tr><td>capacity</td><td>수용인원</td><td>16</td></tr><tr><td>destroy</td><td><ul><li>방 인원 없을 경우 방 종료</li><li>기본값: true</li></ul></td><td>true</td></tr><tr><td>talkingNoty</td><td><ul><li>화자 감지 이벤트</li><li>기본값: false</li></ul></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>요청할 roomId 또는 자동 생성</td><td>'K43254033'</td></tr><tr><td>title</td><td>방 제목</td><td>'groupRoom'</td></tr><tr><td>capacity</td><td>수용 인원</td><td>16</td></tr><tr><td>destroy</td><td><ul><li>방 인원 없을 경우 방 종료</li><li>기본값: true</li></ul></td><td>true</td></tr><tr><td>talkingNoty</td><td><ul><li>화자 감지 이벤트</li><li>기본값: false</li></ul></td><td>false</td></tr></tbody></table>
 
 
 
@@ -126,7 +126,7 @@ type Member = {
     device: string;
     video: boolean;
     audio: boolean;
-    pulishing: boolean;
+    publishing: boolean;
     permit: {
         screen: boolean;
         chat: boolean;
@@ -153,9 +153,9 @@ type Member = {
 
 * **Member**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>id</td><td>유저 아이디</td><td>'kpoint123'</td></tr><tr><td>name</td><td>유저 이름</td><td>'홍길동'</td></tr><tr><td>userType</td><td>host 또는 guest</td><td>'host'</td></tr><tr><td>device</td><td>기기 정보</td><td>'Galaxy Tab'</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>publishing</td><td>영상 송신여부</td><td>false</td></tr><tr><td>permit</td><td>채팅, 공유등 권한 정보</td><td>{ chat: true, ...}</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>id</td><td>유저 아이디</td><td>'kpoint123'</td></tr><tr><td>name</td><td>유저 이름</td><td>'홍길동'</td></tr><tr><td>userType</td><td>host 또는 guest</td><td>'host'</td></tr><tr><td>device</td><td>기기 정보</td><td>'Galaxy Tab'</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>publishing</td><td>영상 송신 여부</td><td>false</td></tr><tr><td>permit</td><td>채팅, 공유 등 권한 정보</td><td>{ chat: true, ...}</td></tr></tbody></table>
 
-* 기존에 방에 참여중인 유저는[ join 이벤트 메시지](event.md#type-join)로 멤버 정보 수신
+* 기존에 방에 참여 중인 유저는 [join 이벤트 메시지](event.md#type-join)로 멤버 정보 수신
 
 
 
@@ -317,7 +317,7 @@ permit(
 | chat       | 채팅 권한        | true        |
 | draw       | 그리기 권한       | false       |
 | screen     | 화면 공유 권한     | false       |
-| whiteboard | 화이트 보드 공유 권한 | false       |
+| whiteboard | 화이트보드 공유 권한 | false       |
 | document   | 자료 공유 권한     | false       |
 
 
@@ -366,7 +366,7 @@ inform(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
 
-* 타겟유저는 [inform 이벤트 메시지](event.md#type-inform)를 받아 사용
+* 타겟 유저는 [inform 이벤트 메시지](event.md#type-inform)를 받아 사용
 
 
 
@@ -441,7 +441,7 @@ editRoomInfo(
 
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>방 아이디</td><td>'K43254033'</td></tr><tr><td>title</td><td>방 제목</td><td>'chatRoom'</td></tr><tr><td>capacity</td><td>수용인원</td><td>16</td></tr><tr><td>host</td><td>호스트 아이디</td><td>'k123'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>roomId</td><td>방 아이디</td><td>'K43254033'</td></tr><tr><td>title</td><td>방 제목</td><td>'chatRoom'</td></tr><tr><td>capacity</td><td>수용 인원</td><td>16</td></tr><tr><td>host</td><td>호스트 아이디</td><td>'k123'</td></tr></tbody></table>
 
 
 
