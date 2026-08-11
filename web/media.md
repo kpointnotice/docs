@@ -256,6 +256,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 
 - 타입 상세: [publish](event.md#type-publish), [subscribed](event.md#type-subscribed)
 - 샘플: [그룹 샘플](../sample/group.md), [P2P 샘플](../sample/p2p.md)
+- 방 전체 흐름(생성→입장→publish→퇴장): [방 라이프사이클](room.md#시나리오-방-라이프사이클-생성--입장--publish--퇴장)
 
 ---
 

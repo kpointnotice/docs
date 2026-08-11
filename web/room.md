@@ -515,3 +515,100 @@ knowledgetalk.addEventListener('presence', async (event) => {
 * 타입 상세: [join](event.md#type-join), [leave](event.md#type-leave), [kickOut](event.md#type-kickout)
 * 샘플 흐름: [P2P 샘플](../sample/p2p.md), [그룹 샘플](../sample/group.md)
 
+---
+
+## 시나리오: 방 라이프사이클 (생성 → 입장 → publish → 퇴장)
+
+한 통화의 전체 흐름을 Host / Guest 기준으로 이어 붙입니다. API 시그니처·presence 세부 예시는 위 절과 [영상 송수신](media.md#영상-송수신-시나리오와-presence)을 참고합니다.
+
+> **시각화(placeholder)**  
+> TODO: 방 라이프사이클 E2E 시퀀스 (init → create → join → publish → leave)
+
+### 호출 전
+
+* 양 클라이언트에서 `init`(세션 연결)을 완료합니다.
+* `presence` 리스너를 **입장 전**에 등록합니다. ([입장·퇴장 시나리오](room.md#입장퇴장-시나리오와-presence))
+* 상대방 video/멤버 UI 헬퍼와 영상용 `getUserMedia`를 준비합니다.
+
+### 유의사항
+
+* **방 종류를 먼저 고릅니다.** 1:1만이면 `createRoom`(P2P), 3명 이상·미디어 서버가 필요하면 `createVideoRoom`(그룹)입니다. 방 안에서는 1:1↔1:N을 전환할 수 없습니다.
+* Host가 방을 만든 뒤 **본인도 `joinRoom`** 해야 합니다. 생성만으로는 입장 상태가 아닙니다.
+* Guest는 공유받은 `roomId`로 `joinRoom`합니다. Host에게는 `join` presence가 갑니다.
+* 영상은 입장 후에 올립니다. 그룹은 `publishVideo` + 상대방 `subscribeVideo`, P2P는 `publishP2P` + 상대방 `subscribed`/`getStream`입니다. ([media](media.md#영상-송수신-시나리오와-presence))
+* 퇴장은 `leaveRoom`입니다. 마지막 인원이 나가고 `destroy: true`(기본)이면 방이 정리됩니다. Host가 명시적으로 끊을 때는 [방 종료](room.md#방-종료)(`destroyRoom`)를 사용할 수 있습니다.
+
+### 단계 요약
+
+| 순서 | Host | Guest | presence / 비고 |
+| ---- | ---- | ----- | --------------- |
+| 1 | `init` | `init` | userId 확보 |
+| 2 | `createRoom` 또는 `createVideoRoom` | — | `roomId` 확보·공유 |
+| 3 | `joinRoom(roomId)` | `joinRoom(roomId)` | Guest 입장 시 Host에 `join` |
+| 4 | cam publish (`publishP2P` 또는 `publishVideo`) | 동일(양방향이면) | `subscribed` 또는 `publish` → UI 연결 |
+| 5 | `leaveRoom` | `leaveRoom` | 상대방에 `leave` · 스트림/DOM 정리 |
+
+### Host 쪽 흐름 예시 (P2P)
+
+{% code title="lifecycle - host (P2P)" %}
+```javascript
+// 0) presence는 입장 전에 등록 (join / leave / subscribed 등)
+knowledgetalk.addEventListener('presence', onPresence);
+
+// 1) 세션
+await knowledgetalk.init(/* cpCode, authKey, ... */);
+
+// 2) 방 생성 → 3) 본인 입장
+const { roomId } = await knowledgetalk.createRoom(undefined, 'p2pRoom', 2);
+await knowledgetalk.joinRoom(roomId);
+// roomId를 Guest에게 전달 (앱 채널)
+
+// 4) Guest join presence를 받은 뒤(또는 준비되면) 영상 송신
+const localStream = await navigator.mediaDevices.getUserMedia({
+  video: true,
+  audio: true,
+});
+await knowledgetalk.publishP2P(guestId, 'cam', localStream);
+// Guest 쪽 subscribed → getStream 은 onPresence에서 처리
+
+// 5) 통화 종료
+await knowledgetalk.leaveRoom(roomId);
+cleanupLocalSession();
+```
+{% endcode %}
+
+### Guest 쪽 흐름 예시 (P2P)
+
+{% code title="lifecycle - guest (P2P)" %}
+```javascript
+knowledgetalk.addEventListener('presence', onPresence);
+
+await knowledgetalk.init(/* ... */);
+
+// Host가 알려 준 roomId로 입장
+await knowledgetalk.joinRoom(roomId);
+
+const localStream = await navigator.mediaDevices.getUserMedia({
+  video: true,
+  audio: true,
+});
+await knowledgetalk.publishP2P(hostId, 'cam', localStream);
+
+await knowledgetalk.leaveRoom(roomId);
+cleanupLocalSession();
+```
+{% endcode %}
+
+### 그룹통화로 바꿀 때
+
+* 2단계에서 `createVideoRoom`을 사용합니다.
+* 4단계에서 `publishVideo('cam', stream)`을 사용하고, 상대방은 `publish` presence 후 `subscribeVideo`로 수신합니다. ([영상 송수신](media.md#영상-송수신-시나리오와-presence))
+* 샘플: [그룹 샘플](../sample/group.md), [P2P 샘플](../sample/p2p.md)
+
+### 관련 절
+
+* [P2P 방 생성](room.md#p2p-방-생성) / [그룹통화 방 생성](room.md#그룹통화-방-생성)
+* [방 입장](room.md#방-입장) / [방 퇴장](room.md#방-퇴장) / [방 종료](room.md#방-종료)
+* [입장·퇴장 presence](room.md#입장퇴장-시나리오와-presence)
+* [영상 송수신 presence](media.md#영상-송수신-시나리오와-presence)
+
