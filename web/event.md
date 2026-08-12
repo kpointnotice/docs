@@ -65,7 +65,9 @@ knowledgetalk.addEventListener('presence', async event => {
 
 미디어 서버에서 수신 가능한 사용자들의 영상 알림
 
-<mark style="color:red;">publishVideo 호출 시 type === 'cam'으로 분기해 처리</mark>
+<mark style="color:red;">publishVideo 호출 시 type === 'cam', screenStart(그룹) 호출 시 type === 'screen' 으로 분기해 처리</mark>
+
+그룹 화면 공유의 **실제 영상 수신**은 이 이벤트에서 `subscribeVideo(feed.id, 'screen')`로 처리합니다. `screen` 이벤트만으로는 스트림이 연결되지 않습니다. ([공유 기능](share.md#화면-공유-통합-흐름), [그룹 샘플](../sample/group.md#6-화면-공유))
 
 - **타입**
 
@@ -149,7 +151,7 @@ case 'subscribed': {
 
 ## type: 'screen'
 
-화면 공유 알림, screenStart 호출 시 발생합니다.
+화면 공유 알림, screenStart 호출 시 발생
 
 - P2P의 경우 subscribed 이벤트와 screen 이벤트가 동시에 발생합니다.\
   ["p2p stream 조회 예시"](event.md#type-subscribed)와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됩니다.
@@ -288,7 +290,7 @@ case 'subscribed': {
 
 분반 생성 알림
 
-- 분반 이동 시나리오: [분반 이동 (생성 → 입장 → 종료)](group.md#시나리오-분반-이동-생성--입장--종료)
+수신 후 앱에서 `leaveRoom` → `joinRoom(groupId)`로 분반에 참여해야 합니다. SDK가 자동으로 방을 바꿔 주지 않습니다. ([분반 기능 - 호출 후](group.md#호출-후), [분반 이동 시나리오](group.md#시나리오-분반-이동-생성--입장--종료))
 
 - **타입**
 
