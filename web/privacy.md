@@ -149,8 +149,7 @@ await privacyMode.stop();
 
 카메라 원본 대신 **블러/가상 배경이 적용된 트랙**을 상대방에게 보냅니다. `PrivacyMode`와 Knowledgetalk SDK를 함께 씁니다.
 
-> **시각화(placeholder)**  
-> TODO: privacyMode start → sendBlurVideoTrack → stop 시퀀스
+![사생활 보호](../img/seq_privacy.png)
 
 ### 호출 전
 

@@ -197,8 +197,7 @@ changeLocalStream(
 
 카메라 영상도 API 호출과 presence가 한 세트입니다. **그룹**은 `publish` → `subscribeVideo`, **P2P**는 `subscribed` → `getStream` 패턴이 다릅니다.
 
-> **시각화(placeholder)**  
-> TODO: publishVideo / publishP2P ↔ presence publish·subscribed 시퀀스
+![영상 송수신](../img/seq_media.png)
 
 ### 호출 전
 
@@ -264,8 +263,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 
 끊기거나 불안정한 P2P 카메라 연결을 **방 퇴장 없이** 피어만 정리한 뒤 다시 `publishP2P`합니다. `leaveRoom` / 방 재입장과는 다릅니다.
 
-> **시각화(placeholder)**  
-> TODO: P2P 재연결 시퀀스
+![P2P 재연결](../img/seq_p2p_reconnect.png)
 
 ### 호출 전
 

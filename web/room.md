@@ -334,8 +334,7 @@ permit(
 
 Host가 Guest에게 채팅·화면 공유·화이트보드 등 권한을 주고, **Guest 앱 UI에서 해당 기능을 열어 주는** 흐름입니다. SDK `permit`은 서버에 권한 값을 기록·전달하며, 버튼 활성/비활성은 앱 책임입니다.
 
-> **시각화(placeholder)**  
-> TODO: permit → (알림) → Guest UI unlock → screenStart 등
+![권한 부여](../img/seq_permit.png)
 
 ### 호출 전
 
@@ -529,8 +528,7 @@ editRoomInfo(
 
 `joinRoom` / `leaveRoom`은 요청-응답만으로 끝나지 않습니다. **이미 방에 있는 다른 클라이언트**는 presence로 입·퇴장을 알게 되고, 여기서 video 박스·멤버 목록을 갱신해야 합니다.
 
-> **시각화(placeholder)**  
-> TODO: joinRoom / leaveRoom ↔ presence join·leave 시퀀스
+![입장 및 퇴장](../img/seq_join_leave.png)
 
 ### 호출 전 (공통)
 
@@ -594,8 +592,9 @@ knowledgetalk.addEventListener('presence', async (event) => {
 
 한 통화의 전체 흐름을 Host / Guest 기준으로 이어 붙입니다. API 시그니처·presence 세부 예시는 위 절과 [영상 송수신](media.md#영상-송수신-시나리오와-presence)을 참고합니다.
 
-> **시각화(placeholder)**  
-> TODO: 방 라이프사이클 E2E 시퀀스 (init → create → join → publish → leave)
+![방 라이프사이클 (P2P)](../img/seq_lifecycle_p2p.png)
+
+![방 라이프사이클 (그룹)](../img/seq_lifecycle_group.png)
 
 ### 호출 전
 

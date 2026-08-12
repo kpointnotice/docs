@@ -4,8 +4,7 @@
 
 그룹 통화 기준으로, SDK `screenStart` 호출만으로는 로컬/원격 영상이 화면에 나타나지 않습니다. 앱에서 스트림 획득·video DOM·presence 구독을 함께 처리해야 합니다.
 
-> **시각화(placeholder)**  
-> TODO: 화면 공유 송수신 시퀀스 다이어그램 (getDisplayMedia → 로컬 DOM → screenStart → publish/subscribe → shareStop)
+![화면 공유 송수신](../img/seq_share.png)
 
 1. **전제**: `init` → 방 입장 → `presence` 리스너 등록
 2. **송신**: `getDisplayMedia` → 로컬 screen video DOM + `srcObject` → `screenStart(stream)`
@@ -515,8 +514,7 @@ shareStop(): Promise<{
 
 `screenStart`만 호출해서는 로컬/원격 화면이 자동으로 그려지지 않습니다. **스트림 획득 · 로컬 DOM · presence 구독**을 앱에서 한 세트로 처리합니다.
 
-> **시각화(placeholder)**  
-> TODO: 화면 공유 송수신 시퀀스 (getDisplayMedia → screenStart → publish/subscribed → shareStop)
+![화면 공유 송수신](../img/seq_share.png)
 
 ### 호출 전
 

@@ -78,8 +78,7 @@ editUserInfo(
 
 상대방에게 본인 카메라 화면을 **안 보이게** 하려면 피어를 끊지 말고, track enable + 상태 알림 + UI로 처리합니다.
 
-> **시각화(placeholder)**  
-> TODO: video on/off UI 흐름
+![본인 비디오 숨김](../img/seq_video_hide.png)
 
 ### 올바른 방법
 

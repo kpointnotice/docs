@@ -162,8 +162,7 @@ knowledgetalk.addEventListener('presence', async event => {
 
 #### 6. 화면 공유
 
-> **시각화(placeholder)**  
-> TODO: 그룹 화면 공유 송신·수신 시퀀스
+![화면 공유 송수신](../img/seq_share.png)
 
 `screenStart` 호출 전에 로컬 미리보기 DOM을 만들고, 수신은 위 `publish` 분기에서 처리합니다. 상세 전제·유의사항은 [공유 기능](../web/share.md#화면-공유-시작)을 참고하세요.
 

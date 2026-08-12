@@ -1,7 +1,6 @@
 # 분반 기능
 
-> **시각화(placeholder)**  
-> TODO: 분반 createGroup → leaveRoom → joinRoom(groupId) 시퀀스
+![분반 이동](../img/seq_group.png)
 
 ## 분반 시작
 
@@ -113,8 +112,7 @@ endGroup(
 
 `createGroup`만으로 참가자가 자동 이동하지 않습니다. **list에 포함된 클라이언트는 presence를 받은 뒤** 메인 룸을 나와 분반 `groupId`로 다시 입장해야 합니다.
 
-> **시각화(placeholder)**  
-> TODO: 분반 createGroup → leaveRoom → joinRoom(groupId) → endGroup 시퀀스
+![분반 이동](../img/seq_group.png)
 
 ### 호출 전
 

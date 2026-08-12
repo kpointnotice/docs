@@ -2,8 +2,7 @@
 
 ## 채팅 메시지 전송
 
-> **시각화(placeholder)**  
-> TODO: 채팅 송수신 흐름 (chat API → presence type chat → UI)
+![채팅 송수신](../img/seq_chat.png)
 
 ### 호출 전
 
