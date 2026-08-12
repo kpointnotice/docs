@@ -68,11 +68,14 @@ createGroup(
 
 ### 유의사항
 
-- 분반 방을 destroy합니다. 분반에 남아 있는 참가자의 leave/메인 복귀 UI는 앱에서 정의합니다.
+- **메인 룸**에서 호출해야 합니다. 분반 안에서 호출하면 실패할 수 있습니다.
+- 분반 방(미디어·방 정보)을 destroy합니다. 분반에 **남아 있는 Guest에게는 종료 presence(`Event`)가 가지 않습니다.**
+- 잔류 Guest는 영상이 끊기고 SDK `roomId`는 분반 ID로 남을 수 있습니다. 메인 복귀(`leaveRoom` → 메인 `joinRoom`)는 **앱에서 반드시 처리**해야 합니다.
 
 ### 호출 후
 
-- 분반 참가자를 메인 룸으로 되돌리는 흐름(leave → 메인 join 등)을 앱에서 처리합니다.
+- 호출한 Host만 `endGroup` 응답(`code`)을 받습니다.
+- Guest 복귀를 위해 Host가 `inform`으로 종료를 알리거나, Guest가 미디어/시그널 실패를 감지한 뒤 메인으로 돌아가게 합니다.
 
 ### API
 
@@ -123,7 +126,7 @@ endGroup(
 
 - Host의 `createGroup` 응답 `groupId`와, Guest가 presence로 받는 `groupId`를 기준으로 이동합니다.
 - 분반 입장 후 영상·멤버 UI는 **새 방 기준**으로 다시 publish/subscribe 해야 할 수 있습니다. ([영상 송수신](media.md#영상-송수신-시나리오와-presence))
-- `endGroup`는 **메인 룸에서** 호출합니다. 분반 참가자의 메인 복귀(leave → 메인 join)는 앱 정책으로 처리합니다.
+- `endGroup`는 **메인 룸에서** 호출합니다. 분반에 남은 Guest에게는 Event가 가지 않으므로, `inform` 등으로 알린 뒤 Guest가 `leaveRoom` → 메인 `joinRoom` 하도록 **앱에서 복귀를 처리**해야 합니다.
 
 ### Host (분반 생성·종료)
 
@@ -140,7 +143,15 @@ if (code !== "200") return;
 // Host 본인도 분반에 들어가려면 Guest와 동일하게 leave → join(groupId)
 // (앱 정책에 따라 Host는 메인에 남을 수도 있습니다.)
 
-// 분반 종료는 메인 룸에서
+// 분반 종료는 메인 룸에서. 분반 잔류 Guest에게는 endGroup Event가 없으므로
+// 분반에 있는 userId로 inform 한 뒤 endGroup
+const mainRoomId = knowledgetalk.getRoomId();
+for (const guestId of breakoutMemberIds) {
+  await knowledgetalk.inform(
+    { type: "endGroup", groupId, mainRoomId },
+    guestId
+  );
+}
 await knowledgetalk.endGroup(groupId);
 ```
 
@@ -174,11 +185,20 @@ knowledgetalk.addEventListener("presence", async (event) => {
       rebuildMemberVideos(roomData.members);
       break;
     }
+
+    case "inform": {
+      // endGroup presence는 없음. Host inform으로 종료를 알린 경우
+      if (msg.message?.type !== "endGroup") break;
+      const groupRoomId = knowledgetalk.getRoomId();
+      await knowledgetalk.leaveRoom(groupRoomId);
+      await knowledgetalk.joinRoom(msg.message.mainRoomId);
+      break;
+    }
   }
 });
 ```
 
 {% endcode %}
 
-- 타입 상세: [type: 'createGroup'](event.md#type-creategroup)
+- 타입 상세: [type: 'createGroup'](event.md#type-creategroup), [inform](event.md#type-inform)
 - 입·퇴장 presence: [입장·퇴장 시나리오](room.md#입장퇴장-시나리오와-presence)

@@ -292,6 +292,8 @@ case 'subscribed': {
 
 수신 후 앱에서 `leaveRoom` → `joinRoom(groupId)`로 분반에 참여해야 합니다. SDK가 자동으로 방을 바꿔 주지 않습니다. ([분반 기능 - 호출 후](group.md#호출-후), [분반 이동 시나리오](group.md#시나리오-분반-이동-생성--입장--종료))
 
+`endGroup`에는 대응하는 presence 타입이 없습니다. 분반에 남은 Guest 복귀는 [분반 종료](group.md#분반-종료)처럼 앱에서 처리합니다.
+
 - **타입**
 
 ```typescript
