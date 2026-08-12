@@ -33,7 +33,7 @@ let knowledgetalk = new Knowledgetalk();
 // 서버 연결
 knowlegetalk.init("KP-20200101-01", "eyJhbGc...").then(result => {
         // 서버 연결에 실패한 경우
-        if(result.code !== '200'){
+        if(result.code !== "200"){
                 
         }
 
@@ -63,11 +63,11 @@ await knowledgetalk.createRoom();
 {% code title="index.js" %}
 ```javascript
 // 방 입장
-let roomData = await knowledgetalk.joinroom('K43254033');
+let roomData = await knowledgetalk.joinroom("K43254033");
 
 // 방 입장에 실패한 경우
-if(roomData.code !== '200'){
-        alert('joinRoom failed!');
+if(roomData.code !== "200"){
+        alert("joinRoom failed!");
         return;
 }
 
@@ -95,7 +95,7 @@ Guest는 Host에게 받은 roomId로 해당 방에 입장합니다.
 let localStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false});
 
 // localStream 객체를 P2P로 전송
-await knowledgetalk.publishP2P('kpoint123','cam', localStream);
+await knowledgetalk.publishP2P("kpoint123","cam", localStream);
 ```
 {% endcode %}
 
@@ -114,24 +114,23 @@ P2P 화면 공유(`screenStart` + `target`) 및 수신(`subscribed` / `cam: fals
 {% code title="event message sample" %}
 ```javascript
 //이벤트 메시지 수신
-knowledgetalk.addEventListener('presence', async event => {
-
+knowledgetalk.addEventListener("presence", async event => {
         let msg = event.detail;
         let type = msg.type;
 
         switch (type){
                 //다른 사용자의 입장을 알림
-                case 'join':
+                case "join":
                         createVideoBox(msg.user.userId);             
                         break;
                 //다른 사용자의 퇴장을 알림
-                case 'leave':
+                case "leave":
                         removeVideoBox(msg.user);
                         break;
                 //다른 사용자의 영상 수신을 알림
-                case 'subscribed':
+                case "subscribed":
                         //상대방이 입장했을때 만들어둔 video 태그인 multiVideo에 상대방의 영상을 연결
-                        document.getElementById('multiVideo-' + msg.user).srcObject = knowledgetalk.getStream(msg.user);
+                        document.getElementById("multiVideo-" + msg.user).srcObject = knowledgetalk.getStream(msg.user);
                         break;
         }       
 }

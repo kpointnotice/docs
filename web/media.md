@@ -18,14 +18,14 @@ await knowledgetalk.publishVideo("cam", stream);
 
 ```typescript
 publishvideo(
-    type: 'cam';
+    type: "cam";
     stream: MediaStream;
 ): Promise<boolean>;
 ```
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>type</td><td>'cam'</td><td>'cam'</td></tr><tr><td>stream</td><td>서버와 연결할 영상 스트림</td><td>MediaStream</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>type</td><td>"cam"</td><td>"cam"</td></tr><tr><td>stream</td><td>서버와 연결할 영상 스트림</td><td>MediaStream</td></tr></tbody></table>
 
 - **응답 상세**\
   성공 시 true, 실패 시 false를 리턴합니다.
@@ -50,13 +50,13 @@ await knowledgetalk.subscribeVideo("kpoint123", "cam");
 ```typescript
 subscribeVideo(
     userId: string;
-    type: 'cam' | 'screen';
+    type: "cam" | "screen";
 ): Promise<MediaStream | false>;
 ```
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>상대방의 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td><ul><li>cam: <a href="media.md#undefined">publishVideo</a>로 배포된 영상 수신</li><li>screen: <a href="share.md#undefined">screenStart</a>로 배포된 영상 수신</li></ul></td><td>'cam'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>상대방의 유저 아이디</td><td>"kpoint123"</td></tr><tr><td>type</td><td><ul><li>cam: <a href="media.md#undefined">publishVideo</a>로 배포된 영상 수신</li><li>screen: <a href="share.md#undefined">screenStart</a>로 배포된 영상 수신</li></ul></td><td>"cam"</td></tr></tbody></table>
 
 - **응답 상세**
 
@@ -79,14 +79,14 @@ await knowledgetalk.publishP2P("kpoint123", "cam", stream);
 ```typescript
 publishP2P(
     userId: string;
-    type: 'cam';
+    type: "cam";
     stream: MediaStream;
 ): Promise<boolean>;
 ```
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>영상을 받을 상대방 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td>'cam'</td><td>'cam'</td></tr><tr><td>stream</td><td>영상 스트림</td><td>MediaStream</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>영상을 받을 상대방 유저 아이디</td><td>"kpoint123"</td></tr><tr><td>type</td><td>"cam"</td><td>"cam"</td></tr><tr><td>stream</td><td>영상 스트림</td><td>MediaStream</td></tr></tbody></table>
 
 - **응답 상세**
 
@@ -121,13 +121,13 @@ await knowledgetalk.removeLocalPeer("kpoint123", "cam");
 ```typescript
 removeLocalPeer(
     peerId: string;
-    type: 'cam' | 'screen';
+    type: "cam" | "screen";
 ): Promise<boolean>;
 ```
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>peerId</td><td>정리할 상대방 유저 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td>cam / screen 구분</td><td>'cam'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>peerId</td><td>정리할 상대방 유저 아이디</td><td>"kpoint123"</td></tr><tr><td>type</td><td>cam / screen 구분</td><td>"cam"</td></tr></tbody></table>
 
 - **응답 상세**
 
@@ -150,13 +150,13 @@ await knowledgetalk.removePeer("kpoint123", "cam");
 ```typescript
 removePeer(
     target: string;
-    type: 'cam' | 'screen';
+    type: "cam" | "screen";
 ): Promise<boolean>;
 ```
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>종료할 피어의 아이디</td><td>'kpoint123'</td></tr><tr><td>type</td><td>cam / screen 구분</td><td>'cam'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>종료할 피어의 아이디</td><td>"kpoint123"</td></tr><tr><td>type</td><td>cam / screen 구분</td><td>"cam"</td></tr></tbody></table>
 
 - **응답 상세**
 
@@ -185,7 +185,7 @@ changeLocalStream(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>새로 변경될 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>p2p인 경우 상대방 USER ID</td><td>'kpoint123'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>새로 변경될 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>p2p인 경우 상대방 USER ID</td><td>"kpoint123"</td></tr></tbody></table>
 
 - **응답 상세**
 
@@ -197,7 +197,9 @@ changeLocalStream(
 
 카메라 영상도 API 호출과 presence가 한 세트입니다. **그룹**은 `publish` → `subscribeVideo`, **P2P**는 `subscribed` → `getStream` 패턴이 다릅니다.
 
-![영상 송수신](../img/seq_media.png)
+![영상 송수신 (P2P)](../img/seq_media_p2p.png)
+
+![영상 송수신 (그룹)](../img/seq_media_group.png)
 
 ### 호출 전
 
@@ -207,15 +209,15 @@ changeLocalStream(
 
 ### 유의사항
 
-- 그룹: `publishVideo('cam', stream)` 후 상대방은 `publish` 이벤트의 `feed.type === 'cam'`으로 수신합니다.
-- P2P: `publishP2P(userId, 'cam', stream)` 후 상대방은 `subscribed` (`cam: true`)에서 `getStream(user)`로 받습니다.
+- 그룹: `publishVideo("cam", stream)` 후 상대방은 `publish` 이벤트의 `feed.type === "cam"`으로 수신합니다.
+- P2P: `publishP2P(userId, "cam", stream)` 후 상대방은 `subscribed` (`cam: true`)에서 `getStream(user)`로 받습니다.
 - 화면 공유(`screen`) 분기는 [화면 공유 송수신 시나리오](share.md#시나리오-화면-공유-송수신)를 참고합니다.
 
 ### 상대방 이벤트 수신 시 (presence)
 
 | type                              | 언제                             | 앱에서 할 일 예시                               |
 | --------------------------------- | -------------------------------- | ----------------------------------------------- |
-| `publish` (`feed.type === 'cam'`) | 그룹에서 상대방이 카메라 publish | `subscribeVideo(id, 'cam')` → video `srcObject` |
+| `publish` (`feed.type === "cam"`) | 그룹에서 상대방이 카메라 publish | `subscribeVideo(id, "cam")` → video `srcObject` |
 | `subscribed` (`cam: true`)        | P2P에서 상대방 카메라 연결 완료  | `getStream(user)` → video `srcObject`           |
 
 {% code title="presence - cam publish (group)" %}
@@ -274,7 +276,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 ### 유의사항
 
 - 요청 측은 `removeLocalPeer` → `removePeer` 순으로 정리한 뒤, `inform`으로 상대방에게 재연결을 알립니다.
-- `message`는 앱 규약 객체면 됩니다. 아래 예시는 `{ type: 'reconnect' }`입니다. ([inform](room.md#알림-메시지-전송), [presence inform](event.md#type-inform))
+- `message`는 앱 규약 객체면 됩니다. 아래 예시는 `{ type: "reconnect" }`입니다. ([inform](room.md#알림-메시지-전송), [presence inform](event.md#type-inform))
 - peer 정리 후 앱이 들고 있던 `MediaStream`은 track을 `removeTrack` / `stop`으로 비우고, video `srcObject`도 해제합니다. (SDK가 앱 쪽 stream map을 대신 지워 주지는 않습니다.)
 - 수신 측도 동일하게 피어·stream을 정리한 뒤 `publishP2P`로 다시 보냅니다. 요청 측은 `subscribed`에서 `getStream`으로 UI를 갱신합니다.
 - **카메라 끄기/가리기**에 `removePeer`만 사용하지 않습니다. track·상태 알림은 [본인 비디오 숨김](userInfo.md#시나리오-본인-비디오-숨김)을 사용합니다.

@@ -50,11 +50,11 @@ createGroup(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>list</td><td><ul><li>분반에 참여할 사용자들</li><li>list 유저들에게 <a href="event.md#type-creategroup">createGroup 이벤트 메시지</a> 보냄<br>메시지 받으면 사용자는 기존 방에서 <a href="room.md#undefined-2">leaveRoom</a> 한 뒤 분반 아이디로 <a href="room.md#undefined-1">joinRoom</a> 해 분반에 참여</li><li>생략 시 분반 방만 생성</li></ul></td><td>['kpoint123', 'knowledge123']</td></tr><tr><td>title</td><td>방 제목</td><td>'분반명'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>list</td><td><ul><li>분반에 참여할 사용자들</li><li>list 유저들에게 <a href="event.md#type-creategroup">createGroup 이벤트 메시지</a> 보냄<br>메시지 받으면 사용자는 기존 방에서 <a href="room.md#undefined-2">leaveRoom</a> 한 뒤 분반 아이디로 <a href="room.md#undefined-1">joinRoom</a> 해 분반에 참여</li><li>생략 시 분반 방만 생성</li></ul></td><td>["kpoint123", "knowledge123"]</td></tr><tr><td>title</td><td>방 제목</td><td>"분반명"</td></tr></tbody></table>
 
 - **응답 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr><tr><td>groupId</td><td>분반 방 아이디</td><td>'r1196417'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr><tr><td>groupId</td><td>분반 방 아이디</td><td>"r1196417"</td></tr></tbody></table>
 
 ---
 
@@ -100,11 +100,11 @@ endGroup(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>groupId</td><td><ul><li>메인 룸에서 호출</li><li>분반 destroy</li></ul></td><td>'r1196417'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>groupId</td><td><ul><li>메인 룸에서 호출</li><li>분반 destroy</li></ul></td><td>"r1196417"</td></tr></tbody></table>
 
 - **응답 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
 ---
 
@@ -198,5 +198,5 @@ knowledgetalk.addEventListener("presence", async (event) => {
 
 {% endcode %}
 
-- 타입 상세: [type: 'createGroup'](event.md#type-creategroup), [inform](event.md#type-inform)
+- 타입 상세: [type: "createGroup"](event.md#type-creategroup), [inform](event.md#type-inform)
 - 입·퇴장 presence: [입장·퇴장 시나리오](room.md#입장퇴장-시나리오와-presence)

@@ -51,7 +51,7 @@ start(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>inputVideo</td><td>사생활 보호를 적용할 stream</td><td>HTMLVideoElement</td></tr><tr><td>outputCanvas</td><td>사생활 보호가 적용된 결과물을 보여줄 canvas</td><td>HTMLCanvasElement</td></tr><tr><td>mode</td><td>블러 처리 또는 가상 배경</td><td>'bg'</td></tr><tr><td>bgSrc</td><td>가상 배경 이미지 경로</td><td>'https://imgUrl...'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>inputVideo</td><td>사생활 보호를 적용할 stream</td><td>HTMLVideoElement</td></tr><tr><td>outputCanvas</td><td>사생활 보호가 적용된 결과물을 보여줄 canvas</td><td>HTMLCanvasElement</td></tr><tr><td>mode</td><td>블러 처리 또는 가상 배경</td><td>"bg"</td></tr><tr><td>bgSrc</td><td>가상 배경 이미지 경로</td><td>"https://imgUrl..."</td></tr></tbody></table>
 
 - **응답 상세**
 
@@ -81,7 +81,7 @@ sendBlurVideoTrack(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>sdk</td><td>Knowledgetalk SDK 인스턴스</td><td>Knowledgetalk</td></tr><tr><td>target</td><td>p2p의 경우 타겟 유저 아이디</td><td>'u1234'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>sdk</td><td>Knowledgetalk SDK 인스턴스</td><td>Knowledgetalk</td></tr><tr><td>target</td><td>p2p의 경우 타겟 유저 아이디</td><td>"u1234"</td></tr></tbody></table>
 
 ## 사생활 보호 배경 변경
 
@@ -104,7 +104,7 @@ changeBackground(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>mode</td><td>변경할 모드</td><td>'bg'</td></tr><tr><td>bgUrl</td><td>bg모드 일 경우 배경 이미지 경로</td><td>'https://imageUrl...'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>mode</td><td>변경할 모드</td><td>"bg"</td></tr><tr><td>bgUrl</td><td>bg모드 일 경우 배경 이미지 경로</td><td>"https://imageUrl..."</td></tr></tbody></table>
 
 ## 사생활 보호 요소 업데이트
 
@@ -176,7 +176,7 @@ await privacyMode.init();
 const blurStream = await privacyMode.start(
   inputVideo,
   outputCanvas,
-  "blur", // 또는 'bg' + 배경 URL
+  "blur", // 또는 "bg" + 배경 URL
   null,
 );
 previewVideo.srcObject = blurStream;
@@ -185,13 +185,13 @@ previewVideo.srcObject = blurStream;
 // (그룹)
 await knowledgetalk.publishVideo("cam", blurStream);
 // (P2P)
-// await knowledgetalk.publishP2P(partnerId, 'cam', blurStream);
+await knowledgetalk.publishP2P(partnerId, "cam", blurStream);
 
 // --- B. 이미 원본으로 publish한 경우: sender 트랙만 교체 ---
-// await privacyMode.sendBlurVideoTrack(knowledgetalk /*, partnerId */);
+await privacyMode.sendBlurVideoTrack(knowledgetalk /*, partnerId */);
 
 // 배경·모드 변경 (이미 start 한 뒤)
-// await privacyMode.changeBackground('bg', 'https://imageUrl...');
+await privacyMode.changeBackground("bg", "https://imageUrl...");
 
 // 종료: 원본 트랙 복구 + 리소스 정리
 await privacyMode.stop();

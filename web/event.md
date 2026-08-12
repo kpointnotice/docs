@@ -10,15 +10,15 @@
 
 ```javascript
 // 이벤트 메시지 알림
-knowledgetalk.addEventListener('presence', async event => {
+knowledgetalk.addEventListener("presence", async event => {
     const { type, ...data } = e.detail;
 
-    console.log('이벤트 타입', type);
-    console.log('이벤트 데이터', data);
+    console.log("이벤트 타입", type);
+    console.log("이벤트 데이터", data);
 
     // 타입별 분기
-    switch(type) {
-        case 'join': {
+    switch (type) {
+        case "join": {
             break;
         }
     }
@@ -29,7 +29,7 @@ knowledgetalk.addEventListener('presence', async event => {
 
 ## 타입별 상세 메시지 예시
 
-## type: 'join'
+## type: "join"
 
 다른 사용자의 입장 알림
 
@@ -46,7 +46,7 @@ knowledgetalk.addEventListener('presence', async event => {
 
 - [Member 참조](room.md#undefined-1)
 
-## type: 'leave'
+## type: "leave"
 
 다른 사용자의 퇴장 알림
 
@@ -61,31 +61,31 @@ knowledgetalk.addEventListener('presence', async event => {
 }
 ```
 
-## type: 'publish'
+## type: "publish"
 
 미디어 서버에서 수신 가능한 사용자들의 영상 알림
 
-<mark style="color:red;">publishVideo 호출 시 type === 'cam', screenStart(그룹) 호출 시 type === 'screen' 으로 분기해 처리</mark>
+<mark style="color:red;">publishVideo 호출 시 type === "cam", screenStart(그룹) 호출 시 type === "screen" 으로 분기해 처리</mark>
 
-그룹 화면 공유의 **실제 영상 수신**은 이 이벤트에서 `subscribeVideo(feed.id, 'screen')`로 처리합니다. `screen` 이벤트만으로는 스트림이 연결되지 않습니다. ([공유 기능](share.md#화면-공유-통합-흐름), [그룹 샘플](../sample/group.md#6-화면-공유))
+그룹 화면 공유의 **실제 영상 수신**은 이 이벤트에서 `subscribeVideo(feed.id, "screen")`로 처리합니다. `screen` 이벤트만으로는 스트림이 연결되지 않습니다. ([공유 기능](share.md#화면-공유-통합-흐름), [그룹 샘플](../sample/group.md#6-화면-공유))
 
 - **타입**
 
 ```typescript
 {
-      eventOp: 'presence';
-      type: 'publish';
+      eventOp: "presence";
+      type: "publish";
       roomId: string;
       feeds: Feed[];
 }
 
 // publishVideo로부터 송신된 메시지
-type Feed = Member & { type: 'cam' };
+type Feed = Member & { type: "cam" };
 
 // screenStart로부터 송신된 메시지
 type Feed = {
       id: string;
-      type: 'screen';
+      type: "screen";
 };
 ```
 
@@ -95,7 +95,7 @@ type Feed = {
   [subscribeVideo](media.md#undefined-1)를 호출해 stream을 수신합니다.
 
 ```typescript
-case 'publish': {
+case "publish": {
   data.feeds.forEach(async (feed) => {
     const stream = await knowledgetalk.subscribeVideo(feed.id, feed.type);
 
@@ -112,7 +112,7 @@ case 'publish': {
 };
 ```
 
-## type: 'subscribed'
+## type: "subscribed"
 
 해당 사용자의 영상에 대한 P2P 연결 완료 알림
 
@@ -134,14 +134,14 @@ case 'publish': {
 - **p2p stream 조회 예시**
 
 ```typescript
-case 'subscribed': {
+case "subscribed": {
   const { cam, user } = data;
 
   if (cam) {
     const stream = knowledgetalk.getStream(user);
     // ... 유저 캠 stream 처리
   } else {
-    const stream = knowledgetalk.getStream('screen');
+    const stream = knowledgetalk.getStream("screen");
     // ... 화면 공유 stream 처리
   }
 
@@ -149,7 +149,7 @@ case 'subscribed': {
 };
 ```
 
-## type: 'screen'
+## type: "screen"
 
 화면 공유 알림, screenStart 호출 시 발생
 
@@ -170,7 +170,7 @@ case 'subscribed': {
 }
 ```
 
-## type: 'whiteBoard'
+## type: "whiteBoard"
 
 화이트보드 알림
 
@@ -185,7 +185,7 @@ case 'subscribed': {
 }
 ```
 
-## type: 'document'
+## type: "document"
 
 자료 공유 알림
 
@@ -200,7 +200,7 @@ case 'subscribed': {
 }
 ```
 
-## type: 'documentShare'
+## type: "documentShare"
 
 이미지 경로 알림
 
@@ -216,7 +216,7 @@ case 'subscribed': {
 }
 ```
 
-## type: 'shareStop'
+## type: "shareStop"
 
 공유 중지 알림
 
@@ -233,7 +233,7 @@ case 'subscribed': {
 }
 ```
 
-## type: 'chat'
+## type: "chat"
 
 채팅 메시지 알림
 
@@ -248,12 +248,12 @@ case 'subscribed': {
 }
 ```
 
-## type: 'inform'
+## type: "inform"
 
 커스텀 메시지 수신 알림\
 정의되지 않은 메시지가 필요할 경우 사용할 수 있습니다.
 
-- P2P 재연결처럼 앱 규약 객체(`{ type: 'reconnect' }` 등)를 `message`로 넘기는 응용 예시는 [media · P2P 재연결](media.md#p2p-응용-시나리오-재연결)을 참고합니다.
+- P2P 재연결처럼 앱 규약 객체(`{ type: "reconnect" }` 등)를 `message`로 넘기는 응용 예시는 [media · P2P 재연결](media.md#p2p-응용-시나리오-재연결)을 참고합니다.
 
 - **타입**
 
@@ -266,7 +266,7 @@ case 'subscribed': {
 }
 ```
 
-## type: 'editUserInfo'
+## type: "editUserInfo"
 
 사용자 정보 변경 알림
 
@@ -286,7 +286,7 @@ case 'subscribed': {
 }
 ```
 
-## type: 'createGroup'
+## type: "createGroup"
 
 분반 생성 알림
 
@@ -305,7 +305,7 @@ case 'subscribed': {
 }
 ```
 
-## type: 'kickOut'
+## type: "kickOut"
 
 강제 퇴장 알림
 
@@ -320,7 +320,7 @@ case 'subscribed': {
 }
 ```
 
-## type: 'talking'
+## type: "talking"
 
 화자 감지 알림
 
@@ -338,7 +338,7 @@ case 'subscribed': {
 
 - 현재 미사용 중인 메서드
 
-#### ~~type: 'drawingClassStart'~~
+#### ~~type: "drawingClassStart"~~
 
 {% code title="event message sample" %}
 
@@ -354,7 +354,7 @@ case 'subscribed': {
 
 {% endcode %}
 
-#### ~~type: 'drawingShareStart'~~
+#### ~~type: "drawingShareStart"~~
 
 {% code title="event message sample" %}
 
@@ -370,7 +370,7 @@ case 'subscribed': {
 
 {% endcode %}
 
-#### ~~type: 'drawingShareStop'~~
+#### ~~type: "drawingShareStop"~~
 
 {% code title="event message sample" %}
 
@@ -386,7 +386,7 @@ case 'subscribed': {
 
 {% endcode %}
 
-#### ~~type: 'drawingShareImg'~~
+#### ~~type: "drawingShareImg"~~
 
 {% code title="event message sample" %}
 
@@ -403,7 +403,7 @@ case 'subscribed': {
 
 {% endcode %}
 
-#### ~~type: 'drawingClassStop'~~
+#### ~~type: "drawingClassStop"~~
 
 {% code title="event message sample" %}
 

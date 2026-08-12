@@ -35,7 +35,7 @@ let knowledgetalk = new Knowledgetalk();
 // 서버 연결
 knowlegetalk.init("KP-20200101-01", "eyJhbGc...").then(result => {
         // 서버 연결에 실패한 경우
-        if(result.code !== '200'){
+        if(result.code !== "200"){
                 
         }
 
@@ -65,11 +65,11 @@ await knowledgetalk.createVideoRoom();
 {% code title="index.js" %}
 ```javascript
 // 방 입장
-let roomData = await knowledgetalk.joinroom('K43254033');
+let roomData = await knowledgetalk.joinroom("K43254033");
 
 // 방 입장에 실패한 경우
-if(roomData.code !== '200'){
-        alert('joinRoom failed!');
+if(roomData.code !== "200"){
+        alert("joinRoom failed!");
         return;
 }
 
@@ -97,11 +97,11 @@ Guest는 Host에게 받은 roomId로 해당 방에 입장합니다.
 let localStream = await navigator.mediaDevices.getUserMedia({video: true, audio: false});
 
 // localStream 객체를 미디어 서버에 전송
-let result = await knowledgetalk.publishVideo('cam', localStream);
+let result = await knowledgetalk.publishVideo("cam", localStream);
 
 // 영상 전송에 실패한 경우
 if(!result){
-    alert('publish video failed!');
+    alert("publish video failed!");
 }
 ```
 {% endcode %}
@@ -114,45 +114,45 @@ if(!result){
 
 #### 5. 이벤트 메시지 수신
 
-`presence` 리스너는 방 입장 직후·화면 공유 전에 등록해 두는 것이 안전합니다. 그룹 화면 공유 수신은 `publish`의 `feed.type === 'screen'` 분기에서 처리합니다. ([공유 기능 플레이북](../web/share.md#화면-공유-통합-흐름))
+`presence` 리스너는 방 입장 직후·화면 공유 전에 등록해 두는 것이 안전합니다. 그룹 화면 공유 수신은 `publish`의 `feed.type === "screen"` 분기에서 처리합니다. ([공유 기능 플레이북](../web/share.md#화면-공유-통합-흐름))
 
 {% code title="event message sample" %}
 ```javascript
 // 이벤트 메시지 수신
-knowledgetalk.addEventListener('presence', async event => {
+knowledgetalk.addEventListener("presence", async event => {
 
         let msg = event.detail;
         let type = msg.type;
 
         switch (type){
                 // 다른 사용자의 입장을 알림
-                case 'join':
+                case "join":
                         createVideoBox(msg.user.userId);             
                         break;
                 // 다른 사용자의 퇴장을 알림
-                case 'leave':
+                case "leave":
                         removeVideoBox(msg.user);
                         removeScreenVideoBox(msg.user);
                         break;
                         
                 // 미디어 서버에 배포된 cam / screen 수신
-                case 'publish':
+                case "publish":
                     for(const feed of msg.feeds){
                         let stream = await knowledgetalk.subscribeVideo(feed.id, feed.type);
 
-                        if (feed.type === 'cam') {
+                        if (feed.type === "cam") {
                             createVideoBox(feed.id);
-                            document.getElementById('multiVideo-' + feed.id).srcObject = stream;
+                            document.getElementById("multiVideo-" + feed.id).srcObject = stream;
                         }
 
-                        if (feed.type === 'screen') {
+                        if (feed.type === "screen") {
                             createScreenVideoBox(feed.id);
-                            document.getElementById('screenVideo-' + feed.id).srcObject = stream;
+                            document.getElementById("screenVideo-" + feed.id).srcObject = stream;
                         }
                     }
                     break;
 
-                case 'shareStop':
+                case "shareStop":
                         removeScreenVideoBox(msg.user);
                         break;
         }       
@@ -162,7 +162,7 @@ knowledgetalk.addEventListener('presence', async event => {
 
 #### 6. 화면 공유
 
-![화면 공유 송수신](../img/seq_share.png)
+![화면 공유 송수신 (그룹)](../img/seq_share_group.png)
 
 `screenStart` 호출 전에 로컬 미리보기 DOM을 만들고, 수신은 위 `publish` 분기에서 처리합니다. 상세 전제·유의사항은 [공유 기능](../web/share.md#화면-공유-시작)을 참고하세요.
 
@@ -178,7 +178,7 @@ const userId = knowledgetalk.getUserId();
 
 // 2) 로컬 미리보기용 screen video DOM 생성 후 연결 (SDK가 해주지 않음)
 createScreenVideoBox(userId);
-document.getElementById('screenVideo-' + userId).srcObject = screenStream;
+document.getElementById("screenVideo-" + userId).srcObject = screenStream;
 
 // 3) 그룹 통화: target 없이 screenStart
 const result = await knowledgetalk.screenStart(screenStream);
@@ -187,7 +187,7 @@ if (!result) {
 }
 
 // 4) 브라우저 "공유 중지" 시 SDK 종료
-screenStream.getVideoTracks()[0]?.addEventListener('ended', async () => {
+screenStream.getVideoTracks()[0]?.addEventListener("ended", async () => {
     await knowledgetalk.shareStop();
 }, { once: true });
 ```

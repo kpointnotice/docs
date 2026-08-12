@@ -16,19 +16,21 @@
 |             device             |          String           |               N               |           device info            |
 
 - **샘플**
-{% code title="register" %}
+  {% code title="register" %}
+
 ```json
-  {
-      eventOp: "register",
-      reqId: "abc123",
-      cpCode: "KP-123",
-      ipAddr: "ip address..",
-      authKey: "auth key..",
-      userId: "kpoint123",
-      name: "홍길동",
-      device: "Galaxy Tab"
-  }
+{
+  "eventOp": "register",
+  "reqId": "abc123",
+  "cpCode": "KP-123",
+  "ipAddr": "ip address..",
+  "authKey": "auth key..",
+  "userId": "kpoint123",
+  "name": "홍길동",
+  "device": "Galaxy Tab"
+}
 ```
+
 {% endcode %}
 
 - **응답**
@@ -45,29 +47,27 @@
 - **샘플**
 
 {% code title="register" %}
+
 ```json
-  {
-      eventOp: "register",
-      reqId: "abc123",
-      code: "200",
-      message: "ok",
-      userId: "kpoint12",
-      iceServers: [
-        {
-            "urls": [
-                "turn:dev.knowledgetalk.co.kr:46000"
-            ],
-            "username": "kpoint",
-            "credential": "kpoint01"
-        },
-        {
-            "urls": [
-                "stun:dev.knowledgetalk.co.kr:46000"
-            ]
-        }
-      ]
-  }
+{
+  "eventOp": "register",
+  "reqId": "abc123",
+  "code": "200",
+  "message": "ok",
+  "userId": "kpoint12",
+  "iceServers": [
+    {
+      "urls": ["turn:dev.knowledgetalk.co.kr:46000"],
+      "username": "kpoint",
+      "credential": "kpoint01"
+    },
+    {
+      "urls": ["stun:dev.knowledgetalk.co.kr:46000"]
+    }
+  ]
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -87,8 +87,9 @@
 |            destroy             |          Boolean          |               Y               | if empty, room will be destroyed |
 
 - **샘플**
-  
+
 {% code title="createRoom" %}
+
 ```json
   {
       eventOp: "createRoom",
@@ -100,6 +101,7 @@
       destroy: "false"
   }
 ```
+
 {% endcode %}
 
 - **응답**
@@ -115,15 +117,17 @@
 - **샘플**
 
 {% code title="createRoom" %}
+
 ```json
-  {
-    eventOp: "createRoom",
-    reqId: "abc123",
-    code: "200",
-    message: "OK",
-    roomId: "r6526119"
-  }
+{
+  "eventOp": "createRoom",
+  "reqId": "abc123",
+  "code": "200",
+  "message": "OK",
+  "roomId": "r6526119"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -143,8 +147,9 @@
 |            destroy             |          Boolean          |               Y               | if empty, room will be destroyed |
 
 - **샘플**
-  
+
 {% code title="createRoom" %}
+
 ```json
   {
       eventOp: "createVideoRoom",
@@ -156,6 +161,7 @@
       destroy: "false"
   }
 ```
+
 {% endcode %}
 
 - **응답**
@@ -171,15 +177,17 @@
 - 샘플
 
 {% code title="createVideoRoom" %}
+
 ```json
-  {
-    eventOp: "createVideoRoom",
-    reqId: "abc123",
-    code: "200",
-    message: "OK",
-    roomId: "r6526119"
-  }
+{
+  "eventOp": "createVideoRoom",
+  "reqId": "abc123",
+  "code": "200",
+  "message": "OK",
+  "roomId": "r6526119"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -195,19 +203,19 @@
 |             userId             |          String           |               Y               |             user id              |
 |             roomId             |          String           |               Y               |             room id              |
 
-
-
 - **샘플**
 
 {% code title="destroyRoom" %}
+
 ```json
-  {
-      eventOp: "destroyRoom",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033"
-  }
+{
+  "eventOp": "destroyRoom",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033"
+}
 ```
+
 {% endcode %}
 
 - **응답**
@@ -222,14 +230,16 @@
 - **샘플**
 
 {% code title="destroyRoom" %}
+
 ```json
-  {
-      eventOp: "destroyRoom",
-      reqId: "abc123",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "destroyRoom",
+  "reqId": "abc123",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -245,19 +255,19 @@
 |             userId             |          String           |               Y               |             user id              |
 |             roomId             |          String           |               Y               |             room id              |
 
-
-
 - 샘플
-  
+
 {% code title="joinRoom" %}
+
 ```json
-  {
-      eventOp: "joinRoom",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033"
-  }
+{
+  "eventOp": "joinRoom",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033"
+}
 ```
+
 {% endcode %}
 
 - 응답
@@ -278,6 +288,7 @@
 - 샘플
 
 {% code title="joinRoom" %}
+
 ```json
   {
       eventOp: "joinRoom",
@@ -299,6 +310,7 @@
       }
   }
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -314,19 +326,19 @@
 |             userId             |          String           |               Y               |             user id              |
 |             roomId             |          String           |               Y               |             room id              |
 
-
-
 - 샘플
 
 {% code title="leaveRoom" %}
+
 ```json
-  {
-      eventOp: "leaveRoom",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033"
-  }
+{
+  "eventOp": "leaveRoom",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033"
+}
 ```
+
 {% endcode %}
 
 - 응답
@@ -341,13 +353,15 @@
 - 샘플
 
 {% code title="leaveRoom" %}
+
 ```json
-  {
-      eventOp: "leaveRoom",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "leaveRoom",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -366,11 +380,10 @@
 |              type              |          String           |               N               |           cam / screen           |
 |             target             |          String           |               N               |             taget id             |
 
-
-
 - 샘플
 
 {% code title="sdpRoom" %}
+
 ```json
   {
       eventOp: "sdpRoom",
@@ -382,24 +395,27 @@
       target: "knowledge123"
   }
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="sdpRoom" %}
+
 ```json
-  {
-      eventOp: "sdpRoom",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "sdpRoom",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -409,17 +425,16 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               N               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|              sdp               |          Object           |               Y               |             sdp info             |
-|              type              |          String           |               Y               |           cam / screen           |
-|             target             |          String           |               N               |             taget id             |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | N | transaction id |
+| userId | String | Y | user id |
+| sdp | Object | Y | sdp info |
+| type | String | Y | cam / screen |
+| target | String | N | taget id |
 
 샘플
 {% code title="sdp" %}
+
 ```json
   {
       eventOp: "sdp",
@@ -430,24 +445,27 @@
       target: "knowledge123"
   }
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="sdp" %}
+
 ```json
-  {
-      eventOp: "sdp",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "sdp",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -457,19 +475,18 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-|              type              |          String           |               Y               |           cam / screen           |
-|             target             |          String           |               Y               |             taget id             |
-|             video              |          Boolean          |               Y               |            영상 권한             |
-|             audio              |          Boolean          |               Y               |            음성 권한             |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
+| type | String | Y | cam / screen |
+| target | String | Y | taget id |
+| video | Boolean | Y | 영상 권한 |
+| audio | Boolean | Y | 음성 권한 |
 
 샘플
 {% code title="subscribe" %}
+
 ```json
   {
       eventOp: "subscribe",
@@ -482,24 +499,27 @@
       audio: "true"
   }
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="subscribe" %}
+
 ```json
-  {
-      eventOp: "subscribe",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "subscribe",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -509,41 +529,43 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
 
 샘플
 {% code title="screen" %}
+
 ```json
-  {
-      eventOp: "screen",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033"
-  }
+{
+  "eventOp": "screen",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="screen" %}
+
 ```json
-  {
-      eventOp: "screen",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "screen",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -553,41 +575,43 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
 
 샘플
 {% code title="whiteboard" %}
+
 ```json
-  {
-      eventOp: "whiteboard",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033"
-  }
+{
+  "eventOp": "whiteboard",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="whiteboard" %}
+
 ```json
-  {
-      eventOp: "whiteboard",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "whiteboard",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -597,41 +621,43 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
 
 샘플
 {% code title="document" %}
+
 ```json
-  {
-      eventOp: "document",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033"
-  }
+{
+  "eventOp": "document",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="document" %}
+
 ```json
-  {
-      eventOp: "document",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "document",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -641,43 +667,45 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-|              img               |          String           |               Y               |           이미지 정보            |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
+| img | String | Y | 이미지 정보 |
 
 샘플
 {% code title="documentShare" %}
+
 ```json
-  {
-      eventOp: "documentShare",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033",
-      img: "imgURL"
-  }
+{
+  "eventOp": "documentShare",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033",
+  "img": "imgURL"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="documentShare" %}
+
 ```json
-  {
-      eventOp: "documentShare",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "documentShare",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -687,47 +715,67 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-|               xy               |          Object           |               N               |         그리기 위치 정보         |
-|              tool              |          String           |               N               |     그리기 도구(pen, eraser)     |
-|             color              |          String           |               N               |        색깔(pen, eraser)         |
-|          strokeWidth           |          number           |               N               |         그리기 도구 굵기         |
-
-
+| eventOp | String | Y | op name |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
+| xy | Object | N | 그리기 위치 정보 |
+| tool | String | N | 그리기 도구(pen, crayon, eraser, shape, pointer, textbox, stamp, clear 등) |
+| color | String | N | 색깔(해당 도구) |
+| strokeWidth | number | N | 그리기 도구 굵기 (textbox는 글자 크기) |
+| type | String | N | highlight / ShapeType / textbox 이미지 data URL 등 |
 
 샘플
 {% code title="drawing" %}
+
 ```json
-  {
-      eventOp: "drawing",
-      userId: "kpoint123",
-      roomId: "K43254033",
-      xy: {x:"x축",y:"y축"},
-      tool: "pen",
-      color: "black",
-      strokeWidth: "1"
-  }
+{
+  "eventOp": "drawing",
+  "userId": "kpoint123",
+  "roomId": "K43254033",
+  "xy": { "x0": 0.1, "y0": 0.2, "x1": 0.3, "y1": 0.4 },
+  "tool": "crayon",
+  "color": "blue",
+  "strokeWidth": 5,
+  "state": "move"
+}
 ```
+
+{% endcode %}
+
+텍스트박스 확정 시에는 `xy` 대신 `type`에 이미지 data URL이 실립니다.
+
+{% code title="drawing (textbox)" %}
+
+```json
+{
+  "eventOp": "drawing",
+  "userId": "kpoint123",
+  "roomId": "K43254033",
+  "tool": "textbox",
+  "type": "data:image/png;base64,..."
+}
+```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="drawing" %}
+
 ```json
-  {
-      eventOp: "drawing",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "drawing",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -737,41 +785,43 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
 
 샘플
 {% code title="shareStop" %}
+
 ```json
-  {
-      eventOp: "shareStop",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033"
-  }
+{
+  "eventOp": "shareStop",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="shareStop" %}
+
 ```json
-  {
-      eventOp: "shareStop",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "shareStop",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -781,39 +831,41 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
 
 샘플
 {% code title="changeName" %}
+
 ```json
-  {
-      eventOp: "changeName",
-      reqId: "abc123",
-      userId: "kpoint123"
-  }
+{
+  "eventOp": "changeName",
+  "reqId": "abc123",
+  "userId": "kpoint123"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="changeName" %}
+
 ```json
-  {
-      eventOp: "changeName",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "changeName",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -823,45 +875,47 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             target             |          String           |               N               |             taget id             |
-|             roomId             |          String           |               N               |             room id              |
-|            message             |          String           |               Y               |       보내고자 하는 메시지       |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| target | String | N | taget id |
+| roomId | String | N | room id |
+| message | String | Y | 보내고자 하는 메시지 |
 
 샘플
 {% code title="chat" %}
+
 ```json
-  {
-      eventOp: "chat",
-      reqId: "abc123",
-      userId: "kpoint123",
-      target: "knowledge123",
-      roomId: "K43254033",
-      message: "Hello!"
-  }
+{
+  "eventOp": "chat",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "target": "knowledge123",
+  "roomId": "K43254033",
+  "message": "Hello!"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="chat" %}
+
 ```json
-  {
-      eventOp: "chat",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "chat",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -871,53 +925,55 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             target             |          String           |               Y               |             taget id             |
-|              chat              |          Boolean          |               N               |            채팅 권한             |
-|              draw              |          Boolean          |               N               |           그리기 권한            |
-|             screen             |          Boolean          |               N               |            영상 권한             |
-|           whiteboard           |          Boolean          |               N               |         화이트보드 권한          |
-|            document            |          Boolean          |               N               |          자료 공유 권한          |
-
-
+| eventOp | String | Y | op name |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
+| reqId | String | Y | transaction id |
+| target | String | Y | taget id |
+| chat | Boolean | N | 채팅 권한 |
+| draw | Boolean | N | 그리기 권한 |
+| screen | Boolean | N | 영상 권한 |
+| whiteboard | Boolean | N | 화이트보드 권한 |
+| document | Boolean | N | 자료 공유 권한 |
 
 샘플
 {% code title="permit" %}
+
 ```json
-  {
-      eventOp: "permit",
-      userId: "kpoint123",
-      roomId: "K43254033",
-      reqId: "abc123",
-      target: "knowledge123",
-      chat: "true",
-      draw: "true",
-      screen: "false",
-      whiteboard: "true",
-      document: "false"
-  }
+{
+  "eventOp": "permit",
+  "userId": "kpoint123",
+  "roomId": "K43254033",
+  "reqId": "abc123",
+  "target": "knowledge123",
+  "chat": "true",
+  "draw": "true",
+  "screen": "false",
+  "whiteboard": "true",
+  "document": "false"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="permit" %}
+
 ```json
-  {
-      eventOp: "permit",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "permit",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -927,49 +983,51 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-|              name              |          String           |               N               |            user name             |
-|             video              |          Boolean          |               N               |            영상 허용             |
-|             audio              |          Boolean          |               N               |            음성 허용             |
-|           broadcast            |          Boolean          |               N               |        브로드캐스트 허용         |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
+| name | String | N | user name |
+| video | Boolean | N | 영상 허용 |
+| audio | Boolean | N | 음성 허용 |
+| broadcast | Boolean | N | 브로드캐스트 허용 |
 
 샘플
 {% code title="editUserInfo" %}
+
 ```json
-  {
-      eventOp: "editUserInfo",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033",
-      name: "홍길동",
-      video: "true",
-      audio: "true",
-      broadcast: "false"
-  }
+{
+  "eventOp": "editUserInfo",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033",
+  "name": "홍길동",
+  "video": "true",
+  "audio": "true",
+  "broadcast": "false"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="editUserInfo" %}
+
 ```json
-  {
-      eventOp: "editUserInfo",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "editUserInfo",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -979,41 +1037,43 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
 
 샘플
 {% code title="memberList" %}
+
 ```json
-  {
-      eventOp: "memberList",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033"
-  }
+{
+  "eventOp": "memberList",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="memberList" %}
+
 ```json
-  {
-      eventOp: "memberList",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "memberList",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -1023,45 +1083,47 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-|              list              |           Array           |               N               |          사용자 리스트           |
-|             title              |          String           |               N               |            방의 제목             |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
+| list | Array | N | 사용자 리스트 |
+| title | String | N | 방의 제목 |
 
 샘플
 {% code title="createGroup" %}
+
 ```json
-  {
-      eventOp: "createGroup",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033",
-      list: ["kpoint123", "knowledge123"],
-      title: "chatGroup"
-  }
+{
+  "eventOp": "createGroup",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033",
+  "list": ["kpoint123", "knowledge123"],
+  "title": "chatGroup"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="createGroup" %}
+
 ```json
-  {
-      eventOp: "createGroup",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "createGroup",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -1071,43 +1133,45 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             roomId             |          String           |               Y               |             room id              |
-|            groupId             |          String           |               Y               |          분반의 groupId          |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| roomId | String | Y | room id |
+| groupId | String | Y | 분반의 groupId |
 
 샘플
 {% code title="endGroup" %}
+
 ```json
-  {
-      eventOp: "endGroup",
-      reqId: "abc123",
-      userId: "kpoint123",
-      roomId: "K43254033",
-      groupId: "knowledgeGroup"
-  }
+{
+  "eventOp": "endGroup",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "roomId": "K43254033",
+  "groupId": "knowledgeGroup"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="endGroup" %}
+
 ```json
-  {
-      eventOp: "endGroup",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "endGroup",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
@@ -1119,48 +1183,49 @@
 요청
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Required**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :---------------------------: | :------------------------------: |
-|            eventOp             |          String           |               Y               |             op name              |
-|             reqId              |          String           |               Y               |          transaction id          |
-|             userId             |          String           |               Y               |             user id              |
-|             target             |          String           |               Y               |             taget id             |
-|           candidate            |            any            |               Y               |           후보자 정보            |
-|              type              |          String           |               Y               |               타입               |
-|              cam               |          Boolean          |               Y               |        cam / stream 구분         |
-
-
+| eventOp | String | Y | op name |
+| reqId | String | Y | transaction id |
+| userId | String | Y | user id |
+| target | String | Y | taget id |
+| candidate | any | Y | 후보자 정보 |
+| type | String | Y | 타입 |
+| cam | Boolean | Y | cam / stream 구분 |
 
 샘플
 {% code title="candidate" %}
+
 ```json
-  {
-      eventOp: "candidate",
-      reqId: "abc123",
-      userId: "kpoint123",
-      target: "knowledge123",
-      candidate: "candidateObject",
-      type: "candidateType", 
-      cam: "stream"
-  }
+{
+  "eventOp": "candidate",
+  "reqId": "abc123",
+  "userId": "kpoint123",
+  "target": "knowledge123",
+  "candidate": "candidateObject",
+  "type": "candidateType",
+  "cam": "stream"
+}
 ```
+
 {% endcode %}
 
 응답
 | <center>**Parameter**</center> | <center>**Type**</center> | <center>**Description**</center> |
 | :----------------------------: | :-----------------------: | :------------------------------: |
-|            eventOp             |          String           |             op name              |
-|              code              |          String           |          response code           |
-|            message             |          String           |         response message         |
+| eventOp | String | op name |
+| code | String | response code |
+| message | String | response message |
 
 샘플
 {% code title="candidate" %}
+
 ```json
-  {
-      eventOp: "candidate",
-      code: "200",
-      message: "ok"
-  }
+{
+  "eventOp": "candidate",
+  "code": "200",
+  "message": "ok"
+}
 ```
+
 {% endcode %}
 
 성공(200, ok)가 아닌 경우에는 응답 코드로 리턴합니다. ([응답 코드 바로가기](../web/code.md))
-

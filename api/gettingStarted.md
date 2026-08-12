@@ -14,7 +14,7 @@
 
         {
             cpCode: 'CPOFSECRET’,
-            authKey: 'XJCJ535JKF23KRJL....'
+            authKey: "XJCJ535JKF23KRJL...."
         }
 
 4.  TURN 서버 연동 가이드 및 연동 시 유의사항 (아래 정책을 따르지 않으면 네트워크 사용량에 따라 기본 요금제 외의 별도 비용이 발생할 수 있습니다)

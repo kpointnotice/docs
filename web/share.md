@@ -2,16 +2,19 @@
 
 ## 화면 공유 통합 흐름
 
-그룹 통화 기준으로, SDK `screenStart` 호출만으로는 로컬/원격 영상이 화면에 나타나지 않습니다. 앱에서 스트림 획득·video DOM·presence 구독을 함께 처리해야 합니다.
+SDK `screenStart` 호출만으로는 로컬/원격 영상이 화면에 나타나지 않습니다. 앱에서 스트림 획득·video DOM·presence 구독을 함께 처리해야 합니다. 수신 경로는 통화 유형에 따라 기존 피어 영상과 동일하게 갈립니다.
 
-![화면 공유 송수신](../img/seq_share.png)
+![화면 공유 송수신 (P2P)](../img/seq_share_p2p.png)
+
+![화면 공유 송수신 (그룹)](../img/seq_share_group.png)
 
 1. **전제**: `init` → 방 입장 → `presence` 리스너 등록
-2. **송신**: `getDisplayMedia` → 로컬 screen video DOM + `srcObject` → `screenStart(stream)`
-3. **수신(그룹)**: `presence` `publish` (`feed.type === 'screen'`) → `subscribeVideo` → 원격 screen video DOM
-4. **종료**: `shareStop` 또는 브라우저 공유 중지(`track.ended`) → 트랙 stop · DOM 제거
+2. **송신**: `getDisplayMedia` → 로컬 screen video DOM + `srcObject` → `screenStart` (`target`은 P2P만)
+3. **수신(P2P)**: `presence` `subscribed` (`cam: false`) → `getStream("screen")` → 원격 screen video DOM
+4. **수신(그룹)**: `presence` `publish` (`feed.type === "screen"`) → `subscribeVideo` → 원격 screen video DOM
+5. **종료**: `shareStop` 또는 브라우저 공유 중지(`track.ended`) → 트랙 stop · DOM 제거
 
-P2P는 수신 경로가 다릅니다. 그룹은 [publish 이벤트](event.md#type-publish), P2P는 [subscribed 이벤트](event.md#type-subscribed)를 참고하세요. 단계별 코드는 [그룹 샘플 - 화면 공유](../sample/group.md#6-화면-공유)를 참고하세요.
+그룹은 [publish 이벤트](event.md#type-publish), P2P는 [subscribed 이벤트](event.md#type-subscribed)를 참고하세요. 단계별 코드는 [그룹 샘플 - 화면 공유](../sample/group.md#6-화면-공유)를 참고하세요.
 
 ---
 
@@ -20,15 +23,15 @@ P2P는 수신 경로가 다릅니다. 그룹은 [publish 이벤트](event.md#typ
 ### 호출 전
 
 - `init` 및 방 입장(`joinRoom`)이 완료된 상태여야 합니다.
-- `knowledgetalk.addEventListener('presence', ...)`로 이벤트 수신을 준비합니다.
+- `knowledgetalk.addEventListener("presence", ...)`로 이벤트 수신을 준비합니다.
 - `navigator.mediaDevices.getDisplayMedia`로 화면 스트림을 획득합니다.
 - 로컬 미리보기용 `<video>`(또는 컨테이너)를 만들고 `srcObject`에 스트림을 연결합니다. SDK는 로컬 미리보기를 자동으로 만들어 주지 않습니다.
 - 화면 위에 판서를 쓸 경우, `canvas` 요소와 **부모 DOM**을 미리 준비합니다. (`canvasInit`이 parent에 임시 캔버스를 append합니다.)
 
 ### 유의사항
 
-- **그룹 통화**: `target`을 생략합니다. SDK가 내부에서 `publishVideo('screen', stream)`을 호출합니다.
-- **P2P**: 상대 `userId`를 `target`으로 넘깁니다. SDK가 `publishP2P(target, 'screen', stream)`을 호출합니다.
+- **그룹 통화**: `target`을 생략합니다. SDK가 내부에서 `publishVideo("screen", stream)`을 호출합니다.
+- **P2P**: 상대 `userId`를 `target`으로 넘깁니다. SDK가 `publishP2P(target, "screen", stream)`을 호출합니다.
 - `canvas`를 넘기면 SDK가 `canvasInit()` / `drawingInit()`를 포함해 호출하므로 따로 요청하지 않아도 됩니다.
 - 현재 구조상 화면 공유는 사실상 1명 제한이 있습니다. (상세는 관련 가이드 브랜치에서 보강 예정)
 
@@ -36,8 +39,8 @@ P2P는 수신 경로가 다릅니다. 그룹은 [publish 이벤트](event.md#typ
 
 - 성공/실패를 확인하고, 실패 시 로컬 트랙 `stop` 및 DOM을 롤백합니다.
 - 브라우저의 “공유 중지”에 대비해 video track의 `ended` 이벤트에서 `shareStop`을 호출합니다.
-- **그룹 수신**: [publish 이벤트](event.md#type-publish)에서 `feed.type === 'screen'`이면 `subscribeVideo(feed.id, 'screen')` 후 화면용 video에 `srcObject`를 연결합니다. `screen` 이벤트만으로는 영상이 연결되지 않습니다.
-- **P2P 수신**: [subscribed 이벤트](event.md#type-subscribed) (`cam: false`)에서 `getStream('screen')`으로 처리합니다.
+- **그룹 수신**: [publish 이벤트](event.md#type-publish)에서 `feed.type === "screen"`이면 `subscribeVideo(feed.id, "screen")` 후 화면용 video에 `srcObject`를 연결합니다. `screen` 이벤트만으로는 영상이 연결되지 않습니다.
+- **P2P 수신**: [subscribed 이벤트](event.md#type-subscribed) (`cam: false`)에서 `getStream("screen")`으로 처리합니다.
 
 ### API
 
@@ -74,7 +77,7 @@ screenStart(
 
   <mark style="color:red;">**canvas를 넘기면 canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P인 경우 상대방 userId (그룹은 생략)</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 (선택)</td><td>HTMLCanvasElement</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P인 경우 상대방 userId (그룹은 생략)</td><td>"kpoint123"</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 (선택)</td><td>HTMLCanvasElement</td></tr></tbody></table>
 
 - **응답 상세**
 
@@ -191,7 +194,7 @@ _이벤트를 추가합니다._
 
 ### 호출 후
 
-- `setTool`로 펜/지우개 등을 설정한 뒤 사용자 입력을 받습니다.
+- `setTool`로 펜·색연필·텍스트박스·지우개 등을 설정한 뒤 사용자 입력을 받습니다. ([그리기 도구 설정](#그리기-도구-설정))
 
 ### API
 
@@ -297,22 +300,60 @@ reqCanvasImage(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>해당 userId에게 메시지 전송</td><td>'kpoint123'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>해당 userId에게 메시지 전송</td><td>"kpoint123"</td></tr></tbody></table>
 
 - **응답 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
 ---
 
 ## 그리기 도구 설정
+
+화이트보드·문서 공유 등 캔버스 판서에서 사용할 도구를 고릅니다. 시그널 `drawing` 메시지로 궤적(또는 텍스트 이미지)이 상대에게 동기화됩니다.
+
+### 호출 전
+
+- `canvasInit` / `drawingInit`이 끝난 상태여야 합니다. (`whiteBoardStart` / `documentStart`에 canvas를 넘기면 포함됩니다.)
+- **색연필(`crayon`)**: `fabric.CrayonBrush`가 필요합니다. SDK와 함께 `fabric.js`, `fabric_brush.js`를 로드해야 `canvasInit`에서 크레용 레이어가 준비됩니다.
+
+### 도구 목록
+
+| tool | 설명 | strokeWidth | type |
+| ---- | ---- | ----------- | ---- |
+| `pen` | 일반 선. `type: "highlight"`이면 형광펜 | 선 굵기 | `"highlight"`(선택) |
+| `crayon` | 텍스처 있는 색연필 선. SDK 내부에서 브러시 굵기로 변환 | 선 굵기 | — |
+| `eraser` | 지우개 | 선 굵기 | — |
+| `shape` | 도형. 생략 시 `square` | 선 굵기 | `ShapeType` |
+| `pointer` | 포인터 | 선 굵기 | — |
+| `textbox` | 캔버스 클릭 후 텍스트 입력. 확정 시 이미지로 `drawing` 동기화 | **글자 크기(fontSize)** | — |
+
+### 유의사항
+
+- **textbox**: ESC 또는 선택 해제로 입력 확정, Delete로 취소합니다. 다른 도구로 바꾸면 텍스트박스 UI는 제거됩니다.
+- P2P에서 Host가 Guest에게 textbox 사용을 열어 줄 때는 SDK `permit`의 `draw`와 `inform` 앱 규약(`text` 등)을 조합합니다. SDK에 textbox 전용 permit 필드는 없습니다. ([권한 부여 시나리오](room.md#시나리오-권한-부여-후-기능-개방))
+
+### 호출 후
+
+- 사용자가 캔버스에서 드래그·클릭하면 SDK가 그리고 `drawing` 시그널을 보냅니다. 앱에서 별도 emit은 필요 없습니다.
+
+### API
 
 - **예시**
 
 {% code title="index.js" %}
 
 ```javascript
+// 펜
 knowledgetalk.setTool("pen", "black", 1);
+// 형광펜
+knowledgetalk.setTool("pen", "yellow", 8, "highlight");
+// 색연필
+knowledgetalk.setTool("crayon", "blue", 5);
+// 텍스트박스 (세 번째 인자 = 글자 크기)
+knowledgetalk.setTool("textbox", "black", 16);
+// 도형
+knowledgetalk.setTool("shape", "red", 2, "circle");
 ```
 
 {% endcode %}
@@ -321,10 +362,10 @@ knowledgetalk.setTool("pen", "black", 1);
 
 ```typescript
 setTool(
-    tool: 'pen' | 'eraser' | 'shape' | 'pointer' | 'textbox';
+    tool: "pen" | "crayon" | "eraser" | "shape" | "pointer" | "textbox";
     color?: string;
     strokeWidth: number;
-    type?: ShapeType | 'highlight';
+    type?: ShapeType | "highlight";
 ): void;
 ```
 
@@ -344,7 +385,7 @@ type ShapeType =
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>tool</td><td>그리기 도구</td><td>'pen'</td></tr><tr><td>color</td><td>색깔</td><td>'black'</td></tr><tr><td>strokeWidth</td><td>그리기 도구 굵기</td><td>1</td></tr><tr><td>type</td><td><ul><li>형광펜: tool이 pen일 경우 highlight</li><li>도형: tool이 shape일 경우 ShapeType</li><li>그 외 생략</li></ul></td><td></td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>tool</td><td><ul><li>그리기 도구</li><li>pen / crayon / eraser / shape / pointer / textbox</li></ul></td><td>"crayon"</td></tr><tr><td>color</td><td>색깔</td><td>"black"</td></tr><tr><td>strokeWidth</td><td><ul><li>선 굵기 (pen, crayon, eraser, shape 등)</li><li>textbox일 때는 글자 크기</li></ul></td><td>1</td></tr><tr><td>type</td><td><ul><li>형광펜: tool이 pen일 경우 highlight</li><li>도형: tool이 shape일 경우 ShapeType</li><li>그 외 생략</li></ul></td><td></td></tr></tbody></table>
 
 ---
 
@@ -408,7 +449,7 @@ documentStart(
 
 - **응답 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
 - [document 이벤트 메시지](event.md#type-document)를 받아 사용
 
@@ -453,11 +494,11 @@ documentShare(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>imgUrl</td><td>공유할 이미지 URL</td><td>'https://imgURL'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>imgUrl</td><td>공유할 이미지 URL</td><td>"https://imgURL"</td></tr></tbody></table>
 
 - **응답**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
 - [documentShare 이벤트 메시지](event.md#type-documentshare)를 받아 사용
 
@@ -504,7 +545,7 @@ shareStop(): Promise<{
 
 - **응답 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
 - [shareStop 이벤트 메시지](event.md#type-sharestop)를 받아 사용
 
@@ -512,9 +553,11 @@ shareStop(): Promise<{
 
 ## 시나리오: 화면 공유 송수신
 
-`screenStart`만 호출해서는 로컬/원격 화면이 자동으로 그려지지 않습니다. **스트림 획득 · 로컬 DOM · presence 구독**을 앱에서 한 세트로 처리합니다.
+`screenStart`만 호출해서는 로컬/원격 화면이 자동으로 그려지지 않습니다. **스트림 획득 · 로컬 DOM · presence 구독**을 앱에서 한 세트로 처리합니다. P2P/그룹 수신은 피어 영상과 같은 presence 경로를 따릅니다.
 
-![화면 공유 송수신](../img/seq_share.png)
+![화면 공유 송수신 (P2P)](../img/seq_share_p2p.png)
+
+![화면 공유 송수신 (그룹)](../img/seq_share_group.png)
 
 ### 호출 전
 
@@ -524,8 +567,8 @@ shareStop(): Promise<{
 
 ### 유의사항
 
-- **그룹**: `screenStart(stream)`처럼 `target`을 생략합니다. 상대방은 `publish`(`feed.type === 'screen'`) 후 `subscribeVideo`로 받습니다. `screen` 이벤트만으로는 영상이 연결되지 않습니다.
-- **P2P**: `screenStart(stream, partnerId)`로 `target`을 넘깁니다. 상대방은 `subscribed`(`cam: false`)에서 `getStream('screen')`을 사용합니다.
+- **P2P**: `screenStart(stream, partnerId)`로 `target`을 넘깁니다. 상대방은 `subscribed`(`cam: false`)에서 `getStream("screen")`을 사용합니다.
+- **그룹**: `screenStart(stream)`처럼 `target`을 생략합니다. 상대방은 `publish`(`feed.type === "screen"`) 후 `subscribeVideo`로 받습니다. `screen` 이벤트만으로는 영상이 연결되지 않습니다.
 - 브라우저 “공유 중지”에 대비해 video track `ended`에서 `shareStop`을 호출합니다.
 - 화면 공유는 사실상 1명 제한인 경우가 많습니다. (상세 제약은 별도 가이드 항목)
 
@@ -544,8 +587,9 @@ stream.getVideoTracks()[0].addEventListener("ended", async () => {
 
 // 그룹
 await knowledgetalk.screenStart(stream);
+
 // P2P
-// await knowledgetalk.screenStart(stream, partnerId);
+await knowledgetalk.screenStart(stream, partnerId);
 ```
 
 {% endcode %}

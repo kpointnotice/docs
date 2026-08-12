@@ -66,11 +66,11 @@ editUserInfo(
 - **요청 상세**\
   <mark style="color:red;">**name / video / audio 중 하나는 필수**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>name</td><td>유저 닉네임</td><td>'홍길동'</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>broadcast</td><td><ul><li><b>true (기본·권장)</b>: 다른 참가자에게 <a href="event.md#type-edituserinfo">editUserInfo presence</a>로 변경을 알립니다. 상대방 UI 갱신에 필요합니다.</li><li><b>false</b>: presence를 전송하지 않습니다. 호출자 로컬 track만 변경되어 방 안 다른 유저 UI는 갱신되지 않습니다.</li></ul></td><td>true</td></tr><tr><td>target</td><td>P2P 시 상대방 아이디 (5번째 인자. 쓸 때 broadcast를 4번째로 명시합니다.)</td><td>user1234</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>name</td><td>유저 닉네임</td><td>"홍길동"</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>broadcast</td><td><ul><li><b>true (기본·권장)</b>: 다른 참가자에게 <a href="event.md#type-edituserinfo">editUserInfo presence</a>로 변경을 알립니다. 상대방 UI 갱신에 필요합니다.</li><li><b>false</b>: presence를 전송하지 않습니다. 호출자 로컬 track만 변경되어 방 안 다른 유저 UI는 갱신되지 않습니다.</li></ul></td><td>true</td></tr><tr><td>target</td><td>P2P 시 상대방 아이디 (5번째 인자. 쓸 때 broadcast를 4번째로 명시합니다.)</td><td>user1234</td></tr></tbody></table>
 
 - **응답 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>'200'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
 ---
 
