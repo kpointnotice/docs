@@ -33,7 +33,7 @@ SDK `screenStart` 호출만으로는 로컬/원격 영상이 화면에 나타나
 - **그룹 통화**: `target`을 생략합니다. SDK가 내부에서 `publishVideo("screen", stream)`을 호출합니다.
 - **P2P**: 상대 `userId`를 `target`으로 넘깁니다. SDK가 `publishP2P(target, "screen", stream)`을 호출합니다.
 - `canvas`를 넘기면 SDK가 `canvasInit()` / `drawingInit()`를 포함해 호출하므로 따로 요청하지 않아도 됩니다.
-- 현재 구조상 화면 공유는 사실상 1명 제한이 있습니다. (상세는 관련 가이드 브랜치에서 보강 예정)
+- 현재 구조상 화면 공유는 사실상 1명 제한이 있습니다.
 
 ### 호출 후
 
@@ -585,7 +585,7 @@ shareStop(): Promise<{
 - **P2P**: `screenStart(stream, userId)`로 `target`을 넘깁니다. 상대방은 `subscribed`(`cam: false`)에서 `getStream("screen")`을 사용합니다.
 - **그룹**: `screenStart(stream)`처럼 `target`을 생략합니다. 상대방은 `publish`(`feed.type === "screen"`) 후 `subscribeVideo`로 받습니다. `screen` 이벤트만으로는 영상이 연결되지 않습니다.
 - 브라우저 “공유 중지”에 대비해 video track `ended`에서 `shareStop`을 호출합니다.
-- 화면 공유는 사실상 1명 제한인 경우가 많습니다. (상세 제약은 별도 가이드 항목)
+- 화면 공유는 사실상 1명 제한인 경우가 많습니다.
 
 ### 송신 측
 
