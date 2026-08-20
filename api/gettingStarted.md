@@ -26,7 +26,7 @@
 
 [개발용 연동 정보]
 
-- 서버 URL: https://dev.knowledgetalk.co.kr:7102
+- 서버 URL: https://knowledgetalk.co.kr:7104
   - 상기 URL로 소켓 연결이 필요합니다.
-  - https://dev.knowledgetalk.co.kr:7102/socket.io/socket.io.min.js를 import하여 사용해야 합니다.
+  - https://knowledgetalk.co.kr:7104/socket.io/socket.io.min.js를 import하여 사용해야 합니다.
   - 모든 규격은 JSON(객체) 형태로 전송해야 합니다.

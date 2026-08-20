@@ -20,8 +20,8 @@
 
 - 응답의 `groupId`를 보관합니다.
 - `list`에 포함된 유저는 [createGroup 이벤트](event.md#type-creategroup)를 받은 뒤:
-  1. 기존 방에서 [leaveRoom](room.md#undefined-2)
-  2. `groupId`로 [joinRoom](room.md#undefined-1)
+  1. 기존 방에서 [leaveRoom](room.md#방-퇴장)
+  2. `groupId`로 [joinRoom](room.md#방-입장)
   3. 필요 시 카메라 publish / subscribe 등 미디어를 다시 연결
 
 ### API
@@ -50,7 +50,7 @@ createGroup(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>list</td><td><ul><li>분반에 참여할 사용자들</li><li>list 유저들에게 <a href="event.md#type-creategroup">createGroup 이벤트 메시지</a> 보냄<br>메시지 받으면 사용자는 기존 방에서 <a href="room.md#undefined-2">leaveRoom</a> 한 뒤 분반 아이디로 <a href="room.md#undefined-1">joinRoom</a> 해 분반에 참여</li><li>생략 시 분반 방만 생성</li></ul></td><td>["kpoint123", "knowledge123"]</td></tr><tr><td>title</td><td>방 제목</td><td>"분반명"</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>list</td><td><ul><li>분반에 참여할 사용자들</li><li>list 유저들에게 <a href="event.md#type-creategroup">createGroup 이벤트 메시지</a>를 보냅니다.<br>메시지를 받으면 사용자는 기존 방에서 <a href="room.md#방-퇴장">leaveRoom</a>한 뒤 분반 아이디로 <a href="room.md#방-입장">joinRoom</a>해 분반에 참여합니다</li><li>생략 시 분반 방만 생성</li></ul></td><td>["kpoint123", "knowledge123"]</td></tr><tr><td>title</td><td>방 제목</td><td>"분반명"</td></tr></tbody></table>
 
 - **응답 상세**
 

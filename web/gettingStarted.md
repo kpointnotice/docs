@@ -5,7 +5,7 @@
 {% code title="index.html" %}
 ```html
 <!-- SDK 설치 -->
-<script type="text/javascript" src="https://dev.knowledgetalk.co.kr:7102/knowledgetalk.min.js"></script>
+<script type="text/javascript" src="https://knowledgetalk.co.kr:7104/knowledgetalk.min.js"></script>
 ```
 {% endcode %}
 
@@ -55,7 +55,7 @@ init(
 
 * **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="432">Description</th><th>Example</th></tr></thead><tbody><tr><td>cpCode</td><td>발급 받은 cpCode</td><td>"KP-20200101-01"</td></tr><tr><td>authKey</td><td>발급 받은 authKey</td><td>"eyJhbGciO..."</td></tr><tr><td>id</td><td>요청할 유저 아이디</td><td>"kpoint123"</td></tr><tr><td>name</td><td>사용할 닉네임</td><td>"홍길동"</td></tr><tr><td>device</td><td>기기 정보</td><td>"Galaxy Tab"</td></tr><tr><td>forced</td><td><ul><li>true시 기존 연결 끊고 재연결</li><li>기본값: false</li></ul></td><td>false</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="432">Description</th><th>Example</th></tr></thead><tbody><tr><td>cpCode</td><td>발급 받은 cpCode</td><td>"KP-20200101-01"</td></tr><tr><td>authKey</td><td>발급 받은 authKey</td><td>"eyJhbGciO..."</td></tr><tr><td>id</td><td>요청할 유저 아이디</td><td>"kpoint123"</td></tr><tr><td>name</td><td>사용할 닉네임</td><td>"홍길동"</td></tr><tr><td>device</td><td>기기 정보</td><td>"Galaxy Tab"</td></tr><tr><td>forced</td><td><ul><li>true이면 기존 연결을 끊고 재연결합니다.</li><li>기본값: false</li></ul></td><td>false</td></tr></tbody></table>
 
 
 
@@ -69,7 +69,7 @@ init(
 
 {% code title="index.js" %}
 ```javascript
-// 서버 종료()
+// 서버 종료
 knowledgetalk.disconnect();
 
 // SDK 객체 삭제
@@ -86,4 +86,4 @@ knowledgetalk = null;
    * [채팅](chatting.md)  
    * [화면 공유·캔버스](share.md)  
    * [분반](group.md)  
-3. 수신·상태 변화는 [이벤트 메시지](event.md)의 `presence` 타입별 처리를 참고
+3. 수신·상태 변화는 [이벤트 메시지](event.md)의 `presence` 타입별 처리를 참고합니다.

@@ -13,7 +13,7 @@
 
 ### 유의사항
 
-* `roomId` / `userId` 중 **하나는 필수**입니다. (둘 다 넘기면 방 전체와 특정 유저 모두에게 전달)
+* `roomId`와 세 번째 인자 `target`(상대 `userId`) 중 **하나는 필수**입니다. (둘 다 넘기면 방 전체와 특정 유저 모두에게 전달됩니다.)
 * SDK는 채팅 UI를 제공하지 않습니다. 송신 성공 후 본인 말풍선은 앱에서 직접 그리는 편이 일반적입니다.
 * 샘플 구현은 상대 메시지만 `presence` `chat`으로 받아 표시합니다. 본인 메시지 에코 여부는 서버·클라이언트 정책에 맞게 처리하세요.
 
@@ -31,10 +31,10 @@
 // 해당 roomId의 방 전체에 메시지 보내기
 await knowledgetalk.chat("Hello!", "K43254033");
 
-// 해당 userId에게 메시지 보내기
+// 세 번째 인자 target에 상대 userId를 넣어 메시지 보내기
 await knowledgetalk.chat("Hello!", undefined, "kpoint123");
 
-// 해당 roomId의 방 전체와 userId에게 전부 보내기
+// 해당 roomId의 방 전체와 target(userId)에게 전부 보내기
 await knowledgetalk.chat("Hello!", "K43254033", "kpoint123");
 ```
 {% endcode %}
@@ -45,21 +45,21 @@ await knowledgetalk.chat("Hello!", "K43254033", "kpoint123");
 chat(
     message: string;
     roomId?: string;
-    userId?: string;
+    target?: string;
 ): Promise<ResponseCode>;
 ```
 
 *   **요청 상세**
 
-    <mark style="color:red;">**roomId / userId 중 하나는 필수**</mark>
+    <mark style="color:red;">**roomId / target 중 하나는 필수**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>message</td><td>채팅 메시지</td><td>"Hello!"</td></tr><tr><td>roomId</td><td>해당 roomId로 메시지 전송</td><td>"K43254033"</td></tr><tr><td>userId</td><td>해당 userId에게 메시지 전송</td><td>"kpoint123"</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>message</td><td>채팅 메시지</td><td>"Hello!"</td></tr><tr><td>roomId</td><td>해당 roomId로 메시지 전송</td><td>"K43254033"</td></tr><tr><td>target</td><td>세 번째 인자. 해당 userId에게 메시지 전송</td><td>"kpoint123"</td></tr></tbody></table>
 
 * **응답 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
-* 타겟 유저는 [chat 이벤트 메시지](event.md#type-chat)를 받아 사용
+* target으로 지정한 사용자는 [chat 이벤트 메시지](event.md#type-chat)를 받습니다.
 
 ---
 
@@ -69,7 +69,7 @@ presence는 상대(또는 서버) 상태 변화를 앱에 전달합니다. 채�
 
 | type | 언제 | 앱에서 할 일 예시 |
 | ---- | ---- | ----------------- |
-| `chat` | 상대가 `chat` API로 메시지를 보냄 | 말풍선 추가, 최신 메시지로 스크롤, (선택) 알림 |
+| `chat` | 상대가 `chat` API로 메시지를 보냅니다. | 말풍선 추가, 최신 메시지로 스크롤, (선택) 알림 |
 
 {% code title="presence - chat" %}
 ```javascript

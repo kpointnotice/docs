@@ -305,7 +305,7 @@
       host: "host info...",
       share: {
         type: "document",
-        user: "kpoimt567",
+        user: "kpoint567",
         img: "img url..."
       }
   }
@@ -378,7 +378,7 @@
 |             roomId             |          String           |               Y               |             room id              |
 |              sdp               |          Object           |               Y               |             sdp info             |
 |              type              |          String           |               N               |           cam / screen           |
-|             target             |          String           |               N               |             taget id             |
+|             target             |          String           |               N               |             target id             |
 
 - 샘플
 
@@ -430,7 +430,7 @@
 | userId | String | Y | user id |
 | sdp | Object | Y | sdp info |
 | type | String | Y | cam / screen |
-| target | String | N | taget id |
+| target | String | N | target id |
 
 샘플
 {% code title="sdp" %}
@@ -480,7 +480,7 @@
 | userId | String | Y | user id |
 | roomId | String | Y | room id |
 | type | String | Y | cam / screen |
-| target | String | Y | taget id |
+| target | String | Y | target id |
 | video | Boolean | Y | 영상 권한 |
 | audio | Boolean | Y | 음성 권한 |
 
@@ -878,7 +878,7 @@
 | eventOp | String | Y | op name |
 | reqId | String | Y | transaction id |
 | userId | String | Y | user id |
-| target | String | N | taget id |
+| target | String | N | target id |
 | roomId | String | N | room id |
 | message | String | Y | 보내고자 하는 메시지 |
 
@@ -929,7 +929,7 @@
 | userId | String | Y | user id |
 | roomId | String | Y | room id |
 | reqId | String | Y | transaction id |
-| target | String | Y | taget id |
+| target | String | Y | target id |
 | chat | Boolean | N | 채팅 권한 |
 | draw | Boolean | N | 그리기 권한 |
 | screen | Boolean | N | 영상 권한 |
@@ -1186,7 +1186,7 @@
 | eventOp | String | Y | op name |
 | reqId | String | Y | transaction id |
 | userId | String | Y | user id |
-| target | String | Y | taget id |
+| target | String | Y | target id |
 | candidate | any | Y | 후보자 정보 |
 | type | String | Y | 타입 |
 | cam | Boolean | Y | cam / stream 구분 |

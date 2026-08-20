@@ -1,15 +1,15 @@
 # 변수 호출
 
-이 페이지에서는 SDK 사용시 필요되는 변수들의 호출 방법을 소개합니다.
+이 페이지에서는 SDK 사용 시 필요한 변수들의 호출 방법을 소개합니다.
 
 {% code title="index.js" %}
 ```javascript
 // SDK 객체 생성
-const knowledgeTalk = new KnowledgeTalk();
+const knowledgetalk = new Knowledgetalk();
 ```
 {% endcode %}
 
-위에서 생성된 SDK객체를 예로, 아래의 함수들은 객체 내부에 작성된 호출명들의 예제입니다.
+위에서 생성된 SDK 객체를 예로, 아래의 함수들은 객체 내부에 작성된 호출명들의 예제입니다.
 
 ## userId 조회
 
@@ -74,11 +74,11 @@ knowledgetalk.getStream(id);
 ```
 {% endcode %}
 
-## 미디어서버 사용 여부
+## 미디어 서버 사용 여부
 
 {% code title="index.js" %}
 ```javascript
-// 미디어서버 사용 여부
+// 미디어 서버 사용 여부
 knowledgetalk.isMedia();
 ```
 {% endcode %}
@@ -88,7 +88,7 @@ knowledgetalk.isMedia();
 {% code title="index.js" %}
 ```javascript
 // 공유 타입
-knowledgetalk.getShareType()
+knowledgetalk.getShareType();
 ```
 {% endcode %}
 
@@ -96,7 +96,7 @@ knowledgetalk.getShareType()
 
 {% code title="index.js" %}
 ```javascript
-// 사용자의 userId 조회
+// 닉네임 조회
 knowledgetalk.getName();
 ```
 {% endcode %}

@@ -11,24 +11,24 @@ KnowledgeTalk SDK의 `joinRoom()`은 카메라 권한을 확인하지 않습니�
 {% code title="index.js" %}
 ```javascript
 const joinWithRequiredCamera = async () => {
-    let localStream;
+  let localStream;
 
-    try {
-        localStream = await navigator.mediaDevices.getUserMedia({ video: true });
-    } catch (error) {
-        if (error.name === 'NotAllowedError') {
-            // 서비스 UI에서 카메라 권한을 안내한 후 입장 중단
-            return;
-        }
-
-        throw error;
+  try {
+    localStream = await navigator.mediaDevices.getUserMedia({ video: true });
+  } catch (error) {
+    if (error.name === "NotAllowedError") {
+      // 서비스 UI에서 카메라 권한을 안내한 후 입장 중단
+      return;
     }
 
-    const roomData = await knowledgetalk.joinRoom('K43254033');
+    throw error;
+  }
 
-    if (roomData.code === '200') {
-        await knowledgetalk.publishVideo('cam', localStream);
-    }
+  const roomData = await knowledgetalk.joinRoom("K43254033");
+
+  if (roomData.code === "200") {
+    await knowledgetalk.publishVideo("cam", localStream);
+  }
 };
 
 await joinWithRequiredCamera();
@@ -42,24 +42,24 @@ await joinWithRequiredCamera();
 {% code title="index.js" %}
 ```javascript
 const joinWithOptionalCamera = async () => {
-    let localStream = null;
+  let localStream = null;
 
-    try {
-        localStream = await navigator.mediaDevices.getUserMedia({ video: true });
-    } catch (error) {
-        if (error.name !== 'NotAllowedError') throw error;
+  try {
+    localStream = await navigator.mediaDevices.getUserMedia({ video: true });
+  } catch (error) {
+    if (error.name !== "NotAllowedError") throw error;
 
-        // 카메라 없이 수신 전용으로 입장
-        localStream = null;
-    }
+    // 카메라 없이 수신 전용으로 입장
+    localStream = null;
+  }
 
-    const roomData = await knowledgetalk.joinRoom('K43254033');
+  const roomData = await knowledgetalk.joinRoom("K43254033");
 
-    if (roomData.code !== '200') return;
+  if (roomData.code !== "200") return;
 
-    if (localStream) {
-        await knowledgetalk.publishVideo('cam', localStream);
-    }
+  if (localStream) {
+    await knowledgetalk.publishVideo("cam", localStream);
+  }
 };
 
 await joinWithOptionalCamera();
@@ -98,9 +98,9 @@ publishVideo(
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>type</td><td>"cam"</td><td>"cam"</td></tr><tr><td>stream</td><td>서버와 연결할 영상 스트림</td><td>MediaStream</td></tr></tbody></table>
 
 - **응답 상세**\
-  성공 시 true, 실패 시 false를 리턴합니다.
+  성공 시 true, 실패 시 false를 반환합니다.
 
-- **호출 시 publish 이벤트 메시지 보냄**\
+- **호출 시 publish 이벤트 메시지를 보냅니다.**\
   [이벤트 처리 예시 보기](event.md#type-publish)
 
 ## 미디어 서버에 영상 수신
@@ -119,18 +119,18 @@ await knowledgetalk.subscribeVideo("kpoint123", "cam");
 
 ```typescript
 subscribeVideo(
-    userId: string;
+    user: string;
     type: "cam" | "screen";
 ): Promise<MediaStream | false>;
 ```
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>상대방의 유저 아이디</td><td>"kpoint123"</td></tr><tr><td>type</td><td><ul><li>cam: <a href="media.md#undefined">publishVideo</a>로 배포된 영상 수신</li><li>screen: <a href="share.md#undefined">screenStart</a>로 배포된 영상 수신</li></ul></td><td>"cam"</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>user</td><td>구독 대상의 userId</td><td>"kpoint123"</td></tr><tr><td>type</td><td><ul><li>cam: <a href="media.md#미디어-서버에-영상-송신">publishVideo</a>로 배포된 영상 수신</li><li>screen: <a href="share.md#화면-공유-시작">screenStart</a>로 배포된 영상 수신</li></ul></td><td>"cam"</td></tr></tbody></table>
 
 - **응답 상세**
 
-성공 시 상대방 video stream을 리턴하고, 실패 시 false를 리턴합니다.
+성공 시 상대방 video stream을 반환하고, 실패 시 false를 반환합니다.
 
 ## P2P 영상 전송
 
@@ -148,7 +148,7 @@ await knowledgetalk.publishP2P("kpoint123", "cam", stream);
 
 ```typescript
 publishP2P(
-    userId: string;
+    target: string;
     type: "cam";
     stream: MediaStream;
 ): Promise<boolean>;
@@ -156,13 +156,13 @@ publishP2P(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>userId</td><td>영상을 받을 상대방 유저 아이디</td><td>"kpoint123"</td></tr><tr><td>type</td><td>"cam"</td><td>"cam"</td></tr><tr><td>stream</td><td>영상 스트림</td><td>MediaStream</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>target</td><td>영상을 받을 상대방 userId</td><td>"kpoint123"</td></tr><tr><td>type</td><td>"cam"</td><td>"cam"</td></tr><tr><td>stream</td><td>영상 스트림</td><td>MediaStream</td></tr></tbody></table>
 
 - **응답 상세**
 
-  성공 시 true, 실패 시 false를 리턴합니다.
+  성공 시 true, 실패 시 false를 반환합니다.
 
-- **호출 시 상대방에게 subscribed 이벤트 메시지 보냄**\
+- **호출 시 상대방에게 subscribed 이벤트 메시지를 보냅니다.**\
   [이벤트 처리 예시 보기](event.md#type-subscribed)
 
 ## 피어 종료
@@ -201,7 +201,7 @@ removeLocalPeer(
 
 - **응답 상세**
 
-  성공 시 true, 실패 시 false를 리턴합니다.
+  성공 시 true, 실패 시 false를 반환합니다.
 
 ### removePeer
 
@@ -230,7 +230,7 @@ removePeer(
 
 - **응답 상세**
 
-  성공 시 true, 실패 시 false를 리턴합니다.
+  성공 시 true, 실패 시 false를 반환합니다.
 
 ## 영상 정보 변경
 
@@ -239,7 +239,7 @@ removePeer(
 {% code title="index.js" %}
 
 ```javascript
-await knowledgetalk.changeLocalStream(stream, target);
+await knowledgetalk.changeLocalStream(stream, userId);
 ```
 
 {% endcode %}
@@ -255,11 +255,11 @@ changeLocalStream(
 
 - **요청 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>새로 변경될 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>p2p인 경우 상대방 USER ID</td><td>"kpoint123"</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>새로 변경될 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P인 경우 상대방 userId</td><td>"kpoint123"</td></tr></tbody></table>
 
 - **응답 상세**
 
-  성공 시 true, 실패 시 false를 리턴합니다.
+  성공 시 true, 실패 시 false를 반환합니다.
 
 ---
 
@@ -383,20 +383,20 @@ function removeStreamInfo(userId) {
 {% code title="reconnect - request" %}
 
 ```javascript
-async function requestP2PReconnect(partnerId, localStream) {
+async function requestP2PReconnect(userId, localStream) {
   // 1) 본인이 보낸 peer / 받은 peer 정리
-  await knowledgetalk.removeLocalPeer(partnerId, "cam");
-  await knowledgetalk.removePeer(partnerId, "cam");
+  await knowledgetalk.removeLocalPeer(userId, "cam");
+  await knowledgetalk.removePeer(userId, "cam");
 
   // 2) 로컬에 보관 중이던 stream track·UI 정리
-  removeStreamInfo(partnerId);
+  removeStreamInfo(userId);
 
   // 3) 상대방에게 재연결 요청 (커스텀 inform)
-  await knowledgetalk.inform({ type: "reconnect" }, partnerId);
+  await knowledgetalk.inform({ type: "reconnect" }, userId);
 
   // 4) 필요 시 본인이 다시 송신 (양방향 cam이면)
   if (localStream) {
-    await knowledgetalk.publishP2P(partnerId, "cam", localStream);
+    await knowledgetalk.publishP2P(userId, "cam", localStream);
   }
 }
 ```
@@ -415,18 +415,18 @@ knowledgetalk.addEventListener("presence", async (event) => {
     case "inform": {
       if (msg.message?.type !== "reconnect") break;
 
-      const partnerId = msg.user;
+      const userId = msg.user;
 
-      await knowledgetalk.removeLocalPeer(partnerId, "cam");
-      await knowledgetalk.removePeer(partnerId, "cam");
-      removeStreamInfo(partnerId);
+      await knowledgetalk.removeLocalPeer(userId, "cam");
+      await knowledgetalk.removePeer(userId, "cam");
+      removeStreamInfo(userId);
 
       // 정리 후 본인의 로컬 스트림으로 다시 publish
       const localStream = await navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true,
       });
-      await knowledgetalk.publishP2P(partnerId, "cam", localStream);
+      await knowledgetalk.publishP2P(userId, "cam", localStream);
       break;
     }
 

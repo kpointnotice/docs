@@ -2,8 +2,8 @@
 
 ### 설명
 
-각 유저는 중앙 미디어 서버와 연결하여 미디어 서버의 영상을 보내고 미디어 서버를 통해 다른 유저의 영상을 받아 올 수 있다.(SFU 방식)\
-**publish를 하지 않으면 단순 시청이 가능한 방송 서비스로 활용할 수 있다.**
+각 유저는 중앙 미디어 서버와 연결하여 미디어 서버의 영상을 보내고 미디어 서버를 통해 다른 유저의 영상을 받아 올 수 있습니다. (SFU 방식)\
+**publish를 하지 않으면 단순 시청이 가능한 방송 서비스로 활용할 수 있습니다.**
 
 ![sfu 방식](../img/sfu.png)
 
@@ -24,7 +24,7 @@
 <!-- SDK 설치 -->
 <script
   type="text/javascript"
-  src="https://dev.knowledgetalk.co.kr:7102/knowledgetalk.min.js"
+  src="https://knowledgetalk.co.kr:7104/knowledgetalk.min.js"
 ></script>
 ```
 
@@ -39,12 +39,12 @@
 let knowledgetalk = new Knowledgetalk();
 
 // 서버 연결
-knowlegetalk.init("KP-20200101-01", "eyJhbGc...").then((result) => {
+knowledgetalk.init("KP-20200101-01", "eyJhbGc...").then((result) => {
   // 서버 연결에 실패한 경우
   if (result.code !== "200") {
   }
 
-  // 서버 연결 성공시에는 userId를 리턴
+  // 서버 연결에 성공하면 userId를 반환합니다.
   let userId = result.userId;
 });
 ```
@@ -60,7 +60,7 @@ SDK 객체를 생성하고 서버와 연결합니다.
 {% code title="index.js" %}
 
 ```javascript
-// 방 생성 성공시에 roomId를 리턴
+// 방 생성에 성공하면 roomId를 반환합니다.
 await knowledgetalk.createVideoRoom();
 ```
 
@@ -113,7 +113,7 @@ const createVideoBox = (id) => {
 
 {% endcode %}
 
-`createVideoBox('kpoint123')`을 호출하면 `#videoBox` 아래에 다음 DOM 구조가 생성됩니다.
+`createVideoBox("kpoint123")`을 호출하면 `#videoBox` 아래에 다음 DOM 구조가 생성됩니다.
 
 ```html
 <div id="videoBox">
@@ -150,7 +150,7 @@ const removeVideoBox = (id) => {
 | 새로 입장한 상대방      | `presence-join` 수신               | `createVideoBox(msg.user.id)` 호출                                     |
 | 퇴장한 상대방           | `presence-leave` 수신              | `removeVideoBox(msg.user)` 호출                                        |
 
-`createVideoBox(id)`와 `removeVideoBox(id)`의 `id`에는 동일한 사용자 `userId`를 전달해야 합니다. 표시할 스트림은 `document.getElementById('multiVideo-' + userId)`로 찾은 `<video>` 요소에 연결합니다. `createVideoBox()`는 같은 `userId`의 요소가 이미 있으면 생성을 건너뛰므로 중복 ID를 만들지 않습니다.
+`createVideoBox(id)`와 `removeVideoBox(id)`의 `id`에는 동일한 사용자 `userId`를 전달해야 합니다. 표시할 스트림은 `document.getElementById("multiVideo-" + userId)`로 찾은 `<video>` 요소에 연결합니다. `createVideoBox()`는 같은 `userId`의 요소가 이미 있으면 생성을 건너뛰므로 중복 ID를 만들지 않습니다.
 
 #### 4. 방 입장
 
@@ -158,7 +158,7 @@ const removeVideoBox = (id) => {
 
 ```javascript
 // 방 입장
-let roomData = await knowledgetalk.joinroom("K43254033");
+let roomData = await knowledgetalk.joinRoom("K43254033");
 
 // 방 입장에 실패한 경우
 if (roomData.code !== "200") {
@@ -179,7 +179,7 @@ for (const member in members) {
 
 {% endcode %}
 
-Host는 방을 만들고 입장하여 Guest가 입장할때까지 대기합니다.
+Host는 방을 만들고 입장하여 Guest가 입장할 때까지 대기합니다.
 
 Guest는 Host에게 받은 roomId로 해당 방에 입장합니다.
 
@@ -224,44 +224,43 @@ if (!result) {
 
 ```javascript
 // 이벤트 메시지 수신
-knowledgetalk.addEventListener("presence", async event => {
+knowledgetalk.addEventListener("presence", async (event) => {
+  let msg = event.detail;
+  let type = msg.type;
 
-        let msg = event.detail;
-        let type = msg.type;
+  switch (type) {
+    // 다른 사용자의 입장을 알림
+    case "join":
+      createVideoBox(msg.user.id);
+      break;
+    // 다른 사용자의 퇴장을 알림
+    case "leave":
+      removeVideoBox(msg.user);
+      removeScreenVideoBox(msg.user);
+      break;
 
-        switch (type){
-                //다른 사용자의 입장을 알림
-                case "join":
-                        createVideoBox(msg.user.id);
-                        break;
-                // 다른 사용자의 퇴장을 알림
-                case "leave":
-                        removeVideoBox(msg.user);
-                        removeScreenVideoBox(msg.user);
-                        break;
+    // 미디어 서버에 배포된 cam / screen 수신
+    case "publish":
+      for (const feed of msg.feeds) {
+        let stream = await knowledgetalk.subscribeVideo(feed.id, feed.type);
 
-                // 미디어 서버에 배포된 cam / screen 수신
-                case "publish":
-                    for(const feed of msg.feeds){
-                        let stream = await knowledgetalk.subscribeVideo(feed.id, feed.type);
-
-                        if (feed.type === "cam") {
-                            createVideoBox(feed.id);
-                            document.getElementById("multiVideo-" + feed.id).srcObject = stream;
-                        }
-
-                        if (feed.type === "screen") {
-                            createScreenVideoBox(feed.id);
-                            document.getElementById("screenVideo-" + feed.id).srcObject = stream;
-                        }
-                    }
-                    break;
-
-                case "shareStop":
-                        removeScreenVideoBox(msg.user);
-                        break;
+        if (feed.type === "cam") {
+          createVideoBox(feed.id);
+          document.getElementById("multiVideo-" + feed.id).srcObject = stream;
         }
-}
+
+        if (feed.type === "screen") {
+          createScreenVideoBox(feed.id);
+          document.getElementById("screenVideo-" + feed.id).srcObject = stream;
+        }
+      }
+      break;
+
+    case "shareStop":
+      removeScreenVideoBox(msg.user);
+      break;
+  }
+});
 ```
 
 {% endcode %}

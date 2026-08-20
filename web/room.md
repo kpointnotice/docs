@@ -131,9 +131,9 @@ type Member = {
 
 - **Member**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>id</td><td>유저 아이디</td><td>"kpoint123"</td></tr><tr><td>name</td><td>유저 이름</td><td>"홍길동"</td></tr><tr><td>userType</td><td>host 또는 guest</td><td>"host"</td></tr><tr><td>device</td><td>기기 정보</td><td>"Galaxy Tab"</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>publishing</td><td>영상 송신여부</td><td>false</td></tr><tr><td>permit</td><td>채팅, 공유등 권한 정보</td><td>{ chat: true, ...}</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>id</td><td>유저 아이디</td><td>"kpoint123"</td></tr><tr><td>name</td><td>유저 이름</td><td>"홍길동"</td></tr><tr><td>userType</td><td>host 또는 guest</td><td>"host"</td></tr><tr><td>device</td><td>기기 정보</td><td>"Galaxy Tab"</td></tr><tr><td>video</td><td>비디오 활성화 여부</td><td>true</td></tr><tr><td>audio</td><td>오디오 활성화 여부</td><td>true</td></tr><tr><td>publishing</td><td>영상 송신 여부</td><td>false</td></tr><tr><td>permit</td><td>채팅, 공유 등 권한 정보</td><td>{ chat: true, ...}</td></tr></tbody></table>
 
-- 기존에 방에 참여중인 유저는[ join 이벤트 메시지](event.md#type-join)로 멤버 정보 수신
+- 기존에 방에 참여 중인 유저는 [join 이벤트 메시지](event.md#type-join)로 멤버 정보를 수신합니다.
 
 ## 방 퇴장
 
@@ -165,7 +165,7 @@ leaveRoom(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
-- leaveRoom 호출 시 방에 [leave 이벤트 메시지](event.md#type-leave) 보냄
+- `leaveRoom` 호출 시 방에 [leave 이벤트 메시지](event.md#type-leave)를 보냅니다.
 
 ## 방 종료
 
@@ -210,7 +210,7 @@ await knowledgetalk.memberList(roomId);
 {% endcode %}
 
 - **타입**\
-  [Member 타입 참조](room.md#undefined-1)
+  [Member 타입 참조](room.md#방-입장)
 
 ```typescript
 memberList(
@@ -261,7 +261,7 @@ permit(
 
 | Parameter  | Description           | Example     |
 | ---------- | --------------------- | ----------- |
-| target     | 타겟 아이디           | "kpoint123" |
+| target     | 상대방 userId           | "kpoint123" |
 | chat       | 채팅 권한             | true        |
 | draw       | 그리기 권한           | false       |
 | screen     | 화면 공유 권한        | false       |
@@ -359,7 +359,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 async function onClickScreenShare() {
   if (!getLocalPermit().screen) return;
   const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
-  await knowledgetalk.screenStart(stream /*, partnerId for P2P */);
+  await knowledgetalk.screenStart(stream /*, userId */);
 }
 
 // 텍스트박스 (권한이 열린 뒤 도구 선택)
@@ -405,7 +405,7 @@ inform(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
-- 타겟유저는 [inform 이벤트 메시지](event.md#type-inform)를 받아 사용
+- target으로 지정한 사용자는 [inform 이벤트 메시지](event.md#type-inform)를 받습니다.
 - `message`는 문자열뿐 아니라 객체도 가능합니다. P2P 재연결 등 응용 예시는 [media · P2P 재연결](media.md#p2p-응용-시나리오-재연결)을 참고합니다.
 
 ## 강제 퇴장 요청 메시지 전송
@@ -438,7 +438,7 @@ kickOut(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
-- target 유저는 [kickOut 이벤트 메시지](event.md#type-kickout)를 수신해서 leaveRoom 진행
+- target으로 지정한 사용자는 [kickOut 이벤트 메시지](event.md#type-kickout)를 받은 뒤 `leaveRoom`을 진행합니다.
 
 ## 방 정보 변경
 

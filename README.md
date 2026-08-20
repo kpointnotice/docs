@@ -7,21 +7,18 @@ SDK를 사용하려면 라이센스를 발급받아야 하며 날리지포인트
 
 Knowledgetalk는 웹 브라우저에서 P2P·그룹 영상 통화와 채팅, 화면 공유, 분반, 사생활 보호 등 실시간 커뮤니케이션 기능을 구현할 수 있는 SDK입니다.
 
-> **시각화(placeholder)**  
-> TODO: SDK 기능 구성도
-
 ### 기능 맵
 
-| 기능 | 문서 |
-| ---- | ---- |
-| 시작하기 (설치·서버 연결) | [Getting Started](web/gettingStarted.md) |
-| 방 생성·입장·권한 | [방 관련 기능](web/room.md) |
-| 영상 송수신 | [영상 연결 기능](web/media.md) |
-| 채팅 | [채팅 기능](web/chatting.md) |
-| 화면 공유·캔버스·자료 공유 | [공유 기능](web/share.md) |
-| 분반 | [분반 기능](web/group.md) |
-| 사생활 보호 | [사생활 보호 기능](web/privacy.md) |
-| 이벤트 (presence) | [이벤트 메시지](web/event.md) |
+| 기능                       | 문서                                     |
+| -------------------------- | ---------------------------------------- |
+| 시작하기 (설치·서버 연결)  | [Getting Started](web/gettingStarted.md) |
+| 방 생성·입장·권한          | [방 관련 기능](web/room.md)              |
+| 영상 송수신                | [영상 연결 기능](web/media.md)           |
+| 채팅                       | [채팅 기능](web/chatting.md)             |
+| 화면 공유·캔버스·자료 공유 | [공유 기능](web/share.md)                |
+| 분반                       | [분반 기능](web/group.md)                |
+| 사생활 보호                | [사생활 보호 기능](web/privacy.md)       |
+| 이벤트 (presence)          | [이벤트 메시지](web/event.md)            |
 
 ### 권장 구현 순서
 

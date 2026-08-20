@@ -52,7 +52,7 @@ SDK `screenStart` 호출만으로는 로컬/원격 영상이 화면에 나타나
 // 그룹: target 생략
 const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
 
-// * 목적에 따라 아래 코드 중 하나를 사용하시면 됩니다.
+// * 목적에 따라 아래 코드 중 하나를 사용하세요.
 // 1) 그룹: 앱에서 로컬 screen video DOM 생성 및 srcObject 연결 후
 const result = await knowledgetalk.screenStart(stream);
 // 2) P2P: 상대 userId를 target으로 지정
@@ -60,7 +60,7 @@ const result = await knowledgetalk.screenStart(stream, "kpoint123");
 // 3) 그룹 연결 시 판서 포함하여 공유
 const result = await knowledgetalk.screenStart(stream, undefined, canvas);
 // 4) P2P 연결 시 판서 포함하여 공유
-const result = await knowledgetalk.screenStart(stream, kpoint123, canvas);
+const result = await knowledgetalk.screenStart(stream, "kpoint123", canvas);
 
 if (result.code !== "200") {
   stream.getTracks().forEach((track) => track.stop());
@@ -88,13 +88,13 @@ screenStart(
 
   <mark style="color:red;">**동일한 방(roomId)에서는 한 번에 한 사용자만 화면을 공유할 수 있습니다. 화면공유, 화이트보드 또는 자료공유가 이미 진행 중이면 요청이 실패합니다. 여러 사용자의 카메라 영상 송출에는 이 제한이 적용되지 않습니다.**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P 경우, 상대방의 userId</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P인 경우 상대방의 userId</td><td>"kpoint123"</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLCanvasElement</td></tr></tbody></table>
 
 - **응답 상세**
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><p>요청 처리 결과</p><ul><li>200: 화면공유 시작 성공</li><li>440: 이미 다른 사용자가 공유를 진행 중</li></ul><p><a href="code.md">응답 코드 바로가기</a></p></td><td>'200'</td></tr></tbody></table>
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><p>요청 처리 결과</p><ul><li>200: 화면공유 시작 성공</li><li>440: 이미 다른 사용자가 공유를 진행 중</li></ul><p><a href="code.md">응답 코드 바로가기</a></p></td><td>"200"</td></tr></tbody></table>
 
-- 수신 처리는 그룹 [publish](event.md#type-publish), P2P [subscribed](event.md#type-subscribed) / [screen](event.md#type-screen) 를 참고하세요.
+- 수신 처리는 그룹 [publish](event.md#type-publish), P2P [subscribed](event.md#type-subscribed) / [screen](event.md#type-screen)을 참고하세요.
 
 ---
 
@@ -143,9 +143,9 @@ whiteBoardStart(
 
 - **응답 상세**
 
-  성공 시 true, 실패 시 false를 리턴합니다.
+  성공 시 true, 실패 시 false를 반환합니다.
 
-- 타겟 유저는 [whiteBoard 이벤트 메시지](event.md#type-whiteboard)를 받아 사용
+- 대상 사용자는 [whiteBoard 이벤트 메시지](event.md#type-whiteboard)를 받습니다.
 
 ---
 
@@ -226,7 +226,7 @@ drawingInit(): boolean;
 ```
 
 - **응답 상세**\
-  성공 시 true, 실패 시 false를 리턴합니다.
+  성공 시 true, 실패 시 false를 반환합니다.
 
 ---
 
@@ -266,18 +266,18 @@ drawingStop(): boolean;
 ```
 
 - **응답 상세**\
-  성공 시 true, 실패 시 false를 리턴합니다.
+  성공 시 true, 실패 시 false를 반환합니다.
 
 ---
 
 ## 캔버스 동기화 요청
 
-_<mark style="color:red;">**입장 시, 판서 중인 경우 판서 중인 상대에게 판서 정보 요청해서 동기화 진행(canvasInit 완료 후 요청)**</mark>_
+_<mark style="color:red;">**입장 시 판서가 진행 중이면, canvasInit 완료 후 판서 중인 상대에게 판서 정보를 요청해 동기화하세요.**</mark>_
 
 ### 호출 전
 
-- 본인 측 `canvasInit` 완료
-- 판서를 보유한 상대의 `userId` 파악
+- 본인 측 `canvasInit`을 완료합니다.
+- 판서를 보유한 상대의 `userId`를 파악합니다.
 
 ### 유의사항
 
@@ -294,7 +294,7 @@ _<mark style="color:red;">**입장 시, 판서 중인 경우 판서 중인 상�
 {% code title="index.js" %}
 
 ```javascript
-await knowledgetalk.reqCanvasImage(target);
+await knowledgetalk.reqCanvasImage(userId);
 ```
 
 {% endcode %}
@@ -424,8 +424,8 @@ knowledgetalk.canvasClear();
 
 ### 호출 전
 
-- 방 입장 및 canvas·부모 DOM 준비
-- 공유할 이미지를 올릴 UI/입력 준비
+- 방 입장과 canvas·부모 DOM을 준비합니다.
+- 공유할 이미지를 올릴 UI/입력을 준비합니다.
 
 ### 유의사항
 
@@ -466,7 +466,7 @@ documentStart(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
-- [document 이벤트 메시지](event.md#type-document)를 받아 사용
+- [document 이벤트 메시지](event.md#type-document)를 받습니다.
 
 ---
 
@@ -475,7 +475,7 @@ documentStart(
 ### 호출 전
 
 - `documentStart`로 자료 공유 세션이 시작된 상태
-- 접근 가능한 이미지 URL 준비
+- 접근 가능한 이미지 URL을 준비합니다.
 
 ### 유의사항
 
@@ -515,7 +515,7 @@ documentShare(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
-- [documentShare 이벤트 메시지](event.md#type-documentshare)를 받아 사용
+- [documentShare 이벤트 메시지](event.md#type-documentshare)를 받습니다.
 
 ---
 
@@ -562,7 +562,7 @@ shareStop(): Promise<{
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
-- [shareStop 이벤트 메시지](event.md#type-sharestop)를 받아 사용
+- [shareStop 이벤트 메시지](event.md#type-sharestop)를 받습니다.
 
 ---
 
@@ -582,7 +582,7 @@ shareStop(): Promise<{
 
 ### 유의사항
 
-- **P2P**: `screenStart(stream, partnerId)`로 `target`을 넘깁니다. 상대방은 `subscribed`(`cam: false`)에서 `getStream("screen")`을 사용합니다.
+- **P2P**: `screenStart(stream, userId)`로 `target`을 넘깁니다. 상대방은 `subscribed`(`cam: false`)에서 `getStream("screen")`을 사용합니다.
 - **그룹**: `screenStart(stream)`처럼 `target`을 생략합니다. 상대방은 `publish`(`feed.type === "screen"`) 후 `subscribeVideo`로 받습니다. `screen` 이벤트만으로는 영상이 연결되지 않습니다.
 - 브라우저 “공유 중지”에 대비해 video track `ended`에서 `shareStop`을 호출합니다.
 - 화면 공유는 사실상 1명 제한인 경우가 많습니다. (상세 제약은 별도 가이드 항목)
@@ -604,7 +604,7 @@ stream.getVideoTracks()[0].addEventListener("ended", async () => {
 await knowledgetalk.screenStart(stream);
 
 // P2P
-await knowledgetalk.screenStart(stream, partnerId);
+await knowledgetalk.screenStart(stream, userId);
 ```
 
 {% endcode %}

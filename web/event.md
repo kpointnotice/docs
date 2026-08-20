@@ -2,7 +2,7 @@
 
 ## 이벤트 메시지
 
-다른 참여자들의 입장, 퇴장 등 상태 등 클라이언트에서 서버로부터 오는 이벤트 메시지들에 대한 설명
+다른 참여자의 입장·퇴장 등, 서버가 클라이언트로 보내는 이벤트 메시지입니다.
 
 ### 이벤트 메시지 알림
 
@@ -10,19 +10,19 @@
 
 ```javascript
 // 이벤트 메시지 알림
-knowledgetalk.addEventListener("presence", async event => {
-    const { type, ...data } = e.detail;
+knowledgetalk.addEventListener("presence", async (event) => {
+  const { type, ...data } = event.detail;
 
-    console.log("이벤트 타입", type);
-    console.log("이벤트 데이터", data);
+  console.log("이벤트 타입", type);
+  console.log("이벤트 데이터", data);
 
-    // 타입별 분기
-    switch (type) {
-        case "join": {
-            break;
-        }
+  // 타입별 분기
+  switch (type) {
+    case "join": {
+      break;
     }
-}
+  }
+});
 ```
 
 {% endcode %}
@@ -31,7 +31,7 @@ knowledgetalk.addEventListener("presence", async event => {
 
 ## type: "join"
 
-다른 사용자의 입장 알림
+다른 사용자의 입장을 알립니다.
 
 - **타입**
 
@@ -44,11 +44,11 @@ knowledgetalk.addEventListener("presence", async event => {
 }
 ```
 
-- [Member 참조](room.md#undefined-1)
+- [Member 참조](room.md#방-입장)
 
 ## type: "leave"
 
-다른 사용자의 퇴장 알림
+다른 사용자의 퇴장을 알립니다.
 
 - **타입**
 
@@ -63,7 +63,7 @@ knowledgetalk.addEventListener("presence", async event => {
 
 ## type: "publish"
 
-미디어 서버에서 수신 가능한 사용자들의 영상 알림
+미디어 서버에서 수신 가능한 사용자들의 영상을 알립니다.
 
 <mark style="color:red;">publishVideo 호출 시 type === "cam", screenStart(그룹) 호출 시 type === "screen" 으로 분기해 처리</mark>
 
@@ -73,10 +73,10 @@ knowledgetalk.addEventListener("presence", async event => {
 
 ```typescript
 {
-      eventOp: "presence";
-      type: "publish";
-      roomId: string;
-      feeds: Feed[];
+  eventOp: "presence";
+  type: "publish";
+  roomId: string;
+  feeds: Feed[];
 }
 
 // publishVideo로부터 송신된 메시지
@@ -84,15 +84,15 @@ type Feed = Member & { type: "cam" };
 
 // screenStart로부터 송신된 메시지
 type Feed = {
-      id: string;
-      type: "screen";
+  id: string;
+  type: "screen";
 };
 ```
 
-- [Member 참조](room.md#undefined-1)
+- [Member 참조](room.md#방-입장)
 
 - **feeds 사용 예시**\
-  [subscribeVideo](media.md#undefined-1)를 호출해 stream을 수신합니다.
+  [subscribeVideo](media.md#미디어-서버에-영상-수신)를 호출해 stream을 수신합니다.
 
 ```typescript
 case "publish": {
@@ -114,7 +114,7 @@ case "publish": {
 
 ## type: "subscribed"
 
-해당 사용자의 영상에 대한 P2P 연결 완료 알림
+해당 사용자의 영상에 대한 P2P 연결 완료를 알립니다.
 
 <mark style="color:red;">cam: true인 경우 publishP2P로부터 송신된 메시지</mark>
 
@@ -151,7 +151,7 @@ case "subscribed": {
 
 ## type: "screen"
 
-화면 공유 알림, screenStart 호출 시 발생
+화면 공유를 알립니다. `screenStart` 호출 시 발생합니다.
 
 - P2P의 경우 subscribed 이벤트와 screen 이벤트가 동시에 발생합니다.\
   ["p2p stream 조회 예시"](event.md#type-subscribed)와 같이 처리한다면 screen에서는 따로 처리하지 않아도 됩니다.
@@ -172,7 +172,7 @@ case "subscribed": {
 
 ## type: "whiteBoard"
 
-화이트보드 알림
+화이트보드 시작을 알립니다.
 
 - **타입**
 
@@ -187,7 +187,7 @@ case "subscribed": {
 
 ## type: "document"
 
-자료 공유 알림
+자료 공유 시작을 알립니다.
 
 - **타입**
 
@@ -202,7 +202,7 @@ case "subscribed": {
 
 ## type: "documentShare"
 
-이미지 경로 알림
+이미지 경로를 알립니다.
 
 - **타입**
 
@@ -216,53 +216,43 @@ case "subscribed": {
 }
 ```
 
-<<<<<<< HEAD
-## type: "shareStop"
-=======
-
-
-## type: 'reqCanvasImage'
+## type: "reqCanvasImage"
 
 다른 사용자가 `reqCanvasImage()`를 호출하여 현재 캔버스 이미지의 전송을 요청했음을 알립니다.
 
 SDK는 이 이벤트를 수신하면 `canvasInit()`으로 등록한 캔버스를 PNG 이미지로 변환하고, 요청자에게 자동으로 전송합니다. 이벤트는 자동 응답 처리 후 `presence` 이벤트 리스너에도 전달됩니다.
 
-* **타입**
+- **타입**
 
 ```typescript
 {
-      eventOp: 'presence';
-      type: 'reqCanvasImage';
-      sender: string; // 캔버스 이미지를 요청한 사용자 ID
-      roomId: string;
+  eventOp: "presence";
+  type: "reqCanvasImage";
+  sender: string; // 캔버스 이미지를 요청한 사용자 ID
+  roomId: string;
 }
 ```
 
-
-
-## type: 'updateImage'
+## type: "updateImage"
 
 `reqCanvasImage()`로 요청한 캔버스 이미지를 수신했음을 알립니다.
 
 SDK는 이 이벤트를 수신하면 `img` 이미지를 `canvasInit()`으로 등록한 캔버스에 자동으로 반영합니다. 이미지 반영을 시작한 후 이벤트는 `presence` 이벤트 리스너에도 전달됩니다.
 
-* **타입**
+- **타입**
 
 ```typescript
 {
-      eventOp: 'presence';
-      type: 'updateImage';
-      sender: string; // 캔버스 이미지를 전송한 사용자 ID
-      img: string; // PNG 형식의 Data URL
+  eventOp: "presence";
+  type: "updateImage";
+  sender: string; // 캔버스 이미지를 전송한 사용자 ID
+  img: string; // PNG 형식의 Data URL
 }
 ```
 
+## type: "shareStop"
 
-
-## type: 'shareStop'
->>>>>>> guide/4-canvas-sync-events
-
-공유 중지 알림
+공유 중지를 알립니다.
 
 - 송수신 시나리오: [화면 공유 송수신](share.md#시나리오-화면-공유-송수신)
 
@@ -279,7 +269,7 @@ SDK는 이 이벤트를 수신하면 `img` 이미지를 `canvasInit()`으로 등
 
 ## type: "chat"
 
-채팅 메시지 알림
+채팅 메시지를 알립니다.
 
 - **타입**
 
@@ -294,8 +284,7 @@ SDK는 이 이벤트를 수신하면 `img` 이미지를 `canvasInit()`으로 등
 
 ## type: "inform"
 
-커스텀 메시지 수신 알림\
-정의되지 않은 메시지가 필요할 경우 사용할 수 있습니다.
+커스텀 메시지 수신을 알립니다. 정의되지 않은 메시지가 필요할 경우 사용할 수 있습니다.
 
 - P2P 재연결처럼 앱 규약 객체(`{ type: "reconnect" }` 등)를 `message`로 넘기는 응용 예시는 [media · P2P 재연결](media.md#p2p-응용-시나리오-재연결)을 참고합니다.
 
@@ -312,7 +301,7 @@ SDK는 이 이벤트를 수신하면 `img` 이미지를 `canvasInit()`으로 등
 
 ## type: "editUserInfo"
 
-사용자 정보 변경 알림
+사용자 정보 변경을 알립니다.
 
 - 송신 측이 `editUserInfo(..., broadcast: true)`일 때만 수신됩니다. `broadcast: false`면 이 presence가 오지 않아 상대방 UI를 갱신할 수 없습니다. ([broadcast 설명](userInfo.md#사용자-정보-변경))
 - `video` / `audio` 값으로 상대방 화면·마이크 UI를 갱신합니다. 본인 비디오 숨김 시나리오는 [userInfo](userInfo.md#시나리오-본인-비디오-숨김)를 참고합니다.
@@ -332,7 +321,7 @@ SDK는 이 이벤트를 수신하면 `img` 이미지를 `canvasInit()`으로 등
 
 ## type: "createGroup"
 
-분반 생성 알림
+분반 생성을 알립니다.
 
 수신 후 앱에서 `leaveRoom` → `joinRoom(groupId)`로 분반에 참여해야 합니다. SDK가 자동으로 방을 바꿔 주지 않습니다. ([분반 기능 - 호출 후](group.md#호출-후), [분반 이동 시나리오](group.md#시나리오-분반-이동-생성--입장--종료))
 
@@ -351,7 +340,7 @@ SDK는 이 이벤트를 수신하면 `img` 이미지를 `canvasInit()`으로 등
 
 ## type: "kickOut"
 
-강제 퇴장 알림
+강제 퇴장을 알립니다.
 
 - **타입**
 
@@ -366,7 +355,7 @@ SDK는 이 이벤트를 수신하면 `img` 이미지를 `canvasInit()`으로 등
 
 ## type: "talking"
 
-화자 감지 알림
+화자 감지를 알립니다.
 
 - **타입**
 
@@ -380,7 +369,7 @@ SDK는 이 이벤트를 수신하면 `img` 이미지를 `canvasInit()`으로 등
 }
 ```
 
-- 현재 미사용 중인 메서드
+- 현재 미사용 중인 메서드입니다.
 
 #### ~~type: "drawingClassStart"~~
 
