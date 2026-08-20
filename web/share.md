@@ -346,7 +346,7 @@ reqCanvasImage(
 ### 유의사항
 
 - **textbox**: ESC 또는 선택 해제로 입력 확정, Delete로 취소합니다. 다른 도구로 바꾸면 텍스트박스 UI는 제거됩니다.
-- P2P에서 Host가 Guest에게 textbox 사용을 열어 줄 때는 SDK `permit`의 `draw`와 `inform` 앱 규약(`text` 등)을 조합합니다. SDK에 textbox 전용 permit 필드는 없습니다. ([권한 부여 시나리오](room.md#시나리오-권한-부여-후-기능-개방))
+- P2P에서 Host가 Guest에게 textbox 사용을 열어 줄 때는 SDK `permit`의 `draw`와 `inform` 앱 규약(`text` 등)을 조합합니다. SDK에 textbox 전용 permit 필드는 없습니다. ([권한 부여 시나리오](room.md#scenario-permit))
 
 ### 호출 후
 

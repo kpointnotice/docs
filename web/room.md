@@ -1,6 +1,6 @@
 # 방 관련 기능
 
-## P2P 방 생성
+## P2P 방 생성 {#p2p}
 
 - **예시**
 
@@ -34,7 +34,7 @@ createRoom(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr><tr><td>roomId</td><td>랜덤 또는 요청된 roomId</td><td>"K43254033"</td></tr></tbody></table>
 
-## 그룹통화 방 생성
+## 그룹통화 방 생성 {#create-video-room}
 
 - **예시**
 
@@ -69,7 +69,7 @@ createVideoRoom(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr><tr><td>roomId</td><td>랜덤 또는 요청된 roomId</td><td>"K43254033"</td></tr></tbody></table>
 
-## 방 입장
+## 방 입장 {#join-room}
 
 - **예시**
 
@@ -135,7 +135,7 @@ type Member = {
 
 - 기존에 방에 참여 중인 유저는 [join 이벤트 메시지](event.md#type-join)로 멤버 정보를 수신합니다.
 
-## 방 퇴장
+## 방 퇴장 {#leave-room}
 
 - **예시**
 
@@ -167,7 +167,7 @@ leaveRoom(
 
 - `leaveRoom` 호출 시 방에 [leave 이벤트 메시지](event.md#type-leave)를 보냅니다.
 
-## 방 종료
+## 방 종료 {#destroy-room}
 
 - **예시**
 
@@ -197,7 +197,7 @@ destroyRoom(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
 
-## 방에 접속한 유저 조회
+## 방에 접속한 유저 조회 {#member-list}
 
 - **예시**
 
@@ -210,7 +210,7 @@ await knowledgetalk.memberList(roomId);
 {% endcode %}
 
 - **타입**\
-  [Member 타입 참조](room.md#방-입장)
+  [Member 타입 참조](room.md#join-room)
 
 ```typescript
 memberList(
@@ -228,7 +228,7 @@ memberList(
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr><tr><td>members</td><td>현재 방에 접속한 유저 정보</td><td>Members</td></tr></tbody></table>
 
-## 권한 부여
+## 권한 부여 {#permit}
 
 - **예시**
 
@@ -274,7 +274,7 @@ permit(
 
 ---
 
-## 시나리오: 권한 부여 후 기능 개방
+## 시나리오: 권한 부여 후 기능 개방 {#scenario-permit}
 
 Host가 Guest에게 채팅·화면 공유·화이트보드·판서 등 권한을 주고, **Guest 앱 UI에서 해당 기능을 열어 주는** 흐름입니다. SDK `permit`은 서버에 권한 값을 기록·전달하며, 버튼 활성/비활성은 앱 책임입니다.
 
@@ -371,9 +371,9 @@ function onSelectTextboxTool() {
 
 {% endcode %}
 
-- 관련: [권한 부여 API](room.md#권한-부여), [inform](room.md#알림-메시지-전송), [화면 공유 시나리오](share.md#시나리오-화면-공유-송수신), [그리기 도구(setTool)](share.md#그리기-도구-설정)
+- 관련: [권한 부여 API](room.md#permit), [inform](room.md#inform), [화면 공유 시나리오](share.md#시나리오-화면-공유-송수신), [그리기 도구(setTool)](share.md#그리기-도구-설정)
 
-## 알림 메시지 전송
+## 알림 메시지 전송 {#inform}
 
 - **예시**
 
@@ -408,7 +408,7 @@ inform(
 - target으로 지정한 사용자는 [inform 이벤트 메시지](event.md#type-inform)를 받습니다.
 - `message`는 문자열뿐 아니라 객체도 가능합니다. P2P 재연결 등 응용 예시는 [media · P2P 재연결](media.md#p2p-응용-시나리오-재연결)을 참고합니다.
 
-## 강제 퇴장 요청 메시지 전송
+## 강제 퇴장 요청 메시지 전송 {#kick-out}
 
 - **예시**
 
@@ -440,7 +440,7 @@ kickOut(
 
 - target으로 지정한 사용자는 [kickOut 이벤트 메시지](event.md#type-kickout)를 받은 뒤 `leaveRoom`을 진행합니다.
 
-## 방 정보 변경
+## 방 정보 변경 {#edit-room-info}
 
 - **예시**
 
@@ -475,7 +475,7 @@ editRoomInfo(
 
 ---
 
-## 입장·퇴장 시나리오와 presence
+## 입장·퇴장 시나리오와 presence {#presence-join-leave}
 
 `joinRoom` / `leaveRoom`은 요청-응답만으로 끝나지 않습니다. **이미 방에 있는 다른 클라이언트**는 presence로 입·퇴장을 알게 되고, 여기서 video 박스·멤버 목록을 갱신해야 합니다.
 
@@ -541,7 +541,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 
 ---
 
-## 시나리오: 방 라이프사이클 (생성 → 입장 → publish → 퇴장)
+## 시나리오: 방 라이프사이클 (생성 → 입장 → publish → 퇴장) {#scenario-lifecycle}
 
 한 통화의 전체 흐름을 Host / Guest 기준으로 이어 붙입니다. API 시그니처·presence 세부 예시는 위 절과 [영상 송수신](media.md#영상-송수신-시나리오와-presence)을 참고합니다.
 
@@ -552,7 +552,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 ### 호출 전
 
 - 양 클라이언트에서 `init`(세션 연결)을 완료합니다.
-- `presence` 리스너를 **입장 전**에 등록합니다. ([입장·퇴장 시나리오](room.md#입장퇴장-시나리오와-presence))
+- `presence` 리스너를 **입장 전**에 등록합니다. ([입장·퇴장 시나리오](room.md#presence-join-leave))
 - 상대방 video/멤버 UI 헬퍼와 영상용 `getUserMedia`를 준비합니다.
 
 ### 유의사항
@@ -561,7 +561,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 - Host가 방을 만든 뒤 **본인도 `joinRoom`** 해야 합니다. 생성만으로는 입장 상태가 아닙니다.
 - Guest는 공유받은 `roomId`로 `joinRoom`합니다. Host에게는 `join` presence가 갑니다.
 - 영상은 입장 후에 올립니다. 그룹은 `publishVideo` + 상대방 `subscribeVideo`, P2P는 `publishP2P` + 상대방 `subscribed`/`getStream`입니다. ([media](media.md#영상-송수신-시나리오와-presence))
-- 퇴장은 `leaveRoom`입니다. 마지막 인원이 나가고 `destroy: true`(기본)이면 방이 정리됩니다. Host가 명시적으로 끊을 때는 [방 종료](room.md#방-종료)(`destroyRoom`)를 사용할 수 있습니다.
+- 퇴장은 `leaveRoom`입니다. 마지막 인원이 나가고 `destroy: true`(기본)이면 방이 정리됩니다. Host가 명시적으로 끊을 때는 [방 종료](room.md#destroy-room)(`destroyRoom`)를 사용할 수 있습니다.
 
 ### 단계 요약
 
@@ -636,7 +636,7 @@ cleanupLocalSession();
 
 ### 관련 절
 
-- [P2P 방 생성](room.md#p2p-방-생성) / [그룹통화 방 생성](room.md#그룹통화-방-생성)
-- [방 입장](room.md#방-입장) / [방 퇴장](room.md#방-퇴장) / [방 종료](room.md#방-종료)
-- [입장·퇴장 presence](room.md#입장퇴장-시나리오와-presence)
+- [P2P 방 생성](room.md#p2p) / [그룹통화 방 생성](room.md#create-video-room)
+- [방 입장](room.md#join-room) / [방 퇴장](room.md#leave-room) / [방 종료](room.md#destroy-room)
+- [입장·퇴장 presence](room.md#presence-join-leave)
 - [영상 송수신 presence](media.md#영상-송수신-시나리오와-presence)

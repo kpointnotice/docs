@@ -44,7 +44,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 }
 ```
 
-- [Member 참조](room.md#방-입장)
+- [Member 참조](room.md#join-room)
 
 ## type: "leave"
 
@@ -89,7 +89,7 @@ type Feed = {
 };
 ```
 
-- [Member 참조](room.md#방-입장)
+- [Member 참조](room.md#join-room)
 
 - **feeds 사용 예시**\
   [subscribeVideo](media.md#미디어-서버에-영상-수신)를 호출해 stream을 수신합니다.

@@ -314,4 +314,4 @@ await privacyMode.stop();
 {% endcode %}
 
 - 관련 API: [시작](privacy.md#사생활-보호-시작), [송신](privacy.md#사생활-보호-영상-송신), [종료](privacy.md#사생활-보호-종료)
-- 방·영상 흐름: [방 라이프사이클](room.md#시나리오-방-라이프사이클-생성--입장--publish--퇴장), [영상 송수신](media.md#영상-송수신-시나리오와-presence)
+- 방·영상 흐름: [방 라이프사이클](room.md#scenario-lifecycle), [영상 송수신](media.md#영상-송수신-시나리오와-presence)

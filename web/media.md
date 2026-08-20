@@ -327,7 +327,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 
 - 타입 상세: [publish](event.md#type-publish), [subscribed](event.md#type-subscribed)
 - 샘플: [그룹 샘플](../sample/group.md), [P2P 샘플](../sample/p2p.md)
-- 방 전체 흐름(생성→입장→publish→퇴장): [방 라이프사이클](room.md#시나리오-방-라이프사이클-생성--입장--publish--퇴장)
+- 방 전체 흐름(생성→입장→publish→퇴장): [방 라이프사이클](room.md#scenario-lifecycle)
 
 ---
 
@@ -346,7 +346,7 @@ knowledgetalk.addEventListener("presence", async (event) => {
 ### 유의사항
 
 - 요청 측은 `removeLocalPeer` → `removePeer` 순으로 정리한 뒤, `inform`으로 상대방에게 재연결을 알립니다.
-- `message`는 앱 규약 객체면 됩니다. 아래 예시는 `{ type: "reconnect" }`입니다. ([inform](room.md#알림-메시지-전송), [presence inform](event.md#type-inform))
+- `message`는 앱 규약 객체면 됩니다. 아래 예시는 `{ type: "reconnect" }`입니다. ([inform](room.md#inform), [presence inform](event.md#type-inform))
 - peer 정리 후 앱이 들고 있던 `MediaStream`은 track을 `removeTrack` / `stop`으로 비우고, video `srcObject`도 해제합니다. (SDK가 앱 쪽 stream map을 대신 지워 주지는 않습니다.)
 - 수신 측도 동일하게 피어·stream을 정리한 뒤 `publishP2P`로 다시 보냅니다. 요청 측은 `subscribed`에서 `getStream`으로 UI를 갱신합니다.
 - **카메라 끄기/가리기**에 `removePeer`만 사용하지 않습니다. track·상태 알림은 [본인 비디오 숨김](userInfo.md#시나리오-본인-비디오-숨김)을 사용합니다.
