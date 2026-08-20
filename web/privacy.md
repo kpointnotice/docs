@@ -263,6 +263,7 @@ await privacyMode.stop();
 ## 시나리오: 사생활 보호 적용 → 송신 → 종료
 
 `start()`는 로컬 canvas/`blurStream`만 만듭니다. 상대방에게 나가려면 **처음 보낼 때는 `blurStream`으로 publish**하고, **이미 원본을 보낸 뒤에는 `sendBlurVideoTrack`으로 sender를 교체**합니다.
+
 ![사생활 보호](../img/seq_privacy.png)
 
 ### 호출 전
