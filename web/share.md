@@ -52,12 +52,20 @@ SDK `screenStart` 호출만으로는 로컬/원격 영상이 화면에 나타나
 // 그룹: target 생략
 const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
 
-// 앱에서 로컬 screen video DOM 생성 및 srcObject 연결 후
-await knowledgetalk.screenStart(stream);
-// P2P: 상대 userId를 target으로 지정
-await knowledgetalk.screenStart(stream, "kpoint123");
-// 판서 포함
-await knowledgetalk.screenStart(stream, undefined, canvas);
+// * 목적에 따라 아래 코드 중 하나를 사용하시면 됩니다.
+// 1) 그룹: 앱에서 로컬 screen video DOM 생성 및 srcObject 연결 후
+const result = await knowledgetalk.screenStart(stream);
+// 2) P2P: 상대 userId를 target으로 지정
+const result = await knowledgetalk.screenStart(stream, "kpoint123");
+// 3) 그룹 연결 시 판서 포함하여 공유
+const result = await knowledgetalk.screenStart(stream, undefined, canvas);
+// P2P 연결 시 판서 포함하여 공유
+const result = await knowledgetalk.screenStart(stream, kpoint123, canvas);
+
+if (result.code !== "200") {
+  stream.getTracks().forEach((track) => track.stop());
+  // result.code에 따라 서비스 UI에서 실패 사유 안내
+}
 ```
 
 {% endcode %}
@@ -69,20 +77,24 @@ screenStart(
     stream: MediaStream;
     target?: string;
     canvas?: HTMLCanvasElement;
-): Promise<boolean>;
+): Promise<{
+    code: ResponseCode;
+}>;
 ```
 
 - **요청 상세**
 
-  <mark style="color:red;">**canvas를 넘기면 canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
+  <mark style="color:red;">**canvasInit() / drawingInit()가 포함되어 있으므로 따로 요청하지 않아도 됨**</mark>
 
-<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할 영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P인 경우 상대방 userId (그룹은 생략)</td><td>"kpoint123"</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 (선택)</td><td>HTMLCanvasElement</td></tr></tbody></table>
+  <mark style="color:red;">**동일한 방(roomId)에서는 한 번에 한 사용자만 화면을 공유할 수 있습니다. 화면공유, 화이트보드 또는 자료공유가 이미 진행 중이면 요청이 실패합니다. 여러 사용자의 카메라 영상 송출에는 이 제한이 적용되지 않습니다.**</mark>
+
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>stream</td><td>공유할영상 스트림</td><td>MediaStream</td></tr><tr><td>target</td><td>P2P 경우, 상대방의 userId</td><td>'kpoint123'</td></tr><tr><td>canvas</td><td>공유 화면 위의 캔버스 기능</td><td>HTMLcanvasElement</td></tr></tbody></table>
 
 - **응답 상세**
 
-  성공 시 true, 실패 시 false를 리턴합니다.
+<table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><p>요청 처리 결과</p><ul><li>200: 화면공유 시작 성공</li><li>440: 이미 다른 사용자가 공유를 진행 중</li></ul><p><a href="code.md">응답 코드 바로가기</a></p></td><td>'200'</td></tr></tbody></table>
 
-- 수신 처리: 그룹은 [publish](event.md#type-publish), P2P는 [subscribed](event.md#type-subscribed) / [screen](event.md#type-screen) 참고
+- 수신 처리는 그룹 [publish](event.md#type-publish), P2P [subscribed](event.md#type-subscribed) / [screen](event.md#type-screen) 를 참고하세요.
 
 ---
 
