@@ -1,5 +1,75 @@
 # 영상 연결 기능
 
+## 카메라 권한에 따른 입장 정책
+
+KnowledgeTalk SDK의 `joinRoom()`은 카메라 권한을 확인하지 않습니다. 카메라 권한이 없어도 방에 입장할 수 있으므로, 서비스 요구사항에 따라 클라이언트에서 입장 정책을 결정해야 합니다.
+
+### 카메라 권한이 필수인 경우
+
+카메라 권한을 먼저 요청하고 스트림 생성에 성공한 경우에만 `joinRoom()`을 호출합니다. 사용자가 권한을 거부하면 안내 메시지를 표시하고 입장 절차를 중단합니다.
+
+{% code title="index.js" %}
+```javascript
+const joinWithRequiredCamera = async () => {
+    let localStream;
+
+    try {
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true });
+    } catch (error) {
+        if (error.name === 'NotAllowedError') {
+            // 서비스 UI에서 카메라 권한을 안내한 후 입장 중단
+            return;
+        }
+
+        throw error;
+    }
+
+    const roomData = await knowledgetalk.joinRoom('K43254033');
+
+    if (roomData.code === '200') {
+        await knowledgetalk.publishVideo('cam', localStream);
+    }
+};
+
+await joinWithRequiredCamera();
+```
+{% endcode %}
+
+### 카메라 없이 입장을 허용하는 경우
+
+카메라 권한 거부를 카메라 미사용 상태로 처리하고 `joinRoom()`을 계속 호출합니다. 카메라 스트림이 없으므로 `publishVideo()`는 호출하지 않지만, 상대방 영상은 기존 수신 절차에 따라 볼 수 있습니다.
+
+{% code title="index.js" %}
+```javascript
+const joinWithOptionalCamera = async () => {
+    let localStream = null;
+
+    try {
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true });
+    } catch (error) {
+        if (error.name !== 'NotAllowedError') throw error;
+
+        // 카메라 없이 수신 전용으로 입장
+        localStream = null;
+    }
+
+    const roomData = await knowledgetalk.joinRoom('K43254033');
+
+    if (roomData.code !== '200') return;
+
+    if (localStream) {
+        await knowledgetalk.publishVideo('cam', localStream);
+    }
+};
+
+await joinWithOptionalCamera();
+```
+{% endcode %}
+
+카메라 없이 입장한 사용자는 자신의 카메라 영상을 송신하지 않습니다. 상대방 영상은 기존 [`publish` 이벤트](event.md#type-publish)와 `subscribeVideo()` 절차를 통해 수신할 수 있습니다.
+
+
+
 ## 미디어 서버에 영상 송신
 
 - **예시**
