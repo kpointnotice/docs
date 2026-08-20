@@ -17,7 +17,7 @@ await knowledgetalk.publishVideo("cam", stream);
 - **타입**
 
 ```typescript
-publishvideo(
+publishVideo(
     type: "cam";
     stream: MediaStream;
 ): Promise<boolean>;
@@ -180,7 +180,7 @@ await knowledgetalk.changeLocalStream(stream, target);
 changeLocalStream(
     stream: MediaStream;
     target?: string;
-)
+): Promise<boolean>;
 ```
 
 - **요청 상세**
