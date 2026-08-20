@@ -51,12 +51,11 @@ SDK `screenStart` 호출만으로는 로컬/원격 영상이 화면에 나타나
 ```javascript
 // 그룹: target 생략
 const stream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+
 // 앱에서 로컬 screen video DOM 생성 및 srcObject 연결 후
 await knowledgetalk.screenStart(stream);
-
 // P2P: 상대 userId를 target으로 지정
 await knowledgetalk.screenStart(stream, "kpoint123");
-
 // 판서 포함
 await knowledgetalk.screenStart(stream, undefined, canvas);
 ```
@@ -319,14 +318,14 @@ reqCanvasImage(
 
 ### 도구 목록
 
-| tool | 설명 | strokeWidth | type |
-| ---- | ---- | ----------- | ---- |
-| `pen` | 일반 선. `type: "highlight"`이면 형광펜 | 선 굵기 | `"highlight"`(선택) |
-| `crayon` | 텍스처 있는 색연필 선. SDK 내부에서 브러시 굵기로 변환 | 선 굵기 | — |
-| `eraser` | 지우개 | 선 굵기 | — |
-| `shape` | 도형. 생략 시 `square` | 선 굵기 | `ShapeType` |
-| `pointer` | 포인터 | 선 굵기 | — |
-| `textbox` | 캔버스 클릭 후 텍스트 입력. 확정 시 이미지로 `drawing` 동기화 | **글자 크기(fontSize)** | — |
+| tool      | 설명                                       | strokeWidth         | type              |
+| --------- | ---------------------------------------- | ------------------- | ----------------- |
+| `pen`     | 일반 선. `type: "highlight"`이면 형광펜          | 선 굵기                | `"highlight"`(선택) |
+| `crayon`  | 텍스처 있는 색연필 선. SDK 내부에서 브러시 굵기로 변환        | 선 굵기                | —                 |
+| `eraser`  | 지우개                                      | 선 굵기                | —                 |
+| `shape`   | 도형. 생략 시 `square`                        | 선 굵기                | `ShapeType`       |
+| `pointer` | 포인터                                      | 선 굵기                | —                 |
+| `textbox` | 캔버스 클릭 후 텍스트 입력. 확정 시 이미지로 `drawing` 동기화 | **글자 크기(fontSize)** | —                 |
 
 ### 유의사항
 
