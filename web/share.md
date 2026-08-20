@@ -304,6 +304,10 @@ reqCanvasImage(
 - **응답 상세**
 
 <table><thead><tr><th width="141">Parameter</th><th width="429">Description</th><th>Example</th></tr></thead><tbody><tr><td>code</td><td><a href="code.md">응답 코드 바로가기</a></td><td>"200"</td></tr></tbody></table>
+* 대상 사용자는 [`reqCanvasImage` presence 이벤트](event.md#type-reqcanvasimage)를 수신합니다.
+* 요청자는 [`updateImage` presence 이벤트](event.md#type-updateimage)를 수신합니다.
+
+`reqCanvasImage()`의 응답과 presence 이벤트는 서로 다릅니다. 메서드의 `code`는 요청 처리 결과이며, 실제 캔버스 이미지는 `updateImage` presence 이벤트의 `img` 필드로 전달됩니다.
 
 ---
 
@@ -318,14 +322,14 @@ reqCanvasImage(
 
 ### 도구 목록
 
-| tool      | 설명                                       | strokeWidth         | type              |
-| --------- | ---------------------------------------- | ------------------- | ----------------- |
-| `pen`     | 일반 선. `type: "highlight"`이면 형광펜          | 선 굵기                | `"highlight"`(선택) |
-| `crayon`  | 텍스처 있는 색연필 선. SDK 내부에서 브러시 굵기로 변환        | 선 굵기                | —                 |
-| `eraser`  | 지우개                                      | 선 굵기                | —                 |
-| `shape`   | 도형. 생략 시 `square`                        | 선 굵기                | `ShapeType`       |
-| `pointer` | 포인터                                      | 선 굵기                | —                 |
-| `textbox` | 캔버스 클릭 후 텍스트 입력. 확정 시 이미지로 `drawing` 동기화 | **글자 크기(fontSize)** | —                 |
+| tool      | 설명                                                          | strokeWidth             | type                |
+| --------- | ------------------------------------------------------------- | ----------------------- | ------------------- |
+| `pen`     | 일반 선. `type: "highlight"`이면 형광펜                       | 선 굵기                 | `"highlight"`(선택) |
+| `crayon`  | 텍스처 있는 색연필 선. SDK 내부에서 브러시 굵기로 변환        | 선 굵기                 | —                   |
+| `eraser`  | 지우개                                                        | 선 굵기                 | —                   |
+| `shape`   | 도형. 생략 시 `square`                                        | 선 굵기                 | `ShapeType`         |
+| `pointer` | 포인터                                                        | 선 굵기                 | —                   |
+| `textbox` | 캔버스 클릭 후 텍스트 입력. 확정 시 이미지로 `drawing` 동기화 | **글자 크기(fontSize)** | —                   |
 
 ### 유의사항
 
