@@ -59,7 +59,7 @@ const result = await knowledgetalk.screenStart(stream);
 const result = await knowledgetalk.screenStart(stream, "kpoint123");
 // 3) 그룹 연결 시 판서 포함하여 공유
 const result = await knowledgetalk.screenStart(stream, undefined, canvas);
-// P2P 연결 시 판서 포함하여 공유
+// 4) P2P 연결 시 판서 포함하여 공유
 const result = await knowledgetalk.screenStart(stream, kpoint123, canvas);
 
 if (result.code !== "200") {
